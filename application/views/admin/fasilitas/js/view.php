@@ -15,74 +15,14 @@
 <script>
     let tabelFasilitasDt = null;
 
-    // untuk ubah data produk
-    var untukUbahDataProduk = function() {
-        $(document).on('submit', '#form-upd', function(e) {
-            e.preventDefault();
-            $('#inpnama').attr('required', 'required');
-            $('#inpharga').attr('required', 'required');
-            $('#inpidjenis').attr('required', 'required');
-            $('#inpidkategori').attr('required', 'required');
-            $('#inpgambar').attr('required', 'required');
-            $('#inpalamat').attr('required', 'required');
-            $('#inplatitude').attr('required', 'required');
-            $('#inplongitude').attr('required', 'required');
-            $('#inpketerangan').attr('required', 'required');
-
-            if ($('#form-upd').parsley().isValid() == true) {
-                $.ajax({
-                    method: $(this).attr('method'),
-                    url: $(this).attr('action'),
-                    data: new FormData(this),
-                    contentType: false,
-                    processData: false,
-                    cache: false,
-                    dataType: 'json',
-                    beforeSend: function() {
-                        $('#save').attr('disabled', 'disabled');
-                        $('#save').html('<i class="fa fa-spinner"></i>&nbsp;Menunggu...');
-                    },
-                    success: function(response) {
-                        swal({
-                                title: response.title,
-                                text: response.text,
-                                icon: response.type,
-                                button: response.button,
-                            })
-                            .then((value) => {
-                                location.reload()
-                            });
-                        $('#save').removeAttr('disabled');
-                        $('#save').html('<i class="fa fa-save"></i>&nbsp;Simpan');
-                    }
-                })
-            }
-        });
-    }();
-
-    // untuk ubah gambar rumah
-    var untukUbahGambarProduk = function() {
-        $(document).on('click', '#ubah_gambar', function() {
-            var ini = $(this);
-            if (ini.is(':checked')) {
-                $("input[name*='inpgambar']").removeAttr('disabled');
-                $("input[name*='inpgambar']").attr('id', 'inpgambar');
-            } else {
-                $("input[name*='inpgambar']").attr('disabled', 'disabled');
-                $("input[name*='inpgambar']").removeAttr('id');
-                $("input[name*='inpgambar']").removeAttr('required');
-            }
-        });
-    }();
-
-    // untuk datatable topper
-    var untukTabelTopper = function() {
+    // untuk datatable fasilitas
+    var untukTabelFasilitas = function() {
         tabelFasilitasDt = $('#tabel-fasilitas').DataTable({
             responsive: true,
             processing: true,
             lengthMenu: [5, 10, 25, 50],
             pageLength: 10,
-            ajax: '<?= admin_url() ?>rumah/get_data_fasilitas_dt/<?= base64url_encode($id_rumah) ?>',
+            ajax: '<?= admin_url() ?>fasilitas/get_data_fasilitas_dt',
             columns: [{
                     title: 'No.',
                     data: null,
@@ -122,44 +62,53 @@
         });
     }();
 
-    // untuk reset form fasilitas
-    var untukResetFormFasilitas = function() {
-        $(document).on('click', '#btn-add', function() {
-            $('#judul-add-upd').html('Tambah');
-            $('#inpnamafasilitas').val('');
-            $("input[name*='inpgambarfasilitas']").removeAttr('disabled');
-            $("input[name*='inpgambarfasilitas']").attr('id', 'inpgambarfasilitas');
-            $('#inpgambarfasilitas').val('');
-            $('#lihat_gambar').empty();
-            $('#lihat_gambar').removeAttr('style');
-            $('#centang_gambar').empty();
-            $('#centang_gambar').removeAttr('style');
-        });
-    }();
+    // untuk tambah & ubah data
+    var untukTambahDanUbahData = function() {
+        $(document).on('submit', '#form-add-upd', function(e) {
+            e.preventDefault();
+            $('#inpnama').attr('required', 'required');
+            $('#inpgambar').attr('required', 'required');
 
-    // untuk ubah gambar
-    var untukUbahGambarFasilitas = function() {
-        $(document).on('click', '#ubah_gambar_fasilitas', function() {
-            var ini = $(this);
-            if (ini.is(':checked')) {
-                $("input[name*='inpgambarfasilitas']").removeAttr('disabled');
-                $("input[name*='inpgambarfasilitas']").attr('id', 'inpgambarfasilitas');
-            } else {
-                $("input[name*='inpgambarfasilitas']").attr('disabled', 'disabled');
-                $("input[name*='inpgambarfasilitas']").removeAttr('id');
-                $("input[name*='inpgambarfasilitas']").removeAttr('required');
+            if ($('#form-add-upd').parsley().isValid() == true) {
+                $.ajax({
+                    method: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    dataType: 'json',
+                    beforeSend: function() {
+                        $('#save').attr('disabled', 'disabled');
+                        $('#save').html('<i class="fa fa-spinner"></i>&nbsp;Menunggu...');
+                    },
+                    success: function(response) {
+                        swal({
+                                title: response.title,
+                                text: response.text,
+                                icon: response.type,
+                                button: response.button,
+                            })
+                            .then((value) => {
+                                $('#modal-add-upd').modal('hide');
+                                tabelFasilitasDt.ajax.reload();
+                            });
+                        $('#save').removeAttr('disabled');
+                        $('#save').html('<i class="fa fa-save"></i>&nbsp;Simpan');
+                    }
+                })
             }
         });
     }();
 
-    // untuk get id rumah
-    var untukGetIdDataTopper = function() {
+    // untuk get id fasilitas
+    var untukGetIdFasilitas = function() {
         $(document).on('click', '#btn-upd', function() {
             var ini = $(this);
 
             $.ajax({
                 type: "POST",
-                url: "<?= admin_url() ?>rumah/get_data_fasilitas",
+                url: "<?= admin_url() ?>fasilitas/get_data_fasilitas",
                 dataType: 'json',
                 data: {
                     id: ini.data('id')
@@ -178,9 +127,9 @@
 
                     $('#inpidrumah').val(response.id_rumah);
                     $('#inpidfasilitas').val(response.id_fasilitas);
-                    $('#inpnamafasilitas').val(response.nama);
-                    $('#inpgambarfasilitas').attr('disabled', 'disabled');
-                    $('#inpgambarfasilitas').removeAttr('id');
+                    $('#inpnama').val(response.nama);
+                    $('#inpgambar').attr('disabled', 'disabled');
+                    $('#inpgambar').removeAttr('id');
 
                     ini.removeAttr('disabled');
                     ini.html('<i class="fa fa-pencil"></i>&nbsp;Ubah');
@@ -189,50 +138,41 @@
         });
     }();
 
-    // untuk tambah & ubah data fasilitas
-    var untukTambahDanUbahDataFasilitas = function() {
-        $(document).on('submit', '#form-add-upd', function(e) {
-            e.preventDefault();
-            $('#inpnamafasilitas').attr('required', 'required');
-            $('#inpgambarfasilitas').attr('required', 'required');
+    // untuk reset form fasilitas
+    var untukResetFormFasilitas = function() {
+        $(document).on('click', '#btn-add', function() {
+            $('#judul-add-upd').html('Tambah');
+            $('#inpidfasilitas').val('');
+            $('#inpnama').val('');
+            $("input[name*='inpgambar']").removeAttr('disabled');
+            $("input[name*='inpgambar']").attr('id', 'inpgambar');
+            $('#inpgambar').val('');
+            $('#lihat_gambar').empty();
+            $('#lihat_gambar').removeAttr('style');
+            $('#centang_gambar').empty();
+            $('#centang_gambar').removeAttr('style');
+        });
+    }();
 
-            if ($('#form-add-upd').parsley().isValid() == true) {
-                $.ajax({
-                    method: $(this).attr('method'),
-                    url: $(this).attr('action'),
-                    data: new FormData(this),
-                    contentType: false,
-                    processData: false,
-                    cache: false,
-                    dataType: 'json',
-                    beforeSend: function() {
-                        $('#save_topper').attr('disabled', 'disabled');
-                        $('#save_topper').html('<i class="fa fa-spinner"></i>&nbsp;Menunggu...');
-                    },
-                    success: function(response) {
-                        swal({
-                                title: response.title,
-                                text: response.text,
-                                icon: response.type,
-                                button: response.button,
-                            })
-                            .then((value) => {
-                                $('#modal-add-upd').modal('hide');
-                                tabelFasilitasDt.ajax.reload();
-                            });
-                        $('#save_topper').removeAttr('disabled');
-                        $('#save_topper').html('<i class="fa fa-save"></i>&nbsp;Simpan');
-                    }
-                })
+    // untuk ubah gambar
+    var untukUbahGambarFasilitas = function() {
+        $(document).on('click', '#ubah_gambar_fasilitas', function() {
+            var ini = $(this);
+            if (ini.is(':checked')) {
+                $("input[name*='inpgambar']").removeAttr('disabled');
+                $("input[name*='inpgambar']").attr('id', 'inpgambar');
+            } else {
+                $("input[name*='inpgambar']").attr('disabled', 'disabled');
+                $("input[name*='inpgambar']").removeAttr('id');
+                $("input[name*='inpgambar']").removeAttr('required');
             }
         });
     }();
 
-    // untuk hapus fasilitas
-    var untukHapusDataFasilitas = function() {
+    // untuk hapus data
+    var untukHapusData = function() {
         $(document).on('click', '#btn-del', function() {
             var ini = $(this);
-
             swal({
                     title: "Apakah Anda yakin ingin menghapusnya?",
                     text: "Data yang telah dihapus tidak dapat dikembalikan!",
@@ -243,8 +183,8 @@
                 .then((del) => {
                     if (del) {
                         $.ajax({
-                            type: "POST",
-                            url: "<?= admin_url() ?>rumah/process_del_fasilitas",
+                            type: "post",
+                            url: "<?= admin_url() ?>fasilitas/process_del",
                             dataType: 'json',
                             data: {
                                 id: ini.data('id')

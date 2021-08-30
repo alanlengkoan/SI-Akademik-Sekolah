@@ -1,1 +1,0 @@
-<link rel="stylesheet" type="text/css" href="<?= assets_url() ?>admin/pages/message/message.css" />

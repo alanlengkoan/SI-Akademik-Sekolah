@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="card-block table-border-style">
-                        <table class="table table-striped table-bordered nowrap" id="tabel-latar-belakang">
+                        <table class="table table-striped table-bordered nowrap" id="tabel-jabatan">
                         </table>
                     </div>
                 </div>
@@ -56,19 +56,16 @@
             <div class="modal-header">
                 <h4 class="modal-title"><span id="judul-add-upd"></span> <?= $halaman ?></h4>
             </div>
-            <form id="form-add-upd" action="<?= admin_url() ?>latar_belakang/process_save" method="POST">
+            <form id="form-add-upd" action="<?= admin_url() ?>jabatan/process_save" method="POST">
                 <!-- begin:: id -->
-                <input type="hidden" name="inpidlatarbelakang" id="inpidlatarbelakang" />
+                <input type="hidden" name="inpidjabatan" id="inpidjabatan" />
                 <!-- end:: id -->
 
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Gambar *</label>
-                        <div class="col-sm-10">
-                            <div id="lihat_gambar"></div>
-                            <input type="file" class="form-control" name="inpgambar" id="inpgambar" placeholder="Masukkan rekening" />
-                            <div id="centang_gambar"></div>
-                            <p>File dengan tipe (*.jpg,*.jpeg,*.png) Max. 20MB</p>
+                        <label class="col-sm-3 col-form-label">Nama *</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="inpnama" id="inpnama" placeholder="Masukkan nama" />
                         </div>
                     </div>
                 </div>

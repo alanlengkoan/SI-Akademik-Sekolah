@@ -145,26 +145,26 @@
                             </ul>
                             <div class="pcoded-navigation-label">Master</div>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class="<?= ($this->uri->segment(2) === 'bank' ? 'active' : '') ?>">
-                                    <a href="<?= admin_url() ?>bank">
+                                <li class="<?= ($this->uri->segment(2) === 'fasilitas' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>fasilitas">
                                         <span class="pcoded-micon">
                                             <i class="feather icon-clock"></i>
                                         </span>
-                                        <span class="pcoded-mtext">Bank</span>
+                                        <span class="pcoded-mtext">Fasilitas</span>
                                     </a>
                                 </li>
-                                <li class="<?= ($this->uri->segment(2) === 'jenis' ? 'active' : '') ?>">
-                                    <a href="<?= admin_url() ?>jenis">
+                                <li class="<?= ($this->uri->segment(2) === 'jabatan' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>jabatan">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-credit-card"></i>
+                                            <i class="feather icon-image"></i>
                                         </span>
-                                        <span class="pcoded-mtext">Jenis</span>
+                                        <span class="pcoded-mtext">Jabatan</span>
                                     </a>
                                 </li>
                                 <li class="<?= ($this->uri->segment(2) === 'kategori' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>kategori">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-image"></i>
+                                            <i class="feather icon-credit-card"></i>
                                         </span>
                                         <span class="pcoded-mtext">Kategori</span>
                                     </a>
@@ -172,31 +172,28 @@
                             </ul>
                             <div class="pcoded-navigation-label">Pustaka</div>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class="<?= ($this->uri->segment(2) === 'pelanggan' ? 'active' : '') ?>">
-                                    <a href="<?= admin_url() ?>pelanggan">
+                                <li class="<?= ($this->uri->segment(2) === 'guru' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>guru">
                                         <span class="pcoded-micon">
                                             <i class="feather icon-users"></i>
                                         </span>
-                                        <span class="pcoded-mtext">Pelanggan</span>
+                                        <span class="pcoded-mtext">Guru</span>
                                     </a>
                                 </li>
-                                <li class="<?= ($this->uri->segment(2) === 'rumah' ? 'active' : '') ?>">
-                                    <a href="<?= admin_url() ?>rumah">
+                                <li class="<?= ($this->uri->segment(2) === 'siswa' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>siswa">
                                         <span class="pcoded-micon">
                                             <i class="feather icon-home"></i>
                                         </span>
-                                        <span class="pcoded-mtext">Rumah</span>
+                                        <span class="pcoded-mtext">Siswa</span>
                                     </a>
                                 </li>
-                            </ul>
-                            <div class="pcoded-navigation-label">Transaksi</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="<?= ($this->uri->segment(2) === 'penyewa' ? 'active' : '') ?>">
-                                    <a href="<?= admin_url() ?>penyewa">
+                                <li class="<?= ($this->uri->segment(2) === 'berita' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>berita">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-box"></i>
+                                            <i class="feather icon-home"></i>
                                         </span>
-                                        <span class="pcoded-mtext">Penyewa</span>
+                                        <span class="pcoded-mtext">Berita</span>
                                     </a>
                                 </li>
                             </ul>

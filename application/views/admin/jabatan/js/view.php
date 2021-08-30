@@ -10,18 +10,19 @@
 <script src="<?= assets_url() ?>admin/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
 <script src="<?= assets_url() ?>admin/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
 <script>
-    let tabelBankDt = null;
+    let tabelJabatanDt = null;
 
     // untuk datatable
-    var untukTabelBank = function() {
-        tabelBankDt = $('#tabel-bank').DataTable({
+    var untukTabelJabatan = function() {
+        tabelJabatanDt = $('#tabel-jabatan').DataTable({
             responsive: true,
             processing: true,
             lengthMenu: [5, 10, 25, 50],
             pageLength: 10,
-            ajax: '<?= admin_url() ?>bank/get_data_bank_dt',
+            ajax: '<?= admin_url() ?>jabatan/get_data_jabatan_dt',
             columns: [{
                     title: 'No.',
                     data: null,
@@ -36,11 +37,6 @@
                     className: 'text-center',
                 },
                 {
-                    title: 'Rekening',
-                    data: 'rekening',
-                    className: 'text-center',
-                },
-                {
                     title: 'Aksi',
                     responsivePriority: -1,
                     className: 'text-center',
@@ -49,8 +45,8 @@
                     render: function(data, type, full, meta) {
                         return `
                         <div class="button-icon-btn button-icon-btn-cl">
-                            <button type="button" id="btn-upd" data-id="` + full.id_bank + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
-                            <button type="button" id="btn-del" data-id="` + full.id_bank + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
+                            <button type="button" id="btn-upd" data-id="` + full.id_jabatan + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
+                            <button type="button" id="btn-del" data-id="` + full.id_jabatan + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
                         </div>
                     `;
                     },
@@ -63,9 +59,9 @@
     var untukResetForm = function() {
         $(document).on('click', '#btn-add', function() {
             $('#judul-add-upd').html('Tambah');
-            $('#inpidbank').val('');
+            $('#inpidjabatan').val('');
             $('#inpnama').val('');
-            $('#inprekening').val('');
+            CKEDITOR.instances.inpketerangan.setData('');
         });
     }();
 
@@ -74,7 +70,6 @@
         $(document).on('submit', '#form-add-upd', function(e) {
             e.preventDefault();
             $('#inpnama').attr('required', 'required');
-            $('#inprekening').attr('required', 'required');
 
             if ($('#form-add-upd').parsley().isValid() == true) {
                 $.ajax({
@@ -98,7 +93,7 @@
                             })
                             .then((value) => {
                                 $('#modal-add-upd').modal('hide');
-                                tabelBankDt.ajax.reload();
+                                tabelJabatanDt.ajax.reload();
                             });
                         $('#save').removeAttr('disabled');
                         $('#save').html('<i class="fa fa-save"></i>&nbsp;Simpan');
@@ -115,7 +110,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "<?= admin_url() ?>bank/get",
+                url: "<?= admin_url() ?>jabatan/get",
                 dataType: 'json',
                 data: {
                     id: ini.data('id')
@@ -126,9 +121,9 @@
                     ini.html('<i class="fa fa-spinner"></i>&nbsp;Menunggu...');
                 },
                 success: function(response) {
-                    $('#inpidbank').val(response.id_bank);
+                    $('#inpidjabatan').val(response.id_jabatan);
                     $('#inpnama').val(response.nama);
-                    $('#inprekening').val(response.rekening);
+                    CKEDITOR.instances.inpketerangan.setData(response.keterangan);
 
                     ini.removeAttr('disabled');
                     ini.html('<i class="fa fa-pencil"></i>&nbsp;Ubah');
@@ -151,8 +146,8 @@
                 .then((del) => {
                     if (del) {
                         $.ajax({
-                            type: "POST",
-                            url: "<?= admin_url() ?>bank/process_del",
+                            type: "post",
+                            url: "<?= admin_url() ?>jabatan/process_del",
                             dataType: 'json',
                             data: {
                                 id: ini.data('id')
@@ -169,7 +164,7 @@
                                         button: data.button,
                                     })
                                     .then((value) => {
-                                        tabelBankDt.ajax.reload();
+                                        tabelJabatanDt.ajax.reload();
                                     });
                             }
                         });

@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_kategori extends CI_Model
+class M_jabatan extends CI_Model
 {
     public function getAll()
     {
@@ -10,9 +10,9 @@ class M_kategori extends CI_Model
 
     public function getAllDataDt()
     {
-        $this->datatables->select('k.id_kategori, k.nama');
-        $this->datatables->order_by('k.ins', 'desc');
-        $this->datatables->from('tb_kategori AS k');
+        $this->datatables->select('j.id_jabatan, j.nama');
+        $this->datatables->order_by('j.ins', 'desc');
+        $this->datatables->from('tb_jabatan AS j');
         return print_r($this->datatables->generate());
     }
 }

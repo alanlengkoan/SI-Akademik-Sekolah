@@ -4,21 +4,15 @@ class M_fasilitas extends CI_Model
 {
     public function getAll()
     {
-        $result = $this->db->query("SELECT f.id_fasilitas, f.id_rumah, f.nama, f.gambar FROM tb_fasilitas AS f ORDER BY k.ins DESC")->result();
+        $result = $this->db->query("")->result();
         return $result;
     }
 
-    public function getFasilitasDetail($id_rumah)
+    public function getAllDataDt()
     {
-        $result = $this->db->query("SELECT f.id_fasilitas, f.id_rumah, f.nama, f.gambar FROM tb_fasilitas AS f WHERE f.id_rumah = '$id_rumah'");
-        return $result;
-    }
-
-    public function getAllDataDt($id_rumah)
-    {
-        $this->datatables->select('f.id_fasilitas, f.id_rumah, f.nama, f.gambar');
-        $this->datatables->where('id_rumah', $id_rumah);
+        $this->datatables->select('f.id_fasilitas, f.nama, f.gambar');
         $this->datatables->from('tb_fasilitas AS f');
+        $this->datatables->order_by('f.ins', 'desc');
         return print_r($this->datatables->generate());
     }
 }

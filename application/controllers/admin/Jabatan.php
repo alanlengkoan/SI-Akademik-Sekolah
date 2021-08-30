@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Jenis extends MY_Controller
+class Jabatan extends MY_Controller
 {
     public function __construct()
     {
@@ -12,37 +12,38 @@ class Jenis extends MY_Controller
 
         // untuk load model
         $this->load->model('crud');
-        $this->load->model('m_jenis');
+        $this->load->model('m_jabatan');
     }
 
     // untuk default
     public function index()
     {
         $data = [
-            'halaman' => 'Jenis',
-            'content' => 'admin/jenis/view',
-            'css'     => 'admin/jenis/css/view',
-            'js'      => 'admin/jenis/js/view'
+            'halaman' => 'Jabatan',
+            'content' => 'admin/jabatan/view',
+            'css'     => 'admin/jabatan/css/view',
+            'js'      => 'admin/jabatan/js/view'
         ];
         // untuk load view
         $this->load->view('admin/base', $data);
     }
 
-    // untuk get data bank by datatable
-    public function get_data_jenis_dt()
+    // untuk get data jabatan
+    public function get_data_jabatan_dt()
     {
-        return $this->m_jenis->getAllDataDt();
+        return $this->m_jabatan->getAllDataDt();
     }
+
 
     // untuk get data by id
     public function get()
     {
         $post = $this->input->post(NULL, TRUE);
 
-        $result = $this->crud->gda('tb_jenis', ['id_jenis' => $post['id']]);
+        $result = $this->crud->gda('tb_jabatan', ['id_jabatan' => $post['id']]);
         $response = [
-            'id_jenis' => $result['id_jenis'],
-            'nama'     => $result['nama'],
+            'id_jabatan' => $result['id_jabatan'],
+            'nama'       => $result['nama'],
         ];
         // untuk response json
         $this->_response($response);
@@ -54,20 +55,20 @@ class Jenis extends MY_Controller
         $post = $this->input->post(NULL, TRUE);
 
         $this->db->trans_start();
-        if (empty($post['inpidjenis'])) {
+        if (empty($post['inpidjabatan'])) {
             $data = [
-                'id_jenis' => acak_id('tb_jenis', 'id_jenis'),
-                'nama'     => $post['inpnama'],
+                'id_jabatan' => acak_id('tb_jabatan', 'id_jabatan'),
+                'nama'       => $post['inpnama'],
             ];
 
-            $this->crud->i('tb_jenis', $data);
+            $this->crud->i('tb_jabatan', $data);
         } else {
             $data = [
-                'id_jenis' => $post['inpidjenis'],
-                'nama'     => $post['inpnama'],
+                'id_jabatan' => $post['inpidjabatan'],
+                'nama'       => $post['inpnama'],
             ];
 
-            $this->crud->u('tb_jenis', $data, ['id_jenis' => $post['inpidjenis']]);
+            $this->crud->u('tb_jabatan', $data, ['id_jabatan' => $post['inpidjabatan']]);
         }
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
@@ -79,13 +80,14 @@ class Jenis extends MY_Controller
         $this->_response($response);
     }
 
+
     // untuk proses hapus data
     public function process_del()
     {
         $post = $this->input->post(NULL, TRUE);
-       
+
         $this->db->trans_start();
-        $this->crud->d('tb_jenis', $post['id'], 'id_jenis');
+        $this->crud->d('tb_jabatan', $post['id'], 'id_jabatan');
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             $response = ['title' => 'Gagal!', 'text' => 'Gagal Hapus!', 'type' => 'error', 'button' => 'Ok!'];
