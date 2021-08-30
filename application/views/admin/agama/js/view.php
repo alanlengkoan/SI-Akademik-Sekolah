@@ -13,16 +13,16 @@
 <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
 <script>
-    let tabelJabatanDt = null;
+    let tabelAgamaDt = null;
 
     // untuk datatable
-    var untukTabelJabatan = function() {
-        tabelJabatanDt = $('#tabel-jabatan').DataTable({
+    var untukTabelAgama = function() {
+        tabelAgamaDt = $('#tabel-agama').DataTable({
             responsive: true,
             processing: true,
             lengthMenu: [5, 10, 25, 50],
             pageLength: 10,
-            ajax: '<?= admin_url() ?>jabatan/get_data_jabatan_dt',
+            ajax: '<?= admin_url() ?>agama/get_data_agama_dt',
             columns: [{
                     title: 'No.',
                     data: null,
@@ -45,8 +45,8 @@
                     render: function(data, type, full, meta) {
                         return `
                         <div class="button-icon-btn button-icon-btn-cl">
-                            <button type="button" id="btn-upd" data-id="` + full.id_jabatan + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
-                            <button type="button" id="btn-del" data-id="` + full.id_jabatan + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
+                            <button type="button" id="btn-upd" data-id="` + full.id_agama + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
+                            <button type="button" id="btn-del" data-id="` + full.id_agama + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
                         </div>
                     `;
                     },
@@ -59,7 +59,7 @@
     var untukResetForm = function() {
         $(document).on('click', '#btn-add', function() {
             $('#judul-add-upd').html('Tambah');
-            $('#inpidjabatan').val('');
+            $('#inpidagama').val('');
             $('#inpnama').val('');
         });
     }();
@@ -92,7 +92,7 @@
                             })
                             .then((value) => {
                                 $('#modal-add-upd').modal('hide');
-                                tabelJabatanDt.ajax.reload();
+                                tabelAgamaDt.ajax.reload();
                             });
                         $('#save').removeAttr('disabled');
                         $('#save').html('<i class="fa fa-save"></i>&nbsp;Simpan');
@@ -109,7 +109,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "<?= admin_url() ?>jabatan/get",
+                url: "<?= admin_url() ?>agama/get",
                 dataType: 'json',
                 data: {
                     id: ini.data('id')
@@ -120,7 +120,7 @@
                     ini.html('<i class="fa fa-spinner"></i>&nbsp;Menunggu...');
                 },
                 success: function(response) {
-                    $('#inpidjabatan').val(response.id_jabatan);
+                    $('#inpidagama').val(response.id_agama);
                     $('#inpnama').val(response.nama);
 
                     ini.removeAttr('disabled');
@@ -145,7 +145,7 @@
                     if (del) {
                         $.ajax({
                             type: "post",
-                            url: "<?= admin_url() ?>jabatan/process_del",
+                            url: "<?= admin_url() ?>agama/process_del",
                             dataType: 'json',
                             data: {
                                 id: ini.data('id')
@@ -162,7 +162,7 @@
                                         button: data.button,
                                     })
                                     .then((value) => {
-                                        tabelJabatanDt.ajax.reload();
+                                        tabelAgamaDt.ajax.reload();
                                     });
                             }
                         });

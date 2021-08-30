@@ -4,7 +4,7 @@ class M_jabatan extends CI_Model
 {
     public function getAll()
     {
-        $result = $this->db->query("")->result();
+        $result = $this->db->query("SELECT j.id_jabatan, j.nama FROM tb_jabatan AS j")->result();
         return $result;
     }
 

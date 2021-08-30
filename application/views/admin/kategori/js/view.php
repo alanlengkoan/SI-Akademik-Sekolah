@@ -61,7 +61,6 @@
             $('#judul-add-upd').html('Tambah');
             $('#inpidkategori').val('');
             $('#inpnama').val('');
-            CKEDITOR.instances.inpketerangan.setData('');
         });
     }();
 
@@ -123,7 +122,6 @@
                 success: function(response) {
                     $('#inpidkategori').val(response.id_kategori);
                     $('#inpnama').val(response.nama);
-                    CKEDITOR.instances.inpketerangan.setData(response.keterangan);
 
                     ini.removeAttr('disabled');
                     ini.html('<i class="fa fa-pencil"></i>&nbsp;Ubah');

@@ -145,6 +145,14 @@
                             </ul>
                             <div class="pcoded-navigation-label">Master</div>
                             <ul class="pcoded-item pcoded-left-item">
+                                <li class="<?= ($this->uri->segment(2) === 'agama' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>agama">
+                                        <span class="pcoded-micon">
+                                            <i class="feather icon-image"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Agama</span>
+                                    </a>
+                                </li>
                                 <li class="<?= ($this->uri->segment(2) === 'fasilitas' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>fasilitas">
                                         <span class="pcoded-micon">

@@ -13,16 +13,16 @@
 <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
 <script>
-    let tabelJabatanDt = null;
+    let tabelGuruDt = null;
 
     // untuk datatable
-    var untukTabelJabatan = function() {
-        tabelJabatanDt = $('#tabel-jabatan').DataTable({
+    var untukTabelGuru = function() {
+        tabelGuruDt = $('#tabel-guru').DataTable({
             responsive: true,
             processing: true,
             lengthMenu: [5, 10, 25, 50],
             pageLength: 10,
-            ajax: '<?= admin_url() ?>jabatan/get_data_jabatan_dt',
+            ajax: '<?= admin_url() ?>guru/get_data_guru_dt',
             columns: [{
                     title: 'No.',
                     data: null,
@@ -32,8 +32,35 @@
                     }
                 },
                 {
+                    title: 'Nip',
+                    data: 'nip',
+                    className: 'text-center',
+                },
+                {
                     title: 'Nama',
                     data: 'nama',
+                    className: 'text-center',
+                },
+                {
+                    title: 'Agama',
+                    data: 'agama',
+                    className: 'text-center',
+                },
+                {
+                    title: 'Jabatan',
+                    data: 'jabatan',
+                    className: 'text-center',
+                },
+                {
+                    title: 'Jenis Kelamin',
+                    className: 'text-center',
+                    render: function(data, type, full, meta) {
+                        return (full.kelamin === 'L' ? "Laki - laki" : "Perempuan");
+                    },
+                },
+                {
+                    title: 'Pendidikan Terakhir',
+                    data: 'pendidikan',
                     className: 'text-center',
                 },
                 {
@@ -45,8 +72,8 @@
                     render: function(data, type, full, meta) {
                         return `
                         <div class="button-icon-btn button-icon-btn-cl">
-                            <button type="button" id="btn-upd" data-id="` + full.id_jabatan + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
-                            <button type="button" id="btn-del" data-id="` + full.id_jabatan + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
+                            <button type="button" id="btn-upd" data-id="` + full.id_guru + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
+                            <button type="button" id="btn-del" data-id="` + full.id_guru + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
                         </div>
                     `;
                     },
@@ -59,8 +86,15 @@
     var untukResetForm = function() {
         $(document).on('click', '#btn-add', function() {
             $('#judul-add-upd').html('Tambah');
-            $('#inpidjabatan').val('');
+            $('#inpidguru').val('');
+            $('#inpnip').val('');
             $('#inpnama').val('');
+            $('#inpidagama').val('');
+            $('#inpidjabatan').val('');
+            $('#inpkelamin').val('');
+            $('#inpalamat').val('');
+            $('#inppendidikan').val('');
+            $('#inpthnmasuk').val('');
         });
     }();
 
@@ -68,7 +102,14 @@
     var untukTambahDanUbahData = function() {
         $(document).on('submit', '#form-add-upd', function(e) {
             e.preventDefault();
+            $('#inpnip').attr('required', 'required');
             $('#inpnama').attr('required', 'required');
+            $('#inpidagama').attr('required', 'required');
+            $('#inpidjabatan').attr('required', 'required');
+            $('#inpkelamin').attr('required', 'required');
+            $('#inpalamat').attr('required', 'required');
+            $('#inppendidikan').attr('required', 'required');
+            $('#inpthnmasuk').attr('required', 'required');
 
             if ($('#form-add-upd').parsley().isValid() == true) {
                 $.ajax({
@@ -92,7 +133,7 @@
                             })
                             .then((value) => {
                                 $('#modal-add-upd').modal('hide');
-                                tabelJabatanDt.ajax.reload();
+                                tabelGuruDt.ajax.reload();
                             });
                         $('#save').removeAttr('disabled');
                         $('#save').html('<i class="fa fa-save"></i>&nbsp;Simpan');
@@ -109,7 +150,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "<?= admin_url() ?>jabatan/get",
+                url: "<?= admin_url() ?>guru/get",
                 dataType: 'json',
                 data: {
                     id: ini.data('id')
@@ -120,8 +161,15 @@
                     ini.html('<i class="fa fa-spinner"></i>&nbsp;Menunggu...');
                 },
                 success: function(response) {
-                    $('#inpidjabatan').val(response.id_jabatan);
+                    $('#inpidguru').val(response.id_guru);
+                    $('#inpnip').val(response.nip);
                     $('#inpnama').val(response.nama);
+                    $('#inpidagama').val(response.id_agama);
+                    $('#inpidjabatan').val(response.id_jabatan);
+                    $('#inpkelamin').val(response.kelamin);
+                    $('#inpalamat').val(response.alamat);
+                    $('#inppendidikan').val(response.pendidikan);
+                    $('#inpthnmasuk').val(response.thn_masuk);
 
                     ini.removeAttr('disabled');
                     ini.html('<i class="fa fa-pencil"></i>&nbsp;Ubah');
@@ -145,7 +193,7 @@
                     if (del) {
                         $.ajax({
                             type: "post",
-                            url: "<?= admin_url() ?>jabatan/process_del",
+                            url: "<?= admin_url() ?>guru/process_del",
                             dataType: 'json',
                             data: {
                                 id: ini.data('id')
@@ -162,7 +210,7 @@
                                         button: data.button,
                                     })
                                     .then((value) => {
-                                        tabelJabatanDt.ajax.reload();
+                                        tabelGuruDt.ajax.reload();
                                     });
                             }
                         });
