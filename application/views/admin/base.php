@@ -196,47 +196,12 @@
                                         <span class="pcoded-mtext">Siswa</span>
                                     </a>
                                 </li>
-                                <li class="<?= ($this->uri->segment(2) === 'berita' ? 'active' : '') ?>">
-                                    <a href="<?= admin_url() ?>berita">
+                                <li class="<?= ($this->uri->segment(2) === 'informasi' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>informasi">
                                         <span class="pcoded-micon">
                                             <i class="feather icon-home"></i>
                                         </span>
                                         <span class="pcoded-mtext">Berita</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="pcoded-navigation-label">Laporan</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="<?= ($this->uri->segment(3) === 'l_pembelian' ? 'active' : '') ?>">
-                                    <a href="<?= admin_url() ?>laporan/l_pembelian">
-                                        <span class="pcoded-micon">
-                                            <i class="feather icon-file"></i>
-                                        </span>
-                                        <span class="pcoded-mtext">Laporan</span>
-                                    </a>
-                                </li>
-                                <li class="<?= ($this->uri->segment(3) === 'l_pembelian_bulanan' ? 'active' : '') ?>">
-                                    <a href="<?= admin_url() ?>laporan/l_pembelian_bulanan">
-                                        <span class="pcoded-micon">
-                                            <i class="feather icon-file"></i>
-                                        </span>
-                                        <span class="pcoded-mtext">Laporan Bulanan</span>
-                                    </a>
-                                </li>
-                                <li class="<?= ($this->uri->segment(3) === 'l_pembelian_tahunan' ? 'active' : '') ?>">
-                                    <a href="<?= admin_url() ?>laporan/l_pembelian_tahunan">
-                                        <span class="pcoded-micon">
-                                            <i class="feather icon-file"></i>
-                                        </span>
-                                        <span class="pcoded-mtext">Laporan Tahunan</span>
-                                    </a>
-                                </li>
-                                <li class="<?= ($this->uri->segment(3) === 'l_pelanggan' ? 'active' : '') ?>">
-                                    <a href="<?= admin_url() ?>laporan/l_pelanggan">
-                                        <span class="pcoded-micon">
-                                            <i class="feather icon-file"></i>
-                                        </span>
-                                        <span class="pcoded-mtext">Laporan Pelanggan</span>
                                     </a>
                                 </li>
                             </ul>

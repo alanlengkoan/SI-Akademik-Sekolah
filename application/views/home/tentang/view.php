@@ -1,281 +1,359 @@
-<main id="main">
-    <!-- begin:: breadcrumb -->
-    <section class="intro-single">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-lg-8">
-                    <div class="title-single-box">
-                        <h1 class="title-single"><?= $halaman ?></h1>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-4">
-                    <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="<?= base_url() ?>">Beranda</a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">
-                                <?= $halaman ?>
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
+<!-- start banner Area -->
+<section class="banner-area relative about-banner" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    <?= $halaman ?>
+                </h1>
+                <p class="text-white link-nav"><a href="<?= base_url() ?>">Beranda </a> <span class="lnr lnr-arrow-right"></span> <a href="<?= base_url() ?>tentang"><?= $halaman ?></a></p>
             </div>
         </div>
-    </section>
-    <!-- end:: breadcrumb -->
+    </div>
+</section>
+<!-- End banner Area -->
 
-    <!-- ======= About Section ======= -->
-    <section class="section-about">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="about-img-box">
-                        <img src="<?= assets_url() ?>page/img/slide-about-1.jpg" alt="" class="img-fluid">
+<!-- Start feature Area -->
+<section class="feature-area pb-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="single-feature">
+                    <div class="title">
+                        <h4>Learn Online Courses</h4>
                     </div>
-                    <div class="sinse-box">
-                        <h3 class="sinse-title">EstateAgency
-                            <span></span>
-                            <br> Sinse 2017
-                        </h3>
-                        <p>Art & Creative</p>
+                    <div class="desc-wrap">
+                        <p>
+                            Usage of the Internet is becoming more common due to rapid advancement
+                            of technology.
+                        </p>
+                        <a href="#">Join Now</a>
                     </div>
                 </div>
-                <div class="col-md-12 section-t8">
-                    <div class="row">
-                        <div class="col-md-6 col-lg-5">
-                            <img src="<?= assets_url() ?>page/img/about-2.jpg" alt="" class="img-fluid">
-                        </div>
-                        <div class="col-lg-2  d-none d-lg-block">
-                            <div class="title-vertical d-flex justify-content-start">
-                                <span>EstateAgency Exclusive Property</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-5 section-md-t3">
-                            <div class="title-box-d">
-                                <h3 class="title-d">Sed
-                                    <span class="color-d">porttitor</span> lectus
-                                    <br> nibh.
-                                </h3>
-                            </div>
-                            <p class="color-text-a">
-                                Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus magna justo, lacinia eget
-                                consectetur sed, convallis
-                                at tellus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum
-                                ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit
-                                neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                            </p>
-                            <p class="color-text-a">
-                                Sed porttitor lectus nibh. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.
-                                Mauris blandit aliquet
-                                elit, eget tincidunt nibh pulvinar a. Vivamus magna justo, lacinia eget consectetur sed,
-                                convallis at tellus.
-                            </p>
-                        </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="single-feature">
+                    <div class="title">
+                        <h4>No.1 of universities</h4>
+                    </div>
+                    <div class="desc-wrap">
+                        <p>
+                            For many of us, our very first experience of learning about the celestial bodies begins when we saw our first.
+                        </p>
+                        <a href="#">Join Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="single-feature">
+                    <div class="title">
+                        <h4>Huge Library</h4>
+                    </div>
+                    <div class="desc-wrap">
+                        <p>
+                            If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
+                        </p>
+                        <a href="#">Join Now</a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+<!-- End feature Area -->
 
-    <!-- =======Team Section ======= -->
-    <section class="section-agents section-t8">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="title-wrap d-flex justify-content-between">
-                        <div class="title-box">
-                            <h2 class="title-a">Meet Our Team</h2>
-                        </div>
-                    </div>
-                </div>
+<!-- Start info Area -->
+<section class="info-area pb-120">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-lg-6 no-padding info-area-left">
+                <img class="img-fluid" src="img/about-img.jpg" alt="">
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card-box-d">
-                        <div class="card-img-d">
-                            <img src="<?= assets_url() ?>page/img/agent-7.jpg" alt="" class="img-d img-fluid">
-                        </div>
-                        <div class="card-overlay card-overlay-hover">
-                            <div class="card-header-d">
-                                <div class="card-title-d align-self-center">
-                                    <h3 class="title-d">
-                                        <a href="agent-single.html" class="link-two">Margaret Sotillo
-                                            <br> Escala</a>
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="card-body-d">
-                                <p class="content-d color-text-a">
-                                    Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
-                                </p>
-                                <div class="info-agents color-a">
-                                    <p>
-                                        <strong>Phone: </strong> +54 356 945234
-                                    </p>
-                                    <p>
-                                        <strong>Email: </strong> agents@example.com
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card-footer-d">
-                                <div class="socials-footer d-flex justify-content-center">
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="fa fa-facebook" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="fa fa-instagram" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="fa fa-dribbble" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-box-d">
-                        <div class="card-img-d">
-                            <img src="<?= assets_url() ?>page/img/agent-6.jpg" alt="" class="img-d img-fluid">
-                        </div>
-                        <div class="card-overlay card-overlay-hover">
-                            <div class="card-header-d">
-                                <div class="card-title-d align-self-center">
-                                    <h3 class="title-d">
-                                        <a href="agent-single.html" class="link-two">Stiven Spilver
-                                            <br> Darw</a>
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="card-body-d">
-                                <p class="content-d color-text-a">
-                                    Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
-                                </p>
-                                <div class="info-agents color-a">
-                                    <p>
-                                        <strong>Phone: </strong> +54 356 945234
-                                    </p>
-                                    <p>
-                                        <strong>Email: </strong> agents@example.com
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card-footer-d">
-                                <div class="socials-footer d-flex justify-content-center">
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="fa fa-facebook" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="fa fa-instagram" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="fa fa-dribbble" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-box-d">
-                        <div class="card-img-d">
-                            <img src="<?= assets_url() ?>page/img/agent-5.jpg" alt="" class="img-d img-fluid">
-                        </div>
-                        <div class="card-overlay card-overlay-hover">
-                            <div class="card-header-d">
-                                <div class="card-title-d align-self-center">
-                                    <h3 class="title-d">
-                                        <a href="agent-single.html" class="link-two">Emma Toledo
-                                            <br> Cascada</a>
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="card-body-d">
-                                <p class="content-d color-text-a">
-                                    Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
-                                </p>
-                                <div class="info-agents color-a">
-                                    <p>
-                                        <strong>Phone: </strong> +54 356 945234
-                                    </p>
-                                    <p>
-                                        <strong>Email: </strong> agents@example.com
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card-footer-d">
-                                <div class="socials-footer d-flex justify-content-center">
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="fa fa-facebook" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="fa fa-instagram" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="fa fa-dribbble" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-lg-6 info-area-right">
+                <h1>Who we are
+                    to Serave the nation</h1>
+                <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.</p>
+                <br>
+                <p>
+                    inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End info Area -->
+
+<!-- Start course-mission Area -->
+<section class="course-mission-area pb-120">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-70 col-lg-8">
+                <div class="title text-center">
+                    <h1 class="mb-10">Goals to Achieve for the leadership</h1>
+                    <p>Who are in extremely love with eco friendly system.</p>
                 </div>
             </div>
         </div>
-    </section><!-- End About Section-->
+        <div class="row">
+            <div class="col-md-6 accordion-left">
 
-</main><!-- End #main -->
+                <!-- accordion 2 start-->
+                <dl class="accordion">
+                    <dt>
+                        <a href="">Success</a>
+                    </dt>
+                    <dd>
+                        Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam.
+                    </dd>
+                    <dt>
+                        <a href="">Info</a>
+                    </dt>
+                    <dd>
+                        Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. leo quam aliquet diam, congue laoreet elit metus eget diam.
+                    </dd>
+                    <dt>
+                        <a href="">Danger</a>
+                    </dt>
+                    <dd>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. Proin ac metus diam.
+                    </dd>
+                    <dt>
+                        <a href="">Warning</a>
+                    </dt>
+                    <dd>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. Proin ac metus diam.
+                    </dd>
+                </dl>
+                <!-- accordion 2 end-->
+            </div>
+            <div class="col-md-6 video-right justify-content-center align-items-center d-flex relative">
+                <div class="overlay overlay-bg"></div>
+                <a class="play-btn" href="https://www.youtube.com/watch?v=ARA0AxrnHdM"><img class="img-fluid mx-auto" src="img/play.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End course-mission Area -->
+
+
+<!-- Start search-course Area -->
+<section class="search-course-area relative">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-lg-6 col-md-6 search-course-left">
+                <h1 class="text-white">
+                    Get reduced fee <br>
+                    during this Summer!
+                </h1>
+                <p>
+                    inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
+                </p>
+                <div class="row details-content">
+                    <div class="col single-detials">
+                        <span class="lnr lnr-graduation-hat"></span>
+                        <a href="#">
+                            <h4>Expert Instructors</h4>
+                        </a>
+                        <p>
+                            Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+                        </p>
+                    </div>
+                    <div class="col single-detials">
+                        <span class="lnr lnr-license"></span>
+                        <a href="#">
+                            <h4>Certification</h4>
+                        </a>
+                        <p>
+                            Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 search-course-right section-gap">
+                <form class="form-wrap" action="#">
+                    <h4 class="text-white pb-20 text-center mb-30">Search for Available Course</h4>
+                    <input type="text" class="form-control" name="name" placeholder="Your Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Name'">
+                    <input type="phone" class="form-control" name="phone" placeholder="Your Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Phone Number'">
+                    <input type="email" class="form-control" name="email" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'">
+                    <div class="form-select" id="service-select">
+                        <select>
+                            <option datd-display="">Choose Course</option>
+                            <option value="1">Course One</option>
+                            <option value="2">Course Two</option>
+                            <option value="3">Course Three</option>
+                            <option value="4">Course Four</option>
+                        </select>
+                    </div>
+                    <button class="primary-btn text-uppercase">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End search-course Area -->
+
+<!-- Start review Area -->
+<section class="review-area section-gap relative">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row">
+            <div class="active-review-carusel">
+                <div class="single-review item">
+                    <div class="title justify-content-start d-flex">
+                        <a href="#">
+                            <h4>Fannie Rowe</h4>
+                        </a>
+                        <div class="star">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                    </div>
+                    <p>
+                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                    </p>
+                </div>
+                <div class="single-review item">
+                    <div class="title justify-content-start d-flex">
+                        <a href="#">
+                            <h4>Hulda Sutton</h4>
+                        </a>
+                        <div class="star">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                    </div>
+                    <p>
+                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                    </p>
+                </div>
+                <div class="single-review item">
+                    <div class="title justify-content-start d-flex">
+                        <a href="#">
+                            <h4>Fannie Rowe</h4>
+                        </a>
+                        <div class="star">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                    </div>
+                    <p>
+                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                    </p>
+                </div>
+                <div class="single-review item">
+                    <div class="title justify-content-start d-flex">
+                        <a href="#">
+                            <h4>Hulda Sutton</h4>
+                        </a>
+                        <div class="star">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                    </div>
+                    <p>
+                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                    </p>
+                </div>
+                <div class="single-review item">
+                    <div class="title justify-content-start d-flex">
+                        <a href="#">
+                            <h4>Fannie Rowe</h4>
+                        </a>
+                        <div class="star">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                    </div>
+                    <p>
+                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                    </p>
+                </div>
+                <div class="single-review item">
+                    <div class="title justify-content-start d-flex">
+                        <a href="#">
+                            <h4>Hulda Sutton</h4>
+                        </a>
+                        <div class="star">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                    </div>
+                    <p>
+                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                    </p>
+                </div>
+                <div class="single-review item">
+                    <img src="img/r1.png" alt="">
+                    <div class="title justify-content-start d-flex">
+                        <a href="#">
+                            <h4>Fannie Rowe</h4>
+                        </a>
+                        <div class="star">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                    </div>
+                    <p>
+                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                    </p>
+                </div>
+                <div class="single-review item">
+                    <div class="title justify-content-start d-flex">
+                        <a href="#">
+                            <h4>Hulda Sutton</h4>
+                        </a>
+                        <div class="star">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                    </div>
+                    <p>
+                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End review Area -->
+
+<!-- Start cta-two Area -->
+<section class="cta-two-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 cta-left">
+                <h1>Not Yet Satisfied with our Trend?</h1>
+            </div>
+            <div class="col-lg-4 cta-right">
+                <a class="primary-btn wh" href="#">view our blog</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End cta-two Area -->

@@ -4,7 +4,7 @@ class M_kategori extends CI_Model
 {
     public function getAll()
     {
-        $result = $this->db->query("")->result();
+        $result = $this->db->query("SELECT k.id_kategori, k.nama FROM tb_kategori AS k ORDER BY k.ins ASC")->result();
         return $result;
     }
 
