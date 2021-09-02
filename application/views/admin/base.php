@@ -148,23 +148,15 @@
                                 <li class="<?= ($this->uri->segment(2) === 'agama' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>agama">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-image"></i>
+                                            <i class="feather icon-users"></i>
                                         </span>
                                         <span class="pcoded-mtext">Agama</span>
-                                    </a>
-                                </li>
-                                <li class="<?= ($this->uri->segment(2) === 'fasilitas' ? 'active' : '') ?>">
-                                    <a href="<?= admin_url() ?>fasilitas">
-                                        <span class="pcoded-micon">
-                                            <i class="feather icon-clock"></i>
-                                        </span>
-                                        <span class="pcoded-mtext">Fasilitas</span>
                                     </a>
                                 </li>
                                 <li class="<?= ($this->uri->segment(2) === 'jabatan' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>jabatan">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-image"></i>
+                                            <i class="feather icon-users"></i>
                                         </span>
                                         <span class="pcoded-mtext">Jabatan</span>
                                     </a>
@@ -172,9 +164,57 @@
                                 <li class="<?= ($this->uri->segment(2) === 'kategori' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>kategori">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-credit-card"></i>
+                                            <i class="feather icon-users"></i>
                                         </span>
                                         <span class="pcoded-mtext">Kategori</span>
+                                    </a>
+                                </li>
+                                <li class="<?= ($this->uri->segment(2) === 'mapel' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>mapel">
+                                        <span class="pcoded-micon">
+                                            <i class="feather icon-users"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Mata Pelajaran</span>
+                                    </a>
+                                </li>
+                                <li class="<?= ($this->uri->segment(2) === 'kelas' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>kelas">
+                                        <span class="pcoded-micon">
+                                            <i class="feather icon-users"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Kelas</span>
+                                    </a>
+                                </li>
+                                <li class="<?= ($this->uri->segment(2) === 'jadwal' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>jadwal">
+                                        <span class="pcoded-micon">
+                                            <i class="feather icon-users"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Jadwal</span>
+                                    </a>
+                                </li>
+                                <li class="<?= ($this->uri->segment(2) === 'keuangan' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>keuangan">
+                                        <span class="pcoded-micon">
+                                            <i class="feather icon-users"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Keuangan</span>
+                                    </a>
+                                </li>
+                                <li class="<?= ($this->uri->segment(2) === 'kuisioner' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>kuisioner">
+                                        <span class="pcoded-micon">
+                                            <i class="feather icon-users"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Kuisioner</span>
+                                    </a>
+                                </li>
+                                <li class="<?= ($this->uri->segment(2) === 'fasilitas' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>fasilitas">
+                                        <span class="pcoded-micon">
+                                            <i class="feather icon-users"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Fasilitas</span>
                                     </a>
                                 </li>
                             </ul>
@@ -236,62 +276,6 @@
     <script type="text/javascript" src="<?= assets_url() ?>admin/sweetalert/js/sweetalert.min.js"></script>
 
     <script type="text/javascript">
-        // untuk load notifikasi
-        // load_notification()
-
-        // function load_notification() {
-        //     $.ajax({
-        //         type: 'GET',
-        //         url: '< ?= admin_url() ?>dashboard/load_notification',
-        //         dataType: 'json',
-        //         success: function(response) {
-        //             if (response.count > 0) {
-        //                 const order = response.result;
-        //                 var html = "";
-
-        //                 order.forEach(function(object) {
-        //                     html += `
-        //                         <li>
-        //                             <div class="media lihat" data-id="` + object.kd_pemesanan + `">
-        //                                 <div class="media-body">
-        //                                     <h5 class="notification-user">` + object.kd_pemesanan + `</h5>
-        //                                     <p class="notification-msg">` + object.nama + `</p>
-        //                                     <span class="notification-time">` + object.tgl_pemesanan + ` | ` + object.jam_pemesanan + `</span>
-        //                                 </div>
-        //                             </div>
-        //                         </li>
-        //                     `;
-        //                 });
-        //                 $('#count').html(`<span class="badge bg-c-red">` + response.count + `</span>`)
-        //                 $('#notification-info').html("Baru");
-        //                 $('#notification').html(html);
-        //             } else {
-        //                 $('#notification-info').html("Kosong");
-        //             }
-        //         },
-        //         error: function(xhr, ajaxOptions, thrownError) {
-        //             var errorMsg = 'Request Ajax Gagal : ' + xhr.responseText;
-        //             console.log(errorMsg);
-        //         }
-        //     });
-        // }
-
-        // setInterval(function() {
-        //     load_notification()
-        // }, 5000);
-
-        // untuk update baca pemberitahuan
-        $(document).on('click', '.lihat', function() {
-            var ini = $(this);
-            var kd_pemesanan = ini.data('id');
-
-            $.post('<?= admin_url() ?>dashboard/read_notification', {
-                kd_pemesanan: ini.data('id')
-            });
-
-            location.href = '<?= admin_url() ?>pemesanan/detail/' + btoa(kd_pemesanan);
-        });
-
         // untuk angka
         function justAngka(e) {
             if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190, 77]) !== -1 ||
