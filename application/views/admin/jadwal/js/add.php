@@ -13,16 +13,16 @@
 <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
 <script>
-    let tabelJadwalDt = null;
+    let tabelJadwalRincianDt = null;
 
     // untuk datatable
-    var untukTabelKelas = function() {
-        tabelJadwalDt = $('#tabel-jadwal').DataTable({
+    var untukTabelJadwalRincian = function() {
+        tabelJadwalRincianDt = $('#tabel-jadwal-rincian').DataTable({
             responsive: true,
             processing: true,
             lengthMenu: [5, 10, 25, 50],
             pageLength: 10,
-            ajax: '<?= admin_url() ?>jadwal/get_data_jadwal_dt',
+            ajax: '<?= admin_url() ?>jadwal/get_data_jadwal_rincian_dt/<?= base64url_encode($jadwal->id_jadwal) ?>',
             columns: [{
                     title: 'No.',
                     data: null,
@@ -32,22 +32,29 @@
                     }
                 },
                 {
-                    title: 'Nama',
-                    data: 'nama',
+                    title: 'Kelas',
+                    data: 'kelas',
                     className: 'text-center',
                 },
                 {
-                    title: 'Jadwal',
+                    title: 'Mata Pelajaran',
+                    data: 'mapel',
                     className: 'text-center',
-                    orderable: false,
-                    searchable: false,
-                    render: function(data, type, full, meta) {
-                        return `
-                            <div class="button-icon-btn button-icon-btn-cl">
-                                <a class="btn btn-primary btn-sm waves-effect" href="<?= admin_url() ?>jadwal/add/` + btoa(full.id_jadwal) + `"><i class="fa fa-plus"></i>&nbsp;Tambahkan Jadwal</a>
-                            </div>
-                        `;
-                    },
+                },
+                {
+                    title: 'Tanggal',
+                    data: 'tanggal',
+                    className: 'text-center',
+                },
+                {
+                    title: 'Jam Mulai',
+                    data: 'jam_mulai',
+                    className: 'text-center',
+                },
+                {
+                    title: 'Jam Selesai',
+                    data: 'jam_selesai',
+                    className: 'text-center',
                 },
                 {
                     title: 'Aksi',
@@ -57,11 +64,11 @@
                     searchable: false,
                     render: function(data, type, full, meta) {
                         return `
-                        <div class="button-icon-btn button-icon-btn-cl">
-                            <button type="button" id="btn-upd" data-id="` + full.id_jadwal + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
-                            <button type="button" id="btn-del" data-id="` + full.id_jadwal + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
-                        </div>
-                    `;
+                            <div class="button-icon-btn button-icon-btn-cl">
+                                <button type="button" id="btn-upd" data-id="` + full.id_jadwal_rincian + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
+                                <button type="button" id="btn-del" data-id="` + full.id_jadwal_rincian + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
+                            </div>
+                        `;
                     },
                 },
             ],
@@ -72,8 +79,12 @@
     var untukResetForm = function() {
         $(document).on('click', '#btn-add', function() {
             $('#judul-add-upd').html('Tambah');
-            $('#inpidjadwal').val('');
-            $('#inpnama').val('');
+            $('#inpidjadwalrincian').val('');
+            $('#inpidkelas').val('');
+            $('#inpidmapel').val('');
+            $('#inptgl').val('');
+            $('#inpjammulai').val('');
+            $('#inpjamselesai').val('');
         });
     }();
 
@@ -81,7 +92,11 @@
     var untukTambahDanUbahData = function() {
         $(document).on('submit', '#form-add-upd', function(e) {
             e.preventDefault();
-            $('#inpnama').attr('required', 'required');
+            $('#inpidkelas').attr('required', 'required');
+            $('#inpidmapel').attr('required', 'required');
+            $('#inptgl').attr('required', 'required');
+            $('#inpjammulai').attr('required', 'required');
+            $('#inpjamselesai').attr('required', 'required');
 
             if ($('#form-add-upd').parsley().isValid() == true) {
                 $.ajax({
@@ -105,7 +120,7 @@
                             })
                             .then((value) => {
                                 $('#modal-add-upd').modal('hide');
-                                tabelJadwalDt.ajax.reload();
+                                tabelJadwalRincianDt.ajax.reload();
                             });
                         $('#save').removeAttr('disabled');
                         $('#save').html('<i class="fa fa-save"></i>&nbsp;Simpan');
@@ -122,7 +137,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "<?= admin_url() ?>jadwal/get",
+                url: "<?= admin_url() ?>jadwal/get_rincian",
                 dataType: 'json',
                 data: {
                     id: ini.data('id')
@@ -133,8 +148,12 @@
                     ini.html('<i class="fa fa-spinner"></i>&nbsp;Menunggu...');
                 },
                 success: function(response) {
-                    $('#inpidjadwal').val(response.id_jadwal);
-                    $('#inpnama').val(response.nama);
+                    $('#inpidjadwalrincian').val(response.id_jadwal_rincian);
+                    $('#inpidkelas').val(response.id_kelas);
+                    $('#inpidmapel').val(response.id_mapel);
+                    $('#inptgl').val(response.tanggal);
+                    $('#inpjammulai').val(response.jam_mulai);
+                    $('#inpjamselesai').val(response.jam_selesai);
 
                     ini.removeAttr('disabled');
                     ini.html('<i class="fa fa-pencil"></i>&nbsp;Ubah');
@@ -158,7 +177,7 @@
                     if (del) {
                         $.ajax({
                             type: "post",
-                            url: "<?= admin_url() ?>jadwal/process_del",
+                            url: "<?= admin_url() ?>jadwal/process_del_rincian",
                             dataType: 'json',
                             data: {
                                 id: ini.data('id')
@@ -175,7 +194,7 @@
                                         button: data.button,
                                     })
                                     .then((value) => {
-                                        tabelJadwalDt.ajax.reload();
+                                        tabelJadwalRincianDt.ajax.reload();
                                     });
                             }
                         });

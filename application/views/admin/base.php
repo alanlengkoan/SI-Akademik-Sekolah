@@ -185,20 +185,20 @@
                                         <span class="pcoded-mtext">Kelas</span>
                                     </a>
                                 </li>
-                                <li class="<?= ($this->uri->segment(2) === 'jadwal' ? 'active' : '') ?>">
-                                    <a href="<?= admin_url() ?>jadwal">
-                                        <span class="pcoded-micon">
-                                            <i class="feather icon-users"></i>
-                                        </span>
-                                        <span class="pcoded-mtext">Jadwal</span>
-                                    </a>
-                                </li>
                                 <li class="<?= ($this->uri->segment(2) === 'keuangan' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>keuangan">
                                         <span class="pcoded-micon">
                                             <i class="feather icon-users"></i>
                                         </span>
                                         <span class="pcoded-mtext">Keuangan</span>
+                                    </a>
+                                </li>
+                                <li class="<?= ($this->uri->segment(2) === 'jadwal' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>jadwal">
+                                        <span class="pcoded-micon">
+                                            <i class="feather icon-users"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Jadwal</span>
                                     </a>
                                 </li>
                                 <li class="<?= ($this->uri->segment(2) === 'kuisioner' ? 'active' : '') ?>">
@@ -225,7 +225,7 @@
                                         <span class="pcoded-micon">
                                             <i class="feather icon-box"></i>
                                         </span>
-                                        <span class="pcoded-mtext">Keuagan (Kas)</span>
+                                        <span class="pcoded-mtext">Keuangan (Kas)</span>
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class="<?= ($this->uri->segment(2) === 'pemasukan' ? 'active' : '') ?>">
