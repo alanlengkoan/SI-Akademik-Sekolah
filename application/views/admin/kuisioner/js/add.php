@@ -13,16 +13,16 @@
 <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
 <script>
-    let tabelKuisionerDt = null;
+    let tabelKuisionerSoalDt = null;
 
     // untuk datatable
-    var untukTabelKuisioner = function() {
-        tabelKuisionerDt = $('#tabel-kuisioner').DataTable({
+    var untukTabelKuisionerSoal = function() {
+        tabelKuisionerSoalDt = $('#tabel-kuisioner-soal').DataTable({
             responsive: true,
             processing: true,
             lengthMenu: [5, 10, 25, 50],
             pageLength: 10,
-            ajax: '<?= admin_url() ?>kuisioner/get_data_jadwal_dt',
+            ajax: '<?= admin_url() ?>kuisioner/get_data_kuisioner_soal_dt/<?= base64url_encode($kuisioner->id_kuisioner) ?>',
             columns: [{
                     title: 'No.',
                     data: null,
@@ -32,27 +32,34 @@
                     }
                 },
                 {
-                    title: 'Nama',
-                    data: 'nama',
-                    className: 'text-center',
-                },
-                {
-                    title: 'Jumlah Soal',
-                    data: 'jumlah',
-                    className: 'text-center',
-                },
-                {
                     title: 'Soal',
+                    data: 'soal',
                     className: 'text-center',
-                    orderable: false,
-                    searchable: false,
-                    render: function(data, type, full, meta) {
-                        return `
-                            <div class="button-icon-btn button-icon-btn-cl">
-                                <a class="btn btn-primary btn-sm waves-effect" href="<?= admin_url() ?>kuisioner/add/` + btoa(full.id_kuisioner) + `"><i class="fa fa-plus"></i>&nbsp;Tambahkan Soal</a>
-                            </div>
-                        `;
-                    },
+                },
+                {
+                    title: 'Pilihan A',
+                    data: 'pil_a',
+                    className: 'text-center',
+                },
+                {
+                    title: 'Pilihan B',
+                    data: 'pil_b',
+                    className: 'text-center',
+                },
+                {
+                    title: 'Pilihan C',
+                    data: 'pil_c',
+                    className: 'text-center',
+                },
+                {
+                    title: 'Pilihan E',
+                    data: 'pil_d',
+                    className: 'text-center',
+                },
+                {
+                    title: 'Pilihan E',
+                    data: 'pil_e',
+                    className: 'text-center',
                 },
                 {
                     title: 'Aksi',
@@ -63,8 +70,8 @@
                     render: function(data, type, full, meta) {
                         return `
                             <div class="button-icon-btn button-icon-btn-cl">
-                                <button type="button" id="btn-upd" data-id="` + full.id_kuisioner + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
-                                <button type="button" id="btn-del" data-id="` + full.id_kuisioner + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
+                                <button type="button" id="btn-upd" data-id="` + full.id_kuisioner_soal + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
+                                <button type="button" id="btn-del" data-id="` + full.id_kuisioner_soal + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
                             </div>
                         `;
                     },
@@ -77,8 +84,13 @@
     var untukResetForm = function() {
         $(document).on('click', '#btn-add', function() {
             $('#judul-add-upd').html('Tambah');
-            $('#inpidkuisioner').val('');
-            $('#inpnama').val('');
+            $('#inpidkuisionersoal').val('');
+            $('#inpsoal').val('');
+            $('#inppila').val('');
+            $('#inppilb').val('');
+            $('#inppilc').val('');
+            $('#inppild').val('');
+            $('#inppile').val('');
         });
     }();
 
@@ -86,7 +98,12 @@
     var untukTambahDanUbahData = function() {
         $(document).on('submit', '#form-add-upd', function(e) {
             e.preventDefault();
-            $('#inpnama').attr('required', 'required');
+            $('#inpsoal').attr('required', 'required');
+            $('#inppila').attr('required', 'required');
+            $('#inppilb').attr('required', 'required');
+            $('#inppilc').attr('required', 'required');
+            $('#inppild').attr('required', 'required');
+            $('#inppile').attr('required', 'required');
 
             if ($('#form-add-upd').parsley().isValid() == true) {
                 $.ajax({
@@ -110,7 +127,7 @@
                             })
                             .then((value) => {
                                 $('#modal-add-upd').modal('hide');
-                                tabelKuisionerDt.ajax.reload();
+                                tabelKuisionerSoalDt.ajax.reload();
                             });
                         $('#save').removeAttr('disabled');
                         $('#save').html('<i class="fa fa-save"></i>&nbsp;Simpan');
@@ -127,7 +144,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "<?= admin_url() ?>kuisioner/get",
+                url: "<?= admin_url() ?>kuisioner/get_soal",
                 dataType: 'json',
                 data: {
                     id: ini.data('id')
@@ -138,8 +155,13 @@
                     ini.html('<i class="fa fa-spinner"></i>&nbsp;Menunggu...');
                 },
                 success: function(response) {
-                    $('#inpidkuisioner').val(response.id_kuisioner);
-                    $('#inpnama').val(response.nama);
+                    $('#inpidkuisionersoal').val(response.id_kuisioner_soal);
+                    $('#inpsoal').val(response.soal);
+                    $('#inppila').val(response.pil_a);
+                    $('#inppilb').val(response.pil_b);
+                    $('#inppilc').val(response.pil_c);
+                    $('#inppild').val(response.pil_d);
+                    $('#inppile').val(response.pil_e);
 
                     ini.removeAttr('disabled');
                     ini.html('<i class="fa fa-pencil"></i>&nbsp;Ubah');
@@ -163,7 +185,7 @@
                     if (del) {
                         $.ajax({
                             type: "post",
-                            url: "<?= admin_url() ?>kuisioner/process_del",
+                            url: "<?= admin_url() ?>kuisioner/process_del_soal",
                             dataType: 'json',
                             data: {
                                 id: ini.data('id')
@@ -180,7 +202,7 @@
                                         button: data.button,
                                     })
                                     .then((value) => {
-                                        tabelKuisionerDt.ajax.reload();
+                                        tabelKuisionerSoalDt.ajax.reload();
                                     });
                             }
                         });

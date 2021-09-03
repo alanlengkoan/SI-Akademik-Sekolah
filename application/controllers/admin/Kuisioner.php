@@ -95,4 +95,108 @@ class Kuisioner extends MY_Controller
         // untuk response json
         $this->_response($response);
     }
+
+    // untuk tambah soal kuisioner
+    public function add()
+    {
+        $id_kuisioner = base64url_decode($this->uri->segment('4'));
+
+        $data = [
+            'halaman'   => 'Soal Kuisioner',
+            'kuisioner' => $this->m_kuisioner->getDetail($id_kuisioner),
+            'content'   => 'admin/kuisioner/add',
+            'css'       => 'admin/kuisioner/css/add',
+            'js'        => 'admin/kuisioner/js/add'
+        ];
+        // untuk load view
+        $this->load->view('admin/base', $data);
+    }
+
+    // untuk get data soal kuisioner by datatable
+    public function get_data_kuisioner_soal_dt()
+    {
+        $id_kuisioner = base64url_decode($this->uri->segment('4'));
+
+        return $this->m_kuisioner->getAllDataKuisionerSoalDt($id_kuisioner);
+    }
+
+    // untuk get data by id
+    public function get_soal()
+    {
+        $post = $this->input->post(NULL, TRUE);
+
+        $result = $this->crud->gda('tb_kuisioner_soal', ['id_kuisioner_soal' => $post['id']]);
+        $response = [
+            'id_kuisioner_soal' => $result['id_kuisioner_soal'],
+            'id_kuisioner'      => $result['id_kuisioner'],
+            'soal'              => $result['soal'],
+            'pil_a'             => $result['pil_a'],
+            'pil_b'             => $result['pil_b'],
+            'pil_c'             => $result['pil_c'],
+            'pil_d'             => $result['pil_d'],
+            'pil_e'             => $result['pil_e'],
+        ];
+        // untuk response json
+        $this->_response($response);
+    }
+
+    // untuk proses tambah data
+    public function process_save_soal()
+    {
+        $post = $this->input->post(NULL, TRUE);
+
+        $this->db->trans_start();
+        if (empty($post['inpidkuisionersoal'])) {
+            $data = [
+                'id_kuisioner_soal' => acak_id('tb_kuisioner_soal', 'id_kuisioner_soal'),
+                'id_kuisioner'      => $post['inpidkuisioner'],
+                'soal'              => $post['inpsoal'],
+                'pil_a'             => $post['inppila'],
+                'pil_b'             => $post['inppilb'],
+                'pil_c'             => $post['inppilc'],
+                'pil_d'             => $post['inppild'],
+                'pil_e'             => $post['inppile'],
+            ];
+
+            $this->crud->i('tb_kuisioner_soal', $data);
+        } else {
+            $data = [
+                'id_kuisioner_soal' => $post['inpidkuisionersoal'],
+                'id_kuisioner'      => $post['inpidkuisioner'],
+                'soal'              => $post['inpsoal'],
+                'pil_a'             => $post['inppila'],
+                'pil_b'             => $post['inppilb'],
+                'pil_c'             => $post['inppilc'],
+                'pil_d'             => $post['inppild'],
+                'pil_e'             => $post['inppile'],
+            ];
+
+            $this->crud->u('tb_kuisioner_soal', $data, ['id_kuisioner_soal' => $post['inpidkuisionersoal']]);
+        }
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
+        } else {
+            $response = ['title' => 'Berhasil!', 'text' => 'Berhasil Simpan!', 'type' => 'success', 'button' => 'Ok!'];
+        }
+        // untuk response json
+        $this->_response($response);
+    }
+
+    // untuk proses hapus data
+    public function process_del_soal()
+    {
+        $post = $this->input->post(NULL, TRUE);
+
+        $this->db->trans_start();
+        $this->crud->d('tb_kuisioner_soal', $post['id'], 'id_kuisioner_soal');
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            $response = ['title' => 'Gagal!', 'text' => 'Gagal Hapus!', 'type' => 'error', 'button' => 'Ok!'];
+        } else {
+            $response = ['title' => 'Berhasil!', 'text' => 'Berhasil Hapus!', 'type' => 'success', 'button' => 'Ok!'];
+        }
+        // untuk response json
+        $this->_response($response);
+    }
 }

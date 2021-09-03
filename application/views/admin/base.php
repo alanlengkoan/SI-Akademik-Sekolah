@@ -220,6 +220,26 @@
                             </ul>
                             <div class="pcoded-navigation-label">Pustaka</div>
                             <ul class="pcoded-item pcoded-left-item">
+                                <li class="pcoded-hasmenu <?= ($this->uri->segment(2) === 'pemasukan' || $this->uri->segment(2) === 'pengeluaran' ? 'active pcoded-trigger' : '') ?>">
+                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon">
+                                            <i class="feather icon-box"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Keuagan (Kas)</span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class="<?= ($this->uri->segment(2) === 'pemasukan' ? 'active' : '') ?>">
+                                            <a href="<?= admin_url() ?>pemasukan" class="waves-effect waves-dark">
+                                                <span class="pcoded-mtext">Pemasukan</span>
+                                            </a>
+                                        </li>
+                                        <li class="<?= ($this->uri->segment(2) === 'pengeluaran' ? 'active' : '') ?>">
+                                            <a href="<?= admin_url() ?>pengeluaran" class="waves-effect waves-dark">
+                                                <span class="pcoded-mtext">Pengeluaran</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li class="<?= ($this->uri->segment(2) === 'guru' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>guru">
                                         <span class="pcoded-micon">

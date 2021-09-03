@@ -13,16 +13,16 @@
 <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
 <script>
-    let tabelKuisionerDt = null;
+    let tabelPemasukanDt = null;
 
     // untuk datatable
-    var untukTabelKuisioner = function() {
-        tabelKuisionerDt = $('#tabel-kuisioner').DataTable({
+    var untukTabelPemasukan = function() {
+        tabelPemasukanDt = $('#tabel-pemasukan').DataTable({
             responsive: true,
             processing: true,
             lengthMenu: [5, 10, 25, 50],
             pageLength: 10,
-            ajax: '<?= admin_url() ?>kuisioner/get_data_jadwal_dt',
+            ajax: '<?= admin_url() ?>pemasukan/get_data_pemasukan_dt',
             columns: [{
                     title: 'No.',
                     data: null,
@@ -32,27 +32,26 @@
                     }
                 },
                 {
-                    title: 'Nama',
-                    data: 'nama',
+                    title: 'Keuangan',
+                    data: 'keuangan',
                     className: 'text-center',
                 },
                 {
-                    title: 'Jumlah Soal',
-                    data: 'jumlah',
+                    title: 'Masuk (Debit)',
                     className: 'text-center',
-                },
-                {
-                    title: 'Soal',
-                    className: 'text-center',
-                    orderable: false,
-                    searchable: false,
                     render: function(data, type, full, meta) {
-                        return `
-                            <div class="button-icon-btn button-icon-btn-cl">
-                                <a class="btn btn-primary btn-sm waves-effect" href="<?= admin_url() ?>kuisioner/add/` + btoa(full.id_kuisioner) + `"><i class="fa fa-plus"></i>&nbsp;Tambahkan Soal</a>
-                            </div>
-                        `;
+                        return autoSeparator(full.debit)
                     },
+                },
+                {
+                    title: 'Tanggal',
+                    data: 'tanggal',
+                    className: 'text-center',
+                },
+                {
+                    title: 'Keterangan',
+                    data: 'keterangan',
+                    className: 'text-center',
                 },
                 {
                     title: 'Aksi',
@@ -62,11 +61,11 @@
                     searchable: false,
                     render: function(data, type, full, meta) {
                         return `
-                            <div class="button-icon-btn button-icon-btn-cl">
-                                <button type="button" id="btn-upd" data-id="` + full.id_kuisioner + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
-                                <button type="button" id="btn-del" data-id="` + full.id_kuisioner + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
-                            </div>
-                        `;
+                        <div class="button-icon-btn button-icon-btn-cl">
+                            <button type="button" id="btn-upd" data-id="` + full.id_keuangan_rincian + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
+                            <button type="button" id="btn-del" data-id="` + full.id_keuangan_rincian + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
+                        </div>
+                    `;
                     },
                 },
             ],
@@ -77,8 +76,11 @@
     var untukResetForm = function() {
         $(document).on('click', '#btn-add', function() {
             $('#judul-add-upd').html('Tambah');
-            $('#inpidkuisioner').val('');
-            $('#inpnama').val('');
+            $('#idkeuanganrincian').val('');
+            $('#inpidkeuangan').val('');
+            $('#inpdebit').val('');
+            $('#inpketerangan').val('');
+            $('#inptgl').val('');
         });
     }();
 
@@ -86,7 +88,10 @@
     var untukTambahDanUbahData = function() {
         $(document).on('submit', '#form-add-upd', function(e) {
             e.preventDefault();
-            $('#inpnama').attr('required', 'required');
+            $('#inpidkeuangan').attr('required', 'required');
+            $('#inpdebit').attr('required', 'required');
+            $('#inpketerangan').attr('required', 'required');
+            $('#inptgl').attr('required', 'required');
 
             if ($('#form-add-upd').parsley().isValid() == true) {
                 $.ajax({
@@ -110,7 +115,7 @@
                             })
                             .then((value) => {
                                 $('#modal-add-upd').modal('hide');
-                                tabelKuisionerDt.ajax.reload();
+                                tabelPemasukanDt.ajax.reload();
                             });
                         $('#save').removeAttr('disabled');
                         $('#save').html('<i class="fa fa-save"></i>&nbsp;Simpan');
@@ -127,7 +132,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "<?= admin_url() ?>kuisioner/get",
+                url: "<?= admin_url() ?>pemasukan/get",
                 dataType: 'json',
                 data: {
                     id: ini.data('id')
@@ -138,8 +143,11 @@
                     ini.html('<i class="fa fa-spinner"></i>&nbsp;Menunggu...');
                 },
                 success: function(response) {
-                    $('#inpidkuisioner').val(response.id_kuisioner);
-                    $('#inpnama').val(response.nama);
+                    $('#idkeuanganrincian').val(response.id_keuangan_rincian);
+                    $('#inpidkeuangan').val(response.id_keuangan);
+                    $('#inpdebit').val(autoSeparator(response.debit));
+                    $('#inpketerangan').val(response.keterangan);
+                    $('#inptgl').val(response.tanggal);
 
                     ini.removeAttr('disabled');
                     ini.html('<i class="fa fa-pencil"></i>&nbsp;Ubah');
@@ -163,7 +171,7 @@
                     if (del) {
                         $.ajax({
                             type: "post",
-                            url: "<?= admin_url() ?>kuisioner/process_del",
+                            url: "<?= admin_url() ?>pemasukan/process_del",
                             dataType: 'json',
                             data: {
                                 id: ini.data('id')
@@ -180,7 +188,7 @@
                                         button: data.button,
                                     })
                                     .then((value) => {
-                                        tabelKuisionerDt.ajax.reload();
+                                        tabelPemasukanDt.ajax.reload();
                                     });
                             }
                         });
