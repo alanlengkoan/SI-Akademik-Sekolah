@@ -9,6 +9,8 @@ class Home extends MY_Controller
 
         // untuk load model
         $this->load->model('crud');
+        $this->load->model('m_kategori');
+        $this->load->model('m_informasi');
     }
 
     public function index()
@@ -42,6 +44,68 @@ class Home extends MY_Controller
             'content' => 'home/kontak/view',
             'css'     => '',
             'js'      => 'home/kontak/js/view'
+        ];
+        // untuk load view
+        $this->load->view('home/base', $data);
+    }
+
+    // untuk halaman galeri
+    public function galeri()
+    {
+        $data = [
+            'halaman' => 'Galeri',
+            'galeri'  => $this->m_informasi->getWhereGaleri(),
+            'content' => 'home/galeri/view',
+            'css'     => '',
+            'js'      => ''
+        ];
+        // untuk load view
+        $this->load->view('home/base', $data);
+    }
+
+    // untuk halaman berita
+    public function berita()
+    {
+        $data = [
+            'halaman'  => 'Berita',
+            'kategori' => $this->m_kategori->getAll(),
+            'berita'   => $this->m_informasi->getWhereStatus('1'),
+            'content'  => 'home/berita/view',
+            'css'      => '',
+            'js'       => ''
+        ];
+        // untuk load view
+        $this->load->view('home/base', $data);
+    }
+
+    // untuk halaman kategori berita
+    public function berita_kategori()
+    {
+        $id_kategori = $this->uri->segment('2');
+
+        $data = [
+            'halaman'  => 'Rincian',
+            'kategori' => $this->m_kategori->getAll(),
+            'berita'   => $this->m_informasi->getWhereStatusAndKategori('1', $id_kategori),
+            'content'  => 'home/berita/view',
+            'css'      => '',
+            'js'       => ''
+        ];
+        // untuk load view
+        $this->load->view('home/base', $data);
+    }
+
+    // untuk halaman detail berita
+    public function berita_detail()
+    {
+        $id_informasi = $this->uri->segment('3');
+
+        $data = [
+            'halaman'  => 'Rincian',
+            'berita'   => $this->m_informasi->getWhereDetail($id_informasi),
+            'content'  => 'home/berita/detail',
+            'css'      => '',
+            'js'       => ''
         ];
         // untuk load view
         $this->load->view('home/base', $data);
