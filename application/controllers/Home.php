@@ -1,4 +1,4 @@
-<?php 
+<?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Home extends MY_Controller
@@ -9,6 +9,7 @@ class Home extends MY_Controller
 
         // untuk load model
         $this->load->model('crud');
+        $this->load->model('m_siswa');
         $this->load->model('m_kategori');
         $this->load->model('m_informasi');
     }
@@ -106,6 +107,34 @@ class Home extends MY_Controller
             'content'  => 'home/berita/detail',
             'css'      => '',
             'js'       => ''
+        ];
+        // untuk load view
+        $this->load->view('home/base', $data);
+    }
+
+    // untuk halaman siswa aktif
+    public function s_aktif()
+    {
+        $data = [
+            'halaman' => 'Siswa Aktif',
+            'data'    => $this->m_siswa->getAllSiswaStatus('0'),
+            'content' => 'home/s_aktif/view',
+            'css'     => 'home/s_aktif/css/view',
+            'js'      => 'home/s_aktif/js/view'
+        ];
+        // untuk load view
+        $this->load->view('home/base', $data);
+    }
+
+    // untuk halaman siswa alumni
+    public function s_alumni()
+    {
+        $data = [
+            'halaman' => 'Siswa Alumni',
+            'data'    => $this->m_siswa->getAllSiswaStatus('1'),
+            'content' => 'home/s_alumni/view',
+            'css'     => 'home/s_alumni/css/view',
+            'js'      => 'home/s_alumni/js/view'
         ];
         // untuk load view
         $this->load->view('home/base', $data);

@@ -79,26 +79,22 @@
 							<li>
 								<a href="<?= base_url() ?>kontak">Kontak</a>
 							</li>
-							<li class="menu-has-children"><a href="">Pages</a>
+							<li class="menu-has-children"><a href="">Siswa</a>
 								<ul>
-									<li><a href="course-details.html">Course Details</a></li>
-									<li><a href="event-details.html">Event Details</a></li>
-									<li><a href="elements.html">Elements</a></li>
-									<li class="menu-has-children"><a href="">Level 2 </a>
-										<ul>
-											<li><a href="#">Item One</a></li>
-											<li><a href="#">Item Two</a></li>
-										</ul>
-									</li>
+									<li><a href="<?= base_url() ?>siswa/aktif">Aktif</a></li>
+									<li><a href="<?= base_url() ?>siswa/alumni">Alumni</a></li>
 								</ul>
+							</li>
+							<li>
+								<a href="<?= base_url() ?>tracer-study">Tracer Study</a>
 							</li>
 							<?php if ($this->session->userdata('id_users')) { ?>
 								<li>
-									<a href="<?= logout_url() ?>">Logout</a>
+									<a href="<?= logout_url() ?>">Keluar</a>
 								</li>
 							<?php } else { ?>
 								<li>
-									<a href="<?= login_url() ?>">Login</a>
+									<a href="<?= login_url() ?>">Masuk</a>
 								</li>
 							<?php } ?>
 						</ul>

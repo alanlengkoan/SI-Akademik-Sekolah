@@ -8,6 +8,12 @@ class M_siswa extends CI_Model
         return $result;
     }
 
+    public function getAllSiswaStatus($status)
+    {
+        $result = $this->db->query("SELECT s.id_siswa, s.nis, s.nama, s.tmp_lahir, s.tgl_lahir, s.ortu_wali, s.kelamin, s.alamat, s.status, a.nama AS agama FROM tb_siswa AS s LEFT JOIN tb_agama AS a ON s.id_agama = a.id_agama WHERE s.status = '$status' ORDER BY s.ins")->result();
+        return $result;
+    }
+
     public function getAllDataDt($status)
     {
         $this->datatables->select('s.id_siswa, s.nis, s.nama, s.tmp_lahir, s.tgl_lahir, s.ortu_wali, s.kelamin, s.alamat, s.status, a.nama AS agama');

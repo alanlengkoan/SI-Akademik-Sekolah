@@ -32,3 +32,7 @@ $route['kontak']  = 'home/kontak';
 $route['berita']               = 'home/berita';
 $route['berita/(:any)']        = 'home/berita_kategori';
 $route['berita/detail/(:any)'] = 'home/berita_detail';
+
+// route siswa
+$route['siswa/aktif']  = 'home/s_aktif';
+$route['siswa/alumni'] = 'home/s_alumni';
