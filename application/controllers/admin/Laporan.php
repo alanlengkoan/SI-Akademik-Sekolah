@@ -12,6 +12,8 @@ class Laporan extends MY_Controller
 
         // untuk load model
         $this->load->model('crud');
+        $this->load->model('m_guru');
+        $this->load->model('m_siswa');
         $this->load->model('m_keuangan');
     }
 
@@ -60,5 +62,34 @@ class Laporan extends MY_Controller
         // untuk load view
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->cetakPdf('laporan_pembelian', 'admin/l_keuangan/print', $data);
+    }
+
+    // untuk halaman laporan siswa
+    public function l_siswa()
+    {
+        $data = [
+            'halaman' => 'Laporan Siswa',
+            'aktif'   => $this->m_siswa->getAllSiswaStatus('0'),
+            'alumni'  => $this->m_siswa->getAllSiswaStatus('1'),
+            'content' => 'admin/l_siswa/view',
+            'css'     => 'admin/l_siswa/css/view',
+            'js'      => 'admin/l_siswa/js/view'
+        ];
+        // untuk load view
+        $this->load->view('admin/base', $data);
+    }
+
+    // untuk halaman laporan guru
+    public function l_guru()
+    {
+        $data = [
+            'halaman' => 'Laporan Guru',
+            'data'    => $this->m_guru->getAll(),
+            'content' => 'admin/l_guru/view',
+            'css'     => 'admin/l_guru/css/view',
+            'js'      => 'admin/l_guru/js/view'
+        ];
+        // untuk load view
+        $this->load->view('admin/base', $data);
     }
 }

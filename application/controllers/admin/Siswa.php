@@ -100,7 +100,7 @@ class Siswa extends MY_Controller
                 'tmp_lahir' => $post['inptmplahir'],
                 'tgl_lahir' => $post['inptgllahir'],
                 'alamat'    => $post['inpalamat'],
-                'ortu_wali' => $post['inpalamat'],
+                'ortu_wali' => $post['inportuwali'],
                 'status'    => '0',
             ];
 
@@ -115,7 +115,7 @@ class Siswa extends MY_Controller
                 'tmp_lahir' => $post['inptmplahir'],
                 'tgl_lahir' => $post['inptgllahir'],
                 'alamat'    => $post['inpalamat'],
-                'ortu_wali' => $post['inpalamat'],
+                'ortu_wali' => $post['inportuwali'],
             ];
 
             $this->crud->u('tb_siswa', $data, ['id_siswa' => $post['inpidsiswa']]);

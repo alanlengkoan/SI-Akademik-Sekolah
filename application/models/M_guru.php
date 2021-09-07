@@ -4,7 +4,7 @@ class M_guru extends CI_Model
 {
     public function getAll()
     {
-        $result = $this->db->query("")->result();
+        $result = $this->db->query("SELECT g.nip, g.id_guru, g.nama, g.kelamin, g.alamat, g.pendidikan, g.thn_masuk, a.nama AS agama, j.nama AS jabatan FROM tb_guru AS g LEFT JOIN tb_agama AS a ON g.id_agama = a.id_agama LEFT JOIN tb_jabatan AS j ON g.id_jabatan = j.id_jabatan ORDER BY g.nama ASC")->result();
         return $result;
     }
 

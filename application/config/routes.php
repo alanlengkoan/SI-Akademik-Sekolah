@@ -36,3 +36,7 @@ $route['berita/detail/(:any)'] = 'home/berita_detail';
 // route siswa
 $route['siswa/aktif']  = 'home/s_aktif';
 $route['siswa/alumni'] = 'home/s_alumni';
+
+// route kuisioner
+$route['kuisioner/(:any)'] = 'home/kuisioner';
+$route['kuisioner_simpan'] = 'home/kuisioner_simpan';

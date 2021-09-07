@@ -85,9 +85,15 @@
 									<li><a href="<?= base_url() ?>siswa/alumni">Alumni</a></li>
 								</ul>
 							</li>
-							<li>
-								<a href="<?= base_url() ?>tracer-study">Tracer Study</a>
-							</li>
+							<?php if ($kuisioner->num_rows() !== 0) { ?>
+								<li class="menu-has-children"><a href="">Kuisioner</a>
+									<ul>
+										<?php foreach ($kuisioner->result() as $row) { ?>
+											<li><a href="<?= base_url() ?>kuisioner/<?= base64url_encode($row->id_kuisioner) ?>"><?= $row->nama ?></a></li>
+										<?php } ?>
+									</ul>
+								</li>
+							<?php } ?>
 							<?php if ($this->session->userdata('id_users')) { ?>
 								<li>
 									<a href="<?= logout_url() ?>">Keluar</a>
