@@ -148,7 +148,7 @@
                                 <li class="<?= ($this->uri->segment(2) === 'agama' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>agama">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-users"></i>
+                                            <i class="fa fa-circle"></i>
                                         </span>
                                         <span class="pcoded-mtext">Agama</span>
                                     </a>
@@ -156,7 +156,7 @@
                                 <li class="<?= ($this->uri->segment(2) === 'jabatan' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>jabatan">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-users"></i>
+                                            <i class="fa fa-circle"></i>
                                         </span>
                                         <span class="pcoded-mtext">Jabatan</span>
                                     </a>
@@ -164,7 +164,7 @@
                                 <li class="<?= ($this->uri->segment(2) === 'kategori' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>kategori">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-users"></i>
+                                            <i class="fa fa-circle"></i>
                                         </span>
                                         <span class="pcoded-mtext">Kategori</span>
                                     </a>
@@ -172,7 +172,7 @@
                                 <li class="<?= ($this->uri->segment(2) === 'mapel' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>mapel">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-users"></i>
+                                            <i class="fa fa-circle"></i>
                                         </span>
                                         <span class="pcoded-mtext">Mata Pelajaran</span>
                                     </a>
@@ -180,7 +180,7 @@
                                 <li class="<?= ($this->uri->segment(2) === 'kelas' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>kelas">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-users"></i>
+                                            <i class="fa fa-circle"></i>
                                         </span>
                                         <span class="pcoded-mtext">Kelas</span>
                                     </a>
@@ -188,7 +188,7 @@
                                 <li class="<?= ($this->uri->segment(2) === 'keuangan' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>keuangan">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-users"></i>
+                                            <i class="fa fa-circle"></i>
                                         </span>
                                         <span class="pcoded-mtext">Keuangan</span>
                                     </a>
@@ -196,7 +196,7 @@
                                 <li class="<?= ($this->uri->segment(2) === 'jadwal' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>jadwal">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-users"></i>
+                                            <i class="fa fa-circle"></i>
                                         </span>
                                         <span class="pcoded-mtext">Jadwal</span>
                                     </a>
@@ -204,7 +204,7 @@
                                 <li class="<?= ($this->uri->segment(2) === 'kuisioner' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>kuisioner">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-users"></i>
+                                            <i class="fa fa-circle"></i>
                                         </span>
                                         <span class="pcoded-mtext">Kuisioner</span>
                                     </a>
@@ -212,7 +212,7 @@
                                 <li class="<?= ($this->uri->segment(2) === 'fasilitas' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>fasilitas">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-users"></i>
+                                            <i class="fa fa-circle"></i>
                                         </span>
                                         <span class="pcoded-mtext">Fasilitas</span>
                                     </a>
@@ -223,7 +223,7 @@
                                 <li class="pcoded-hasmenu <?= ($this->uri->segment(2) === 'pemasukan' || $this->uri->segment(2) === 'pengeluaran' ? 'active pcoded-trigger' : '') ?>">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-box"></i>
+                                            <i class="fa fa-circle"></i>
                                         </span>
                                         <span class="pcoded-mtext">Keuangan (Kas)</span>
                                     </a>
@@ -243,7 +243,7 @@
                                 <li class="<?= ($this->uri->segment(2) === 'guru' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>guru">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-users"></i>
+                                            <i class="fa fa-circle"></i>
                                         </span>
                                         <span class="pcoded-mtext">Guru</span>
                                     </a>
@@ -251,7 +251,7 @@
                                 <li class="<?= ($this->uri->segment(2) === 'siswa' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>siswa">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-home"></i>
+                                            <i class="fa fa-circle"></i>
                                         </span>
                                         <span class="pcoded-mtext">Siswa</span>
                                     </a>
@@ -259,7 +259,7 @@
                                 <li class="<?= ($this->uri->segment(2) === 'informasi' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>informasi">
                                         <span class="pcoded-micon">
-                                            <i class="feather icon-home"></i>
+                                            <i class="fa fa-circle"></i>
                                         </span>
                                         <span class="pcoded-mtext">Berita</span>
                                     </a>
