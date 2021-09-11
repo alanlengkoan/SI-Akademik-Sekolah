@@ -265,6 +265,33 @@
                                     </a>
                                 </li>
                             </ul>
+                            <div class="pcoded-navigation-label">Laporan</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="<?= ($this->uri->segment(2) === 'l_keuangan' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>laporan/l_keuangan">
+                                        <span class="pcoded-micon">
+                                            <i class="feather icon-users"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Laporan Keuangan</span>
+                                    </a>
+                                </li>
+                                <li class="<?= ($this->uri->segment(2) === 'l_guru' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>laporan/l_guru">
+                                        <span class="pcoded-micon">
+                                            <i class="feather icon-users"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Laporan Guru</span>
+                                    </a>
+                                </li>
+                                <li class="<?= ($this->uri->segment(2) === 'l_siswa' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>laporan/l_siswa">
+                                        <span class="pcoded-micon">
+                                            <i class="feather icon-users"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Laporan Siswa</span>
+                                    </a>
+                                </li>
+                            </ul>
                             <!-- end:: menu sidebar -->
                         </div>
                     </nav>

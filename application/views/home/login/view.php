@@ -101,13 +101,6 @@
                                 <span class="form-bar"></span>
                                 <label class="float-label">Password</label>
                             </div>
-                            <div class="row m-t-25 text-left">
-                                <div class="col-12">
-                                    <div class="forgot-phone text-left float-left">
-                                        <a href="<?= register_url() ?>" class="text-left f-w-600">Create Account ?</a>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row m-t-30">
                                 <div class="col-md-12">
                                     <?= form_input(array('type' => 'submit', 'name' => 'login', 'value' => 'Login', 'id' => 'login', 'class' => 'btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20')) ?>

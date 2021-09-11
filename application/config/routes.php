@@ -24,5 +24,19 @@ $route['pembayaran/(:any)']   = 'users/sewa/pembayaran';
 $route['riwayat']             = 'users/riwayat';
 
 // route home
+$route['galeri']  = 'home/galeri';
 $route['tentang'] = 'home/tentang';
 $route['kontak']  = 'home/kontak';
+
+// route berita
+$route['berita']               = 'home/berita';
+$route['berita/(:any)']        = 'home/berita_kategori';
+$route['berita/detail/(:any)'] = 'home/berita_detail';
+
+// route siswa
+$route['siswa/aktif']  = 'home/s_aktif';
+$route['siswa/alumni'] = 'home/s_alumni';
+
+// route kuisioner
+$route['kuisioner/(:any)'] = 'home/kuisioner';
+$route['kuisioner_simpan'] = 'home/kuisioner_simpan';

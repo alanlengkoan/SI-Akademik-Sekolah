@@ -1,0 +1,86 @@
+<!-- start banner Area -->
+<section class="banner-area relative about-banner" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    <?= $halaman ?>
+                </h1>
+                <p class="text-white link-nav"><a href="<?= base_url() ?>">Beranda </a> <span class="lnr lnr-arrow-right"></span> <a href="<?= base_url() ?>kontak"><?= $halaman ?></a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<!-- Start top-category-widget Area -->
+<?php if ($berita->num_rows() > 0) { ?>
+    <section class="top-category-widget-area pt-90 pb-90 ">
+        <div class="container">
+            <div class="row">
+                <?php foreach ($kategori as $row) { ?>
+                    <div class="col-lg-4">
+                        <div class="single-cat-widget">
+                            <div class="content relative">
+                                <div class="overlay overlay-bg"></div>
+                                <a href="<?= base_url() ?>berita/<?= $row->id_kategori ?>">
+                                    <div class="thumb">
+                                        <img class="content-image img-fluid d-block mx-auto" src="<?= assets_url() ?>page/img/blog/cat-widget1.jpg" alt="">
+                                    </div>
+                                    <div class="content-details">
+                                        <h4 class="content-title mx-auto text-uppercase"><?= $row->nama ?></h4>
+                                        <span></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </section>
+<?php } ?>
+<!-- End top-category-widget Area -->
+
+<!-- Start post-content Area -->
+<section class="post-content-area section-gap">
+    <div class="container">
+        <?php if ($berita->num_rows() > 0) { ?>
+            <div class="row">
+                <div class="col-lg-12 posts-list">
+                    <?php foreach ($berita->result() as $row) { ?>
+                        <div class="single-post row">
+                            <div class="col-lg-3  col-md-3 meta-details">
+                                <ul class="tags">
+                                    <li><?= $row->kategori ?></li>
+                                </ul>
+                                <div class="user-details row">
+                                    <p class="date col-lg-12 col-md-12 col-6"><?= tgl_indo($row->tgl_publish) ?>&nbsp;<span class="lnr lnr-calendar-full"></span></p>
+                                    <p class="view col-lg-12 col-md-12 col-6"><?= $row->jam_publish ?>&nbsp;<span class="lnr lnr-clock"></span></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-9 ">
+                                <div class="feature-img">
+                                    <img class="img-fluid" src="<?= upload_url() ?>gambar/<?= $row->gambar ?>" alt="<?= $row->judul ?>">
+                                </div>
+                                <a class="posts-title" href="blog-single.html">
+                                    <h3><?= $row->judul ?></h3>
+                                </a>
+                                <p class="excert">
+                                    <?= $row->isi ?>
+                                </p>
+                                <a href="<?= base_url() ?>berita/detail/<?= $row->id_informasi ?>" class="primary-btn">Detail</a>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        <?php } else { ?>
+            <div class="alert alert-info" role="alert">
+                <?= $halaman ?> Tidak Ada!
+            </div>
+        <?php } ?>
+    </div>
+</section>
+<!-- End post-content Area -->

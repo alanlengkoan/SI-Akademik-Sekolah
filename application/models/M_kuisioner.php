@@ -13,13 +13,19 @@ class M_kuisioner extends CI_Model
 
     public function getAll()
     {
-        $result = $this->db->query("SELECT k.id_kuisioner, k.nama FROM tb_kuisioner AS k")->result();
+        $result = $this->db->query("SELECT k.id_kuisioner, k.nama FROM tb_kuisioner AS k");
         return $result;
     }
 
     public function getDetail($id_kuisioner)
     {
         $result = $this->db->query("SELECT k.id_kuisioner, k.nama FROM tb_kuisioner AS k WHERE k.id_kuisioner = '$id_kuisioner'")->row();
+        return $result;
+    }
+
+    public function getAllKuisionerDetail($id_kuisioner)
+    {
+        $result = $this->db->query("SELECT ks.id_kuisioner_soal, ks.id_kuisioner, ks.soal, ks.pil_a, ks.pil_b, ks.pil_c, ks.pil_d, ks.pil_e, k.nama FROM tb_kuisioner_soal AS ks LEFT JOIN tb_kuisioner AS k ON ks.id_kuisioner = k.id_kuisioner WHERE ks.id_kuisioner = '$id_kuisioner'");
         return $result;
     }
 
