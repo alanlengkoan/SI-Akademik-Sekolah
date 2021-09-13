@@ -85,8 +85,10 @@
 								<li><a href="<?= base_url() ?>guru">Guru</a></li>
 								<li><a href="<?= base_url() ?>fasilitas">Fasilitas</a></li>
 								<li><a href="<?= base_url() ?>organisasi">Organisasi</a></li>
-								<?php foreach ($profil->result() as $row) { ?>
-									<li><a href="<?= base_url() ?>profil/<?= base64url_encode($row->id_profil) ?>"><?= $row->profil ?></a></li>
+								<?php if ($profil->num_rows() !== 0) { ?>
+									<?php foreach ($profil->result() as $row) { ?>
+										<li><a href="<?= base_url() ?>profil/<?= base64url_encode($row->id_profil) ?>"><?= $row->profil ?></a></li>
+									<?php } ?>
 								<?php } ?>
 							</ul>
 						</li>
