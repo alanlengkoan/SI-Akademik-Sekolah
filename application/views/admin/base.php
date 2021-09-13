@@ -145,6 +145,22 @@
                             </ul>
                             <div class="pcoded-navigation-label">Master</div>
                             <ul class="pcoded-item pcoded-left-item">
+                                <li class="<?= ($this->uri->segment(2) === 'tentang' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>tentang">
+                                        <span class="pcoded-micon">
+                                            <i class="fa fa-circle"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Profil</span>
+                                    </a>
+                                </li>
+                                <li class="<?= ($this->uri->segment(2) === 'organisasi' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>organisasi">
+                                        <span class="pcoded-micon">
+                                            <i class="fa fa-circle"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Organisasi</span>
+                                    </a>
+                                </li>
                                 <li class="<?= ($this->uri->segment(2) === 'agama' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>agama">
                                         <span class="pcoded-micon">

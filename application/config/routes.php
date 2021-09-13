@@ -40,3 +40,10 @@ $route['siswa/alumni'] = 'home/s_alumni';
 // route kuisioner
 $route['kuisioner/(:any)'] = 'home/kuisioner';
 $route['kuisioner_simpan'] = 'home/kuisioner_simpan';
+
+// route profil
+$route['profil/(:any)']            = 'home/profil';
+$route['guru']                     = 'home/guru';
+$route['fasilitas']                = 'home/fasilitas';
+$route['organisasi']               = 'home/organisasi';
+$route['organisasi/detail/(:any)'] = 'home/organisasi_detail';

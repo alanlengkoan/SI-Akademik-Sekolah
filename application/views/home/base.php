@@ -80,6 +80,16 @@
 						<li>
 							<a href="<?= base_url() ?>kontak">Kontak</a>
 						</li>
+						<li class="menu-has-children"><a href="">Profil</a>
+							<ul>
+								<li><a href="<?= base_url() ?>guru">Guru</a></li>
+								<li><a href="<?= base_url() ?>fasilitas">Fasilitas</a></li>
+								<li><a href="<?= base_url() ?>organisasi">Organisasi</a></li>
+								<?php foreach ($profil->result() as $row) { ?>
+									<li><a href="<?= base_url() ?>profil/<?= base64url_encode($row->id_profil) ?>"><?= $row->profil ?></a></li>
+								<?php } ?>
+							</ul>
+						</li>
 						<li class="menu-has-children"><a href="">Siswa</a>
 							<ul>
 								<li><a href="<?= base_url() ?>siswa/aktif">Aktif</a></li>

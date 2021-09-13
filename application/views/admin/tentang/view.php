@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="card-block table-border-style">
-                        <table class="table table-striped table-bordered nowrap" id="tabel-fasilitas">
+                        <table class="table table-striped table-bordered nowrap" id="tabel-profil">
                         </table>
                     </div>
                 </div>
@@ -56,21 +56,21 @@
             <div class="modal-header">
                 <h4 class="modal-title"><span id="judul-add-upd"></span> <?= $halaman ?></h4>
             </div>
-            <form id="form-add-upd" action="<?= admin_url() ?>fasilitas/process_save" method="POST">
+            <form id="form-add-upd" action="<?= admin_url() ?>tentang/process_save" method="POST">
                 <!-- begin:: id -->
-                <input type="hidden" name="inpidfasilitas" id="inpidfasilitas" />
+                <input type="hidden" name="inpidprofil" id="inpidprofil" />
                 <!-- end:: id -->
 
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Nama&nbsp;*</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="inpnama" id="inpnama" placeholder="Masukkan nama" />
+                        <label class="col-sm-3 col-form-label">Profil&nbsp;*</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="inpprofil" id="inpprofil" placeholder="Masukkan nama" />
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Gambar *</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-3 col-form-label">Gambar</label>
+                        <div class="col-sm-9">
                             <div id="lihat_gambar"></div>
                             <input type="file" class="form-control" name="inpgambar" id="inpgambar" />
                             <div id="centang_gambar"></div>
@@ -78,9 +78,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Keterangan&nbsp;*</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" name="inpketerangan" id="inpketerangan" placeholder="Masukkan isi"></textarea>
+                        <label class="col-sm-3 col-form-label">Isi&nbsp;*</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="inpisi" id="inpisi" placeholder="Masukkan isi"></textarea>
                         </div>
                     </div>
                 </div>

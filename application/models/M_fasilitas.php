@@ -4,7 +4,7 @@ class M_fasilitas extends CI_Model
 {
     public function getAll()
     {
-        $result = $this->db->query("")->result();
+        $result = $this->db->query("SELECT f.id_fasilitas, f.nama, f.gambar, f.keterangan FROM tb_fasilitas AS f ORDER BY f.ins")->result();
         return $result;
     }
 
