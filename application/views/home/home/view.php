@@ -5,13 +5,8 @@
          <div class="row fullscreen d-flex align-items-center justify-content-between">
              <div class="banner-content col-lg-9 col-md-12">
                  <h1 class="text-uppercase">
-                     We Ensure better education
-                     for a better world
+                    SELAMAT DATANG DI WEBSITE SMA 12 TANA TORAJA
                  </h1>
-                 <p class="pt-10 pb-10">
-                     In the history of modern astronomy, there is probably no one greater leap forward than the building and launch of the space telescope known as the Hubble.
-                 </p>
-                 <a href="#" class="primary-btn text-uppercase">Get Started</a>
              </div>
          </div>
      </div>
@@ -43,7 +38,8 @@
                      </div>
                      <div class="desc-wrap">
                          <p>
-                             For many of us, our very first experience of learning about the celestial bodies begins when we saw our first.
+                             For many of us, our very first experience of learning about the celestial bodies begins
+                             when we saw our first.
                          </p>
                          <a href="#">Join Now</a>
                      </div>
@@ -56,7 +52,8 @@
                      </div>
                      <div class="desc-wrap">
                          <p>
-                             If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
+                             If you are a serious astronomy fanatic like a lot of us are, you can probably remember that
+                             one event.
                          </p>
                          <a href="#">Join Now</a>
                      </div>
@@ -98,7 +95,8 @@
                              </h4>
                          </a>
                          <p>
-                             When television was young, there was a hugely popular show based on the still popular fictional characte
+                             When television was young, there was a hugely popular show based on the still popular
+                             fictional characte
                          </p>
                      </div>
                  </div>
@@ -120,7 +118,8 @@
                              </h4>
                          </a>
                          <p>
-                             When television was young, there was a hugely popular show based on the still popular fictional characte
+                             When television was young, there was a hugely popular show based on the still popular
+                             fictional characte
                          </p>
                      </div>
                  </div>
@@ -142,7 +141,8 @@
                              </h4>
                          </a>
                          <p>
-                             When television was young, there was a hugely popular show based on the still popular fictional characte
+                             When television was young, there was a hugely popular show based on the still popular
+                             fictional characte
                          </p>
                      </div>
                  </div>
@@ -164,7 +164,8 @@
                              </h4>
                          </a>
                          <p>
-                             When television was young, there was a hugely popular show based on the still popular fictional characte
+                             When television was young, there was a hugely popular show based on the still popular
+                             fictional characte
                          </p>
                      </div>
                  </div>
@@ -186,7 +187,8 @@
                              </h4>
                          </a>
                          <p>
-                             When television was young, there was a hugely popular show based on the still popular fictional characte
+                             When television was young, there was a hugely popular show based on the still popular
+                             fictional characte
                          </p>
                      </div>
                  </div>
@@ -208,7 +210,8 @@
                              </h4>
                          </a>
                          <p>
-                             When television was young, there was a hugely popular show based on the still popular fictional characte
+                             When television was young, there was a hugely popular show based on the still popular
+                             fictional characte
                          </p>
                      </div>
                  </div>
@@ -230,7 +233,8 @@
                              </h4>
                          </a>
                          <p>
-                             When television was young, there was a hugely popular show based on the still popular fictional characte
+                             When television was young, there was a hugely popular show based on the still popular
+                             fictional characte
                          </p>
                      </div>
                  </div>
@@ -252,7 +256,8 @@
                              </h4>
                          </a>
                          <p>
-                             When television was young, there was a hugely popular show based on the still popular fictional characte
+                             When television was young, there was a hugely popular show based on the still popular
+                             fictional characte
                          </p>
                      </div>
                  </div>
@@ -274,7 +279,9 @@
                      during this Summer!
                  </h1>
                  <p>
-                     inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
+                     inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct
+                     standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the
+                     job is beyond reproach.
                  </p>
                  <div class="row details-content">
                      <div class="col single-detials">
@@ -283,7 +290,8 @@
                              <h4>Expert Instructors</h4>
                          </a>
                          <p>
-                             Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+                             Usage of the Internet is becoming more common due to rapid advancement of technology and
+                             power.
                          </p>
                      </div>
                      <div class="col single-detials">
@@ -292,7 +300,8 @@
                              <h4>Certification</h4>
                          </a>
                          <p>
-                             Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+                             Usage of the Internet is becoming more common due to rapid advancement of technology and
+                             power.
                          </p>
                      </div>
                  </div>
@@ -345,7 +354,8 @@
                                  A Child S Eyes</h4>
                          </a>
                          <p>
-                             For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
+                             For most of us, the idea of astronomy is something we directly connect to “stargazing”,
+                             telescopes and seeing magnificent displays in the heavens.
                          </p>
                      </div>
                  </div>
@@ -360,7 +370,8 @@
                                  A Child S Eyes</h4>
                          </a>
                          <p>
-                             For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
+                             For most of us, the idea of astronomy is something we directly connect to “stargazing”,
+                             telescopes and seeing magnificent displays in the heavens.
                          </p>
                      </div>
                  </div>
@@ -375,7 +386,8 @@
                                  A Child S Eyes</h4>
                          </a>
                          <p>
-                             For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
+                             For most of us, the idea of astronomy is something we directly connect to “stargazing”,
+                             telescopes and seeing magnificent displays in the heavens.
                          </p>
                      </div>
                  </div>
@@ -390,7 +402,8 @@
                                  A Child S Eyes</h4>
                          </a>
                          <p>
-                             For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
+                             For most of us, the idea of astronomy is something we directly connect to “stargazing”,
+                             telescopes and seeing magnificent displays in the heavens.
                          </p>
                      </div>
                  </div>
@@ -405,7 +418,8 @@
                                  A Child S Eyes</h4>
                          </a>
                          <p>
-                             For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
+                             For most of us, the idea of astronomy is something we directly connect to “stargazing”,
+                             telescopes and seeing magnificent displays in the heavens.
                          </p>
                      </div>
                  </div>
@@ -420,7 +434,8 @@
                                  A Child S Eyes</h4>
                          </a>
                          <p>
-                             For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
+                             For most of us, the idea of astronomy is something we directly connect to “stargazing”,
+                             telescopes and seeing magnificent displays in the heavens.
                          </p>
                      </div>
                  </div>
@@ -450,7 +465,9 @@
                          </div>
                      </div>
                      <p>
-                         Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                         Accessories Here you can find the best computer accessory for your laptop, monitor, printer,
+                         scanner, speaker. Here you can find the best computer accessory for your laptop, monitor,
+                         printer, scanner, speaker.
                      </p>
                  </div>
                  <div class="single-review item">
@@ -467,7 +484,9 @@
                          </div>
                      </div>
                      <p>
-                         Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                         Accessories Here you can find the best computer accessory for your laptop, monitor, printer,
+                         scanner, speaker. Here you can find the best computer accessory for your laptop, monitor,
+                         printer, scanner, speaker.
                      </p>
                  </div>
                  <div class="single-review item">
@@ -484,7 +503,9 @@
                          </div>
                      </div>
                      <p>
-                         Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                         Accessories Here you can find the best computer accessory for your laptop, monitor, printer,
+                         scanner, speaker. Here you can find the best computer accessory for your laptop, monitor,
+                         printer, scanner, speaker.
                      </p>
                  </div>
                  <div class="single-review item">
@@ -501,7 +522,9 @@
                          </div>
                      </div>
                      <p>
-                         Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                         Accessories Here you can find the best computer accessory for your laptop, monitor, printer,
+                         scanner, speaker. Here you can find the best computer accessory for your laptop, monitor,
+                         printer, scanner, speaker.
                      </p>
                  </div>
                  <div class="single-review item">
@@ -518,7 +541,9 @@
                          </div>
                      </div>
                      <p>
-                         Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                         Accessories Here you can find the best computer accessory for your laptop, monitor, printer,
+                         scanner, speaker. Here you can find the best computer accessory for your laptop, monitor,
+                         printer, scanner, speaker.
                      </p>
                  </div>
                  <div class="single-review item">
@@ -535,7 +560,9 @@
                          </div>
                      </div>
                      <p>
-                         Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                         Accessories Here you can find the best computer accessory for your laptop, monitor, printer,
+                         scanner, speaker. Here you can find the best computer accessory for your laptop, monitor,
+                         printer, scanner, speaker.
                      </p>
                  </div>
                  <div class="single-review item">
@@ -553,7 +580,9 @@
                          </div>
                      </div>
                      <p>
-                         Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                         Accessories Here you can find the best computer accessory for your laptop, monitor, printer,
+                         scanner, speaker. Here you can find the best computer accessory for your laptop, monitor,
+                         printer, scanner, speaker.
                      </p>
                  </div>
                  <div class="single-review item">
@@ -570,7 +599,9 @@
                          </div>
                      </div>
                      <p>
-                         Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+                         Accessories Here you can find the best computer accessory for your laptop, monitor, printer,
+                         scanner, speaker. Here you can find the best computer accessory for your laptop, monitor,
+                         printer, scanner, speaker.
                      </p>
                  </div>
              </div>
@@ -587,7 +618,9 @@
              <div class="wrap">
                  <h1 class="text-white">Become an instructor</h1>
                  <p>
-                     There is a moment in the life of any aspiring astronomer that it is time to buy that first telescope. It’s exciting to think about setting up your own viewing station whether that is on the deck.
+                     There is a moment in the life of any aspiring astronomer that it is time to buy that first
+                     telescope. It’s exciting to think about setting up your own viewing station whether that is on the
+                     deck.
                  </p>
                  <a class="primary-btn wh" href="#">Apply for the post</a>
              </div>
@@ -617,7 +650,8 @@
                      <h5>Addiction When Gambling Becomes A Problem</h5>
                  </a>
                  <p>
-                     Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend hours in front of their.
+                     Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend
+                     hours in front of their.
                  </p>
                  <a href="#" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Details</span><span class="lnr lnr-arrow-right"></span></a>
              </div>
@@ -630,7 +664,8 @@
                      <h5>Computer Hardware Desktops And Notebooks</h5>
                  </a>
                  <p>
-                     Ah, the technical interview. Nothing like it. Not only does it cause anxiety, but it causes anxiety for several different reasons.
+                     Ah, the technical interview. Nothing like it. Not only does it cause anxiety, but it causes anxiety
+                     for several different reasons.
                  </p>
                  <a href="#" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Details</span><span class="lnr lnr-arrow-right"></span></a>
              </div>
@@ -643,7 +678,8 @@
                      <h5>Make Myspace Your Best Designed Space</h5>
                  </a>
                  <p>
-                     Plantronics with its GN Netcom wireless headset creates the next generation of wireless headset and other products such as wireless.
+                     Plantronics with its GN Netcom wireless headset creates the next generation of wireless headset and
+                     other products such as wireless.
                  </p>
                  <a href="#" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Details</span><span class="lnr lnr-arrow-right"></span></a>
              </div>
@@ -656,7 +692,8 @@
                      <h5>Video Games Playing With Imagination</h5>
                  </a>
                  <p>
-                     About 64% of all on-line teens say that do things online that they wouldn’t want their parents to know about. 11% of all adult internet
+                     About 64% of all on-line teens say that do things online that they wouldn’t want their parents to
+                     know about. 11% of all adult internet
                  </p>
                  <a href="#" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Details</span><span class="lnr lnr-arrow-right"></span></a>
              </div>
