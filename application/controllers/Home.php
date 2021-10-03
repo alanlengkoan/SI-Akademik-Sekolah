@@ -87,6 +87,7 @@ class Home extends MY_Controller
             'profil'    => $this->m_profil->getAll(),
             'kategori'  => $this->m_kategori->getAll(),
             'berita'    => $this->m_informasi->getWhereStatus('1'),
+            'populer'   => $this->m_informasi->getWhereStatusPopuler(),
             'content'   => 'home/berita/view',
             'css'       => '',
             'js'        => ''
@@ -106,6 +107,8 @@ class Home extends MY_Controller
             'profil'    => $this->m_profil->getAll(),
             'kategori'  => $this->m_kategori->getAll(),
             'berita'    => $this->m_informasi->getWhereStatusAndKategori('1', $id_kategori),
+            'kategori'  => $this->m_kategori->getAll(),
+            'populer'   => $this->m_informasi->getWhereStatusPopuler(),
             'content'   => 'home/berita/view',
             'css'       => '',
             'js'        => ''
@@ -124,6 +127,8 @@ class Home extends MY_Controller
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
             'berita'    => $this->m_informasi->getWhereDetail($id_informasi),
+            'kategori'  => $this->m_kategori->getAll(),
+            'populer'   => $this->m_informasi->getWhereStatusPopuler(),
             'content'   => 'home/berita/detail',
             'css'       => '',
             'js'        => ''

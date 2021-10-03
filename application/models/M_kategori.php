@@ -4,7 +4,7 @@ class M_kategori extends CI_Model
 {
     public function getAll()
     {
-        $result = $this->db->query("SELECT k.id_kategori, k.nama FROM tb_kategori AS k ORDER BY k.ins ASC")->result();
+        $result = $this->db->query("SELECT k.id_kategori, k.nama,( SELECT COUNT(*) FROM tb_informasi AS ti WHERE ti.id_kategori = k.id_kategori AND ti.`status` = '1') AS jumlah FROM tb_kategori AS k ORDER BY k.ins ASC")->result();
         return $result;
     }
 

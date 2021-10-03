@@ -19,6 +19,12 @@ class M_informasi extends CI_Model
         $result = $this->db->query("SELECT i.id_informasi, i.judul, i.isi, i.gambar, DATE_FORMAT( i.tgl_publish, '%Y-%m-%d' ) AS tgl_publish, DATE_FORMAT( i.tgl_publish, '%H:%i:%s' ) AS jam_publish, k.nama AS kategori FROM tb_informasi AS i LEFT JOIN tb_kategori AS k ON i.id_kategori = k.id_kategori WHERE i.status = '$status'");
         return $result;
     }
+
+    public function getWhereStatusPopuler()
+    {
+        $result = $this->db->query("SELECT i.id_informasi, i.judul, i.isi, i.gambar, DATE_FORMAT( i.tgl_publish, '%Y-%m-%d') AS tgl_publish, DATE_FORMAT( i.tgl_publish, '%H:%i:%s' ) AS jam_publish, k.nama AS kategori FROM tb_informasi AS i LEFT JOIN tb_kategori AS k ON i.id_kategori = k.id_kategori WHERE i.STATUS = '1' ORDER BY i.tgl_publish ASC LIMIT 5");
+        return $result;
+    }
     
     public function getWhereGaleri()
     {
