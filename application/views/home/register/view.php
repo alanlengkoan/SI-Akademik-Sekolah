@@ -80,7 +80,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <?= form_open('auth/check_validation', array('id' => 'form-login', 'class' => 'md-float-material form-material', 'method' => 'post')) ?>
+                    <?= form_open('auth/process_save', array('id' => 'form-register', 'class' => 'md-float-material form-material', 'method' => 'post')) ?>
                     <div class="text-center">
                         <img src="<?= assets_url() ?>admin/images/logo.png" alt="logo.png">
                     </div>
@@ -88,8 +88,18 @@
                         <div class="card-block">
                             <div class="row m-b-20">
                                 <div class="col-md-12">
-                                    <h3 class="text-center">Login</h3>
+                                    <h3 class="text-center">Register</h3>
                                 </div>
+                            </div>
+                            <div class="form-group form-primary">
+                                <?= form_input(array('name' => 'nama', 'id' => 'nama', 'class' => 'form-control')) ?>
+                                <span class="form-bar"></span>
+                                <label class="float-label">Nama</label>
+                            </div>
+                            <div class="form-group form-primary">
+                                <?= form_input(array('type' => 'email', 'name' => 'email', 'id' => 'email', 'class' => 'form-control')) ?>
+                                <span class="form-bar"></span>
+                                <label class="float-label">E-mail</label>
                             </div>
                             <div class="form-group form-primary">
                                 <?= form_input(array('name' => 'username', 'id' => 'username', 'class' => 'form-control')) ?>
@@ -101,16 +111,9 @@
                                 <span class="form-bar"></span>
                                 <label class="float-label">Password</label>
                             </div>
-                            <div class="row m-t-25 text-left">
-                                <div class="col-12">
-                                    <div class="forgot-phone text-left float-left">
-                                        <a href="<?= register_url() ?>" class="text-left f-w-600">Belum punya akun ?</a>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row m-t-30">
                                 <div class="col-md-12">
-                                    <?= form_input(array('type' => 'submit', 'name' => 'login', 'value' => 'Login', 'id' => 'login', 'class' => 'btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20')) ?>
+                                    <?= form_input(array('type' => 'submit', 'name' => 'register', 'value' => 'Register', 'id' => 'register', 'class' => 'btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20')) ?>
                                     <a href="<?= base_url() ?>" class="btn btn-danger btn-md btn-block waves-effect waves-light text-center m-b-20">Batal</a>
                                 </div>
                             </div>
@@ -138,33 +141,34 @@
 
     <script>
         var untukSubmit = function() {
-            $('#form-login').parsley();
-            $('#form-login').submit(function(e) {
+            $('#form-register').parsley();
+            $('#form-register').submit(function(e) {
                 e.preventDefault();
+                $('#nama').attr('required', 'required');
+                $('#email').attr('required', 'required');
                 $('#username').attr('required', 'required');
                 $('#password').attr('required', 'required');
-                if ($('#form-login').parsley().isValid() == true) {
+                if ($('#form-register').parsley().isValid() == true) {
                     $.ajax({
                         method: $(this).attr('method'),
                         url: $(this).attr('action'),
                         data: $(this).serialize(),
                         dataType: 'json',
                         beforeSend: function() {
-                            $('#login').val('Wait');
+                            $('#register').val('Wait');
                         },
                         success: function(response) {
-                            if (response.status == true) {
-                                window.location = response.link;
-                            } else {
-                                $('#login').val('Login');
+                            $('#register').val('Register');
 
-                                swal({
+                            swal({
                                     title: response.title,
                                     text: response.text,
                                     icon: response.type,
                                     button: response.button,
+                                })
+                                .then((value) => {
+                                    location.href = "<?= login_url() ?>";
                                 });
-                            }
                         }
                     })
                 }

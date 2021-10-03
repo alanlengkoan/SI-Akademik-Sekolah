@@ -3,6 +3,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Home extends MY_Controller
 {
+    public $id_users;
+    public $username;
+    public $role;
+
     public function __construct()
     {
         parent::__construct();
@@ -10,6 +14,7 @@ class Home extends MY_Controller
         // untuk load model
         $this->load->model('crud');
         $this->load->model('m_guru');
+        $this->load->model('m_users');
         $this->load->model('m_siswa');
         $this->load->model('m_agama');
         $this->load->model('m_profil');
@@ -18,6 +23,11 @@ class Home extends MY_Controller
         $this->load->model('m_kuisioner');
         $this->load->model('m_informasi');
         $this->load->model('m_organisasi');
+
+        // untuk deklarasi variabel global
+        $this->id_users = $this->session->userdata('id_users');
+        $this->username = $this->session->userdata('username');
+        $this->role     = $this->session->userdata('role');
     }
 
     public function index()
@@ -172,17 +182,26 @@ class Home extends MY_Controller
     // untuk halaman kuisioner
     public function kuisioner()
     {
+        // untuk mengecek status login
+        checking_session($this->username, $this->role, ['users']);
+
         $id_kuisioner = base64url_decode($this->uri->segment('2'));
+        $id_users     = $this->id_users;
+        $role         = $this->role;
+
+        $get_siswa = $this->m_users->getRoleUsers($role, $id_users);
 
         $data = [
-            'halaman'   => 'Tracer Study',
-            'kuisioner' => $this->m_kuisioner->getAll(),
-            'profil'    => $this->m_profil->getAll(),
-            'data'      => $this->m_kuisioner->getAllKuisionerDetail($id_kuisioner),
-            'agama'     => $this->m_agama->getAll(),
-            'content'   => 'home/kuisioner/view',
-            'css'       => '',
-            'js'        => 'home/kuisioner/js/view'
+            'halaman'         => 'Tracer Study',
+            'kuisioner'       => $this->m_kuisioner->getAll(),
+            'profil'          => $this->m_profil->getAll(),
+            'agama'           => $this->m_agama->getAll(),
+            'kuisioner_check' => $this->m_kuisioner->getCheckHasil($id_kuisioner, $get_siswa->id_siswa)->num_rows(),
+            'siswa'           => $get_siswa,
+            'data'            => $this->m_kuisioner->getAllKuisionerDetail($id_kuisioner),
+            'content'         => 'home/kuisioner/view',
+            'css'             => '',
+            'js'              => 'home/kuisioner/js/view'
         ];
         // untuk load view
         $this->load->view('home/base', $data);
@@ -191,31 +210,36 @@ class Home extends MY_Controller
     // untuk simpan kuisioner
     public function kuisioner_simpan()
     {
-        $post = $this->input->post(NULL, TRUE);
+        $post     = $this->input->post(NULL, TRUE);
+        $id_users = $this->id_users;
+        $role     = $this->role;
+
+        $get_siswa = $this->m_users->getRoleUsers($role, $id_users);
 
         $this->db->trans_start();
-        // untuk tabel siswa
-        $siswa = [
-            'id_siswa'  => acak_id('tb_siswa', 'id_siswa'),
-            'id_agama'  => $post['inpidagama'],
-            'nis'       => $post['inpnis'],
-            'nama'      => $post['inpnama'],
-            'kelamin'   => $post['inpkelamin'],
-            'tmp_lahir' => $post['inptmplahir'],
-            'tgl_lahir' => $post['inptgllahir'],
-            'alamat'    => $post['inpalamat'],
-            'ortu_wali' => $post['inportuwali'],
-            'status'    => $post['inpstatus'],
-            'thn_lulus' => $post['inptahunlulus'],
-        ];
-        $this->crud->i('tb_siswa', $siswa);
-
+        if ($get_siswa->nis === null) {
+            // untuk tabel siswa
+            $siswa = [
+                'id_users'  => $id_users,
+                'id_agama'  => $post['inpidagama'],
+                'nis'       => $post['inpnis'],
+                'nama'      => $post['inpnama'],
+                'kelamin'   => $post['inpkelamin'],
+                'tmp_lahir' => $post['inptmplahir'],
+                'tgl_lahir' => $post['inptgllahir'],
+                'alamat'    => $post['inpalamat'],
+                'ortu_wali' => $post['inportuwali'],
+                'status'    => $post['inpstatus'],
+                'thn_lulus' => $post['inptahunlulus'],
+            ];
+            $this->crud->u('tb_siswa', $siswa, ['id_siswa' => $get_siswa->id_siswa, 'id_users' => $id_users]);
+        }
         // untuk tabel kuisioner
         for ($i = 0; $i < count($post['inpidkusionersoal']); $i++) {
             $kusioner_hasil = [
                 'id_kuisioner_hasil' => acak_id('tb_kuisioner_hasil', 'id_kuisioner_hasil'),
                 'id_kuisioner_soal'  => $post['inpidkusionersoal'][$i],
-                'id_siswa'           => $siswa['id_siswa'],
+                'id_siswa'           => $get_siswa->id_siswa,
                 'jawaban'            => $post[$i . '_inpjawaban'],
             ];
             $this->crud->i('tb_kuisioner_hasil', $kusioner_hasil);

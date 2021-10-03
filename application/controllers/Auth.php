@@ -56,16 +56,6 @@ class Auth extends MY_Controller
                     ];
                     $this->session->set_userdata($data);
                     exit(json_encode(array('status' => true, 'link' => admin_url())));
-                } else if ($row['roles'] == 'fotografer') {
-                    $data = [
-                        'id'       => $row['id'],
-                        'id_users' => $row['id_users'],
-                        'username' => $row['username'],
-                        'password' => $password,
-                        'role'     => $row['roles'],
-                    ];
-                    $this->session->set_userdata($data);
-                    exit(json_encode(array('status' => true, 'link' => fotografer_url())));
                 } else if ($row['roles'] == 'users') {
                     $data = [
                         'id'       => $row['id'],
@@ -113,13 +103,13 @@ class Auth extends MY_Controller
         ];
         // data pelanggan
         $pelanggan = [
-            'id_pelanggan' => acak_id('tb_pelanggan', 'id_pelanggan'),
-            'id_users'     => $users['id_users'],
+            'id_siswa' => acak_id('tb_siswa', 'id_siswa'),
+            'id_users' => $users['id_users'],
         ];
 
         $this->db->trans_start();
         $this->crud->i('tb_users', $users);
-        $this->crud->i('tb_pelanggan', $pelanggan);
+        $this->crud->i('tb_siswa', $pelanggan);
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
