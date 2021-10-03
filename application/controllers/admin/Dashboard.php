@@ -12,6 +12,8 @@ class Dashboard extends MY_Controller
 
         // untuk load model
         $this->load->model('crud');
+        $this->load->model('m_guru');
+        $this->load->model('m_siswa');
 	}
 
     // untuk default
@@ -19,6 +21,9 @@ class Dashboard extends MY_Controller
     {
         $data = [
             'halaman' => 'Dashboard Admin',
+            'guru'    => $this->m_guru->getAll(),
+            'aktif'   => $this->m_siswa->getAllSiswaStatus('0'),
+            'alumni'  => $this->m_siswa->getAllSiswaStatus('1'),
             'content' => 'admin/dashboard/view',
             'css'     => '',
             'js'      => ''

@@ -40,9 +40,38 @@ class Laporan extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
 
+        $start    = new DateTime($post['tgl_awal']);
+        $end      = new DateTime($post['tgl_akhir']);
+        $interval = new DateInterval('P1M');
+        $period   = new DatePeriod($start, $interval, $end);
+
+        $get = $this->m_keuangan->getReportKeuangan($post['tgl_awal'], $post['tgl_akhir']);
+        $no  = 1;
+
+        foreach ($get->result() as $row) {
+            foreach ($period as $dt) {
+                $bulan  = $dt->format('m') . PHP_EOL;
+                $kredit[(int) $bulan] = $this->m_keuangan->getReportOutByMonth($row->id_keuangan, $bulan);
+            }
+
+            $sisa = ($row->debit - array_sum($kredit));
+
+            $result[] = [
+                'no'            => $no++,
+                'nama_keuangan' => $row->nama_keuangan,
+                'keterangan'    => '-',
+                'debit'         => create_separator($row->debit),
+                'bulan'         => $kredit,
+                'kredit'        => create_separator(array_sum($kredit)),
+                'sisa'          => create_separator($sisa)
+            ];
+        }
+
         $data = [
-            'halaman'  => "Daftar Keuangan",
-            'keuangan' => $this->m_keuangan->getReportKeuangan($post['tgl_awal'], $post['tgl_akhir']),
+            'bulan'       => ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+            'jarak_bulan' => $kredit,
+            'halaman'     => "Daftar Keuangan",
+            'keuangan'    => $result,
         ];
 
         // untuk load view
@@ -52,11 +81,40 @@ class Laporan extends MY_Controller
     // untuk export laporan keuangan
     public function l_keuangan_export()
     {
-        $post = $this->input->get(NULL, TRUE);
+        $post     = $this->input->get(NULL, TRUE);
+        
+        $start    = new DateTime(base64url_decode($post['tgl_awal']));
+        $end      = new DateTime(base64url_decode($post['tgl_akhir']));
+        $interval = new DateInterval('P1M');
+        $period   = new DatePeriod($start, $interval, $end);
+
+        $get = $this->m_keuangan->getReportKeuangan(base64url_decode($post['tgl_awal']), base64url_decode($post['tgl_akhir']));
+        $no  = 1;
+
+        foreach ($get->result() as $row) {
+            foreach ($period as $dt) {
+                $bulan  = $dt->format('m') . PHP_EOL;
+                $kredit[(int) $bulan] = $this->m_keuangan->getReportOutByMonth($row->id_keuangan, $bulan);
+            }
+
+            $sisa = ($row->debit - array_sum($kredit));
+
+            $result[] = [
+                'no'            => $no++,
+                'nama_keuangan' => $row->nama_keuangan,
+                'keterangan'    => '-',
+                'debit'         => create_separator($row->debit),
+                'bulan'         => $kredit,
+                'kredit'        => create_separator(array_sum($kredit)),
+                'sisa'          => create_separator($sisa)
+            ];
+        }
 
         $data = [
-            'halaman'  => "Daftar Keuangan",
-            'keuangan' => $this->m_keuangan->getReportKeuangan(base64url_decode($post['tgl_awal']), base64url_decode($post['tgl_akhir'])),
+            'bulan'       => ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+            'jarak_bulan' => $kredit,
+            'halaman'     => "Daftar Keuangan",
+            'keuangan'    => $result,
         ];
 
         // untuk load view

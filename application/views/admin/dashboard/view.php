@@ -28,54 +28,63 @@
         <div class="page-wrapper">
             <div class="page-body">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card bg-c-blue total-card">
-                            <div class="card-block">
-                                <div class="text-left">
-                                    <h4>4000</h4>
-                                    <p class="m-0">Total Sales</p>
-                                </div>
-                                <span class="label bg-c-blue value-badges">12%</span>
+                    <!-- begin:: subscribe -->
+                    <div class="col-md-12 col-lg-4">
+                        <div class="card">
+                            <div class="card-block text-center">
+                                <i class="feather icon-users text-c-blue d-block f-40"></i>
+                                <h4 class="m-t-20"><span class="text-c-blue"><?= count($guru) ?></span>&nbsp;Guru</h4>
+                                <p class="m-b-20">Jumlah Guru.</p>
                             </div>
-                            <div id="total-value-graph-1" style="height:100px;"></div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card bg-c-red total-card">
-                            <div class="card-block">
-                                <div class="text-left">
-                                    <h4>489</h4>
-                                    <p class="m-0">Total Comment</p>
-                                </div>
-                                <span class="label bg-c-red value-badges">15%</span>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card">
+                            <div class="card-block text-center">
+                                <i class="feather icon-users text-c-blue d-block f-40"></i>
+                                <h4 class="m-t-20"><span class="text-c-blue"><?= count($aktif) ?></span>&nbsp;Siswa Aktif</h4>
+                                <p class="m-b-20">Jumlah Siswa Akif.</p>
                             </div>
-                            <div id="total-value-graph-2" style="height:100px;"></div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card bg-c-green total-card">
-                            <div class="card-block">
-                                <div class="text-left">
-                                    <h4>$5782</h4>
-                                    <p class="m-0">Income Status</p>
-                                </div>
-                                <span class="label bg-c-green value-badges">20%</span>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card">
+                            <div class="card-block text-center">
+                                <i class="feather icon-users text-c-blue d-block f-40"></i>
+                                <h4 class="m-t-20"><span class="text-c-blue"><?= count($alumni) ?></span>&nbsp;Siswa Alumni</h4>
+                                <p class="m-b-20">Jumlah Alumni.</p>
                             </div>
-                            <div id="total-value-graph-3" style="height:100px;"></div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card bg-c-yellow total-card">
-                            <div class="card-block">
-                                <div class="text-left">
-                                    <h4>378</h4>
-                                    <p class="m-0">Total Visitors</p>
-                                </div>
-                                <span class="label bg-c-yellow value-badges">23%</span>
+                    <!-- end:: subscribe -->
+
+                    <!-- begin:: tentang -->
+                    <div class="col-xl-12 col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Selamat Datang</h5>
                             </div>
-                            <div id="total-value-graph-4" style="height:100px;"></div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-lg-6 text-justify">
+                                        <p>
+                                            Salam Sejahtera Bagi Kita Semua.
+                                        </p>
+                                        <p>
+                                            Puji syukur kami panjatkan kepada Tuhan Yang maha Esa atas limpahan rahmat dan karunia-Nya sehingga SMA 12 TANA TORAJA berhasil membangun website, Kehadiran Website SMA 12 TANA TORAJA diharapkan dapat memudahkan penyampaian informasi secara terbuka kepada warga sekolah, alumni dan masyarakat serta instansi lain yang terkait.
+                                        </p>
+                                        <p>
+                                            Semoga dengan kehadiran Website ini akan terjalin informasi, komunikasi antar alumni khususnya sebagai salah satu upaya sekolah mendapatkan informasi akan penelusuran tamatan/ alumni dimana saja berada. Dapat memperoleh informasi dengan cepat sehingga dapat mengikuti perkembangan dalam pengetahuan yang berkembang dengan cepat pula.
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <img class="img-fluid" src="http://localhost/si/SI-Akademik-Sekolah/public/assets/page/img/banner-bg.jpg" alt="">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!-- end:: tentang -->
                 </div>
             </div>
         </div>

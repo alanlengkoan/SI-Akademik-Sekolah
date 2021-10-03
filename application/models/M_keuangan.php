@@ -1,5 +1,9 @@
   
-<?php defined('BASEPATH') or exit('No direct script access allowed');
+<?php
+
+use PhpOffice\PhpSpreadsheet\Worksheet\Row;
+
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_keuangan extends CI_Model
 {
@@ -11,7 +15,13 @@ class M_keuangan extends CI_Model
 
     public function getReportKeuangan($tgl_awal, $tgl_akhir)
     {
-        $result = $this->db->query("SELECT kr.id_keuangan_rincian, kr.keterangan, k.nama AS nama_keuangan, COALESCE ( kr.debit, 0 ) AS debit, COALESCE ( kr.kredit, 0 ) AS kredit, DATE_FORMAT(kr.tanggal, '%Y-%m-%d' ) AS tanggal, k.ins FROM tb_keuangan_rincian AS kr LEFT JOIN tb_keuangan AS k ON kr.id_keuangan = k.id_keuangan WHERE kr.tanggal BETWEEN '$tgl_awal'  AND '$tgl_akhir' ORDER BY kr.tanggal ASC");
+        $result = $this->db->query("SELECT kr.id_keuangan, k.nama AS nama_keuangan, SUM( COALESCE( kr.debit, 0)) AS debit FROM tb_keuangan_rincian AS kr LEFT JOIN tb_keuangan AS k ON kr.id_keuangan = k.id_keuangan WHERE kr.status_u = 'd' AND kr.tanggal BETWEEN '$tgl_awal' AND '$tgl_akhir' GROUP BY kr.id_keuangan, k.nama");
+        return $result;
+    }
+
+    public function getReportOutByMonth($id_keuangan, $bulan)
+    {
+        $result = $this->db->query("SELECT SUM( kr.kredit) AS kredit FROM tb_keuangan_rincian AS kr WHERE kr.status_u = 'k' AND kr.id_keuangan = '$id_keuangan' AND MONTH( kr.tanggal ) = '$bulan'")->row('kredit');
         return $result;
     }
 
