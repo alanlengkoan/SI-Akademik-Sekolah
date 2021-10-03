@@ -55,6 +55,19 @@
                     },
                 },
                 {
+                    title: 'Hasil',
+                    className: 'text-center',
+                    orderable: false,
+                    searchable: false,
+                    render: function(data, type, full, meta) {
+                        return `
+                            <div class="button-icon-btn button-icon-btn-cl">
+                                <a class="btn btn-success btn-sm waves-effect" href="<?= admin_url() ?>kuisioner/hasil/` + btoa(full.id_kuisioner) + `"><i class="fa fa-eye"></i>&nbsp;Lihat Hasil</a>
+                            </div>
+                        `;
+                    },
+                },
+                {
                     title: 'Aksi',
                     responsivePriority: -1,
                     className: 'text-center',

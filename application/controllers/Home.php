@@ -233,6 +233,12 @@ class Home extends MY_Controller
                 'thn_lulus' => $post['inptahunlulus'],
             ];
             $this->crud->u('tb_siswa', $siswa, ['id_siswa' => $get_siswa->id_siswa, 'id_users' => $id_users]);
+            
+            // untuk tabel users
+            $siswa = [
+                'nama' => $post['inpnama'],
+            ];
+            $this->crud->u('tb_users', $siswa, ['id_users' => $id_users]);
         }
         // untuk tabel kuisioner
         for ($i = 0; $i < count($post['inpidkusionersoal']); $i++) {

@@ -28,6 +28,50 @@ class Kuisioner extends MY_Controller
         $this->load->view('admin/base', $data);
     }
 
+    // untuk halaman hasil
+    public function hasil()
+    {
+        $id_kuisioner = base64url_decode($this->uri->segment('4'));
+
+        $data = [
+            'halaman' => 'Hasil Kuisioner',
+            'data'    => $this->m_kuisioner->getHasil($id_kuisioner),
+            'content' => 'admin/kuisioner/hasil',
+            'css'     => 'admin/kuisioner/css/hasil',
+            'js'      => 'admin/kuisioner/js/hasil'
+        ];
+        // untuk load view
+        $this->load->view('admin/base', $data);
+    }
+
+    public function detail()
+    {
+        $get      = $this->input->get(NULL, TRUE);
+        $get_soal = $this->m_kuisioner->getWhereSoal($get['id_kuisioner']);
+
+        foreach ($get_soal->result() as $row) {
+            $soal[$row->id_kuisioner_soal] = [
+                1 => $row->pil_a,
+                2 => $row->pil_b,
+                3 => $row->pil_c,
+                4 => $row->pil_d,
+                5 => $row->pil_e,
+            ];
+        }
+
+        $data = [
+            'halaman' => 'Hasil Kuisioner',
+            'data'    => $this->m_kuisioner->getCheckHasil($get['id_kuisioner'], $get['id_siswa']),
+            'soal'    => $soal,
+            'content' => 'admin/kuisioner/detail',
+            'css'     => 'admin/kuisioner/css/detail',
+            'js'      => 'admin/kuisioner/js/detail'
+        ];
+
+        // untuk load view
+        $this->load->view('admin/base', $data);
+    }
+
     // untuk get data bank by datatable
     public function get_data_jadwal_dt()
     {
