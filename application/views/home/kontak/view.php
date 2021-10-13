@@ -18,16 +18,15 @@
 <section class="contact-page-area section-gap">
     <div class="container">
         <div class="row">
-            <div class="map-wrap" style="width:100%; height: 445px;" id="map"></div>
-            <div class="col-lg-4 d-flex flex-column address-wrap">
+            <div class="col-lg-6 d-flex flex-column address-wrap">
                 <div class="single-contact-address d-flex flex-row">
                     <div class="icon">
                         <span class="lnr lnr-home"></span>
                     </div>
                     <div class="contact-details">
-                        <h5>Binghamton, New York</h5>
+                        <h5>Kondodewata, Kec. Mappak, Kab. Tana Toraja</h5>
                         <p>
-                            4343 Hinkle Deegan Lake Road
+                            Sulawesi Selatan, Indonesia.
                         </p>
                     </div>
                 </div>
@@ -36,8 +35,8 @@
                         <span class="lnr lnr-phone-handset"></span>
                     </div>
                     <div class="contact-details">
-                        <h5>00 (958) 9865 562</h5>
-                        <p>Mon to Fri 9am to 6 pm</p>
+                        <h5>+62 852 9986 6426</h5>
+                        <p>Telepon</p>
                     </div>
                 </div>
                 <div class="single-contact-address d-flex flex-row">
@@ -45,30 +44,13 @@
                         <span class="lnr lnr-envelope"></span>
                     </div>
                     <div class="contact-details">
-                        <h5>support@colorlib.com</h5>
-                        <p>Send us your query anytime!</p>
+                        <h5>smansatumappak@yahoo.com</h5>
+                        <p>Email</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8">
-                <form class="form-area contact-form text-right" id="myForm" action="mail.php" method="post">
-                    <div class="row">
-                        <div class="col-lg-6 form-group">
-                            <input name="name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" required="" type="text">
-
-                            <input name="email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mb-20 form-control" required="" type="email">
-
-                            <input name="subject" placeholder="Enter subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter subject'" class="common-input mb-20 form-control" required="" type="text">
-                        </div>
-                        <div class="col-lg-6 form-group">
-                            <textarea class="common-textarea form-control" name="message" placeholder="Enter Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Messege'" required=""></textarea>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="alert-msg" style="text-align: left;"></div>
-                            <button class="genric-btn primary" style="float: right;">Send Message</button>
-                        </div>
-                    </div>
-                </form>
+            <div class="col-lg-6">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15933.920959498695!2d119.4743838!3d-3.2299623!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd824f6cdd616641d!2sSMA%20Negeri%2012%20Tana%20Toraja!5e0!3m2!1sid!2sid!4v1634106491600!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </div>

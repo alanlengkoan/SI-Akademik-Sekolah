@@ -14,7 +14,6 @@
 </section>
 <!-- End banner Area -->
 
-
 <!-- Start gallery Area -->
 <section class="gallery-area section-gap">
     <div class="container">

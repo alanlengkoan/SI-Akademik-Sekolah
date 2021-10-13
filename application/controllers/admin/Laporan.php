@@ -46,24 +46,42 @@ class Laporan extends MY_Controller
         $period   = new DatePeriod($start, $interval, $end);
 
         $get = $this->m_keuangan->getReportKeuangan($post['tgl_awal'], $post['tgl_akhir']);
+        $num = $get->num_rows();
         $no  = 1;
 
-        foreach ($get->result() as $row) {
+        if ($num > 0) {
+            foreach ($get->result() as $row) {
+                foreach ($period as $dt) {
+                    $bulan  = $dt->format('m') . PHP_EOL;
+                    $kredit[(int) $bulan] = $this->m_keuangan->getReportOutByMonth($row->id_keuangan, $bulan);
+                }
+
+                $sisa = ($row->debit - array_sum($kredit));
+
+                $result[] = [
+                    'no'            => $no++,
+                    'nama_keuangan' => $row->nama_keuangan,
+                    'keterangan'    => '-',
+                    'debit'         => create_separator($row->debit),
+                    'bulan'         => $kredit,
+                    'kredit'        => create_separator(array_sum($kredit)),
+                    'sisa'          => create_separator($sisa)
+                ];
+            }
+        } else {
             foreach ($period as $dt) {
                 $bulan  = $dt->format('m') . PHP_EOL;
-                $kredit[(int) $bulan] = $this->m_keuangan->getReportOutByMonth($row->id_keuangan, $bulan);
+                $kredit[(int) $bulan] = 0;
             }
 
-            $sisa = ($row->debit - array_sum($kredit));
-
             $result[] = [
-                'no'            => $no++,
-                'nama_keuangan' => $row->nama_keuangan,
-                'keterangan'    => '-',
-                'debit'         => create_separator($row->debit),
+                'no'            => 'Data Kosong!',
+                'nama_keuangan' => 'Data Kosong!',
+                'keterangan'    => 'Data Kosong!',
+                'debit'         => 0,
                 'bulan'         => $kredit,
-                'kredit'        => create_separator(array_sum($kredit)),
-                'sisa'          => create_separator($sisa)
+                'kredit'        => 0,
+                'sisa'          => 0,
             ];
         }
 
@@ -89,24 +107,42 @@ class Laporan extends MY_Controller
         $period   = new DatePeriod($start, $interval, $end);
 
         $get = $this->m_keuangan->getReportKeuangan(base64url_decode($post['tgl_awal']), base64url_decode($post['tgl_akhir']));
+        $num = $get->num_rows();
         $no  = 1;
 
-        foreach ($get->result() as $row) {
+        if ($num > 0) {
+            foreach ($get->result() as $row) {
+                foreach ($period as $dt) {
+                    $bulan  = $dt->format('m') . PHP_EOL;
+                    $kredit[(int) $bulan] = $this->m_keuangan->getReportOutByMonth($row->id_keuangan, $bulan);
+                }
+
+                $sisa = ($row->debit - array_sum($kredit));
+
+                $result[] = [
+                    'no'            => $no++,
+                    'nama_keuangan' => $row->nama_keuangan,
+                    'keterangan'    => '-',
+                    'debit'         => create_separator($row->debit),
+                    'bulan'         => $kredit,
+                    'kredit'        => create_separator(array_sum($kredit)),
+                    'sisa'          => create_separator($sisa)
+                ];
+            }
+        } else {
             foreach ($period as $dt) {
                 $bulan  = $dt->format('m') . PHP_EOL;
-                $kredit[(int) $bulan] = $this->m_keuangan->getReportOutByMonth($row->id_keuangan, $bulan);
+                $kredit[(int) $bulan] = 0;
             }
 
-            $sisa = ($row->debit - array_sum($kredit));
-
             $result[] = [
-                'no'            => $no++,
-                'nama_keuangan' => $row->nama_keuangan,
-                'keterangan'    => '-',
-                'debit'         => create_separator($row->debit),
+                'no'            => 'Data Kosong!',
+                'nama_keuangan' => 'Data Kosong!',
+                'keterangan'    => 'Data Kosong!',
+                'debit'         => 0,
                 'bulan'         => $kredit,
-                'kredit'        => create_separator(array_sum($kredit)),
-                'sisa'          => create_separator($sisa)
+                'kredit'        => 0,
+                'sisa'          => 0,
             ];
         }
 

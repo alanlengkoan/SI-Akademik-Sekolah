@@ -26,7 +26,7 @@
                                 <div class="overlay overlay-bg"></div>
                                 <a href="<?= base_url() ?>berita/<?= $row->id_kategori ?>">
                                     <div class="thumb">
-                                        <img class="content-image img-fluid d-block mx-auto" src="<?= assets_url() ?>page/img/blog/cat-widget1.jpg" alt="">
+                                        <img class="content-image img-fluid d-block mx-auto" src="<?= assets_url() ?>page/img/blog/kategori.jpg" alt="">
                                     </div>
                                     <div class="content-details">
                                         <h4 class="content-title mx-auto text-uppercase"><?= $row->nama ?></h4>

@@ -36,6 +36,8 @@ class Home extends MY_Controller
             'halaman'   => 'Home',
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
+            'galeri'    => $this->m_informasi->getWhereGaleri(),
+            'berita'    => $this->m_informasi->getWhereStatus('1'),
             'content'   => 'home/home/view',
             'css'       => '',
             'js'        => ''
@@ -66,7 +68,7 @@ class Home extends MY_Controller
             'profil'    => $this->m_profil->getAll(),
             'content'   => 'home/kontak/view',
             'css'       => '',
-            'js'        => 'home/kontak/js/view'
+            'js'        => ''
         ];
         // untuk load view
         $this->load->view('home/base', $data);

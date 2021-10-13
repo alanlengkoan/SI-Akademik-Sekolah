@@ -52,8 +52,8 @@
 						</ul>
 					</div>
 					<div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
-						<a href="tel:+953 012 3654 896"><span class="lnr lnr-phone-handset"></span> <span class="text">+953 012 3654 896</span></a>
-						<a href="mailto:support@colorlib.com"><span class="lnr lnr-envelope"></span> <span class="text">support@colorlib.com</span></a>
+						<a href="tel:+953 012 3654 896"><span class="lnr lnr-phone-handset"></span> <span class="text">+62 852 9986 6426</span></a>
+						<a href="mailto:smansatumappak@yahoo.com"><span class="lnr lnr-envelope"></span> <span class="text">smansatumappak@yahoo.com</span></a>
 					</div>
 				</div>
 			</div>
@@ -226,7 +226,6 @@
 	<script type="text/javascript" src="<?= assets_url() ?>page/js/owl.carousel.min.js"></script>
 	<script type="text/javascript" src="<?= assets_url() ?>page/js/mail-script.js"></script>
 	<script type="text/javascript" src="<?= assets_url() ?>page/js/main.js"></script>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
