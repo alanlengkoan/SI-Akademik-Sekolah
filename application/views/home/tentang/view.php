@@ -16,7 +16,7 @@
 
 <!-- Start contact-page Area -->
 <section class="contact-page-area section-gap">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-lg-6 no-padding info-area-left">
                 <img class="img-fluid" src="<?= assets_url() ?>page/img/about-img.jpg" alt="">
