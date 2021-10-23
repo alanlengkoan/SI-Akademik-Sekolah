@@ -19,6 +19,7 @@ class Home extends MY_Controller
         $this->load->model('m_agama');
         $this->load->model('m_profil');
         $this->load->model('m_kategori');
+        $this->load->model('m_keuangan');
         $this->load->model('m_fasilitas');
         $this->load->model('m_kuisioner');
         $this->load->model('m_informasi');
@@ -184,29 +185,79 @@ class Home extends MY_Controller
     // untuk halaman kuisioner
     public function kuisioner()
     {
-        // untuk mengecek status login
-        checking_session($this->username, $this->role, ['users']);
-
         $id_kuisioner = base64url_decode($this->uri->segment('2'));
         $id_users     = $this->id_users;
-        $role         = $this->role;
 
-        $get_siswa = $this->m_users->getRoleUsers($role, $id_users);
+        if ($id_users === null) {
+            $data = [
+                'halaman'        => 'Grafik',
+                'id_kuisioner'   => $id_kuisioner,
+                'kuisioner'      => $this->m_kuisioner->getAll(),
+                'kuisional_soal' => $this->m_kuisioner->getWhereSoal($id_kuisioner),
+                'profil'         => $this->m_profil->getAll(),
+                'agama'          => $this->m_agama->getAll(),
+                'content'        => 'home/kuisioner_grafik/view',
+                'css'            => 'home/kuisioner_grafik/css/view',
+                'js'             => 'home/kuisioner_grafik/js/view'
+            ];
+        } else {
+            $get_siswa = $this->m_siswa->getSiswa($id_users);
 
-        $data = [
-            'halaman'         => 'Tracer Study',
-            'kuisioner'       => $this->m_kuisioner->getAll(),
-            'profil'          => $this->m_profil->getAll(),
-            'agama'           => $this->m_agama->getAll(),
-            'kuisioner_check' => $this->m_kuisioner->getCheckHasil($id_kuisioner, $get_siswa->id_siswa)->num_rows(),
-            'siswa'           => $get_siswa,
-            'data'            => $this->m_kuisioner->getAllKuisionerDetail($id_kuisioner),
-            'content'         => 'home/kuisioner/view',
-            'css'             => '',
-            'js'              => 'home/kuisioner/js/view'
-        ];
+            $data = [
+                'halaman'         => 'Kuisoner',
+                'kuisioner'       => $this->m_kuisioner->getAll(),
+                'profil'          => $this->m_profil->getAll(),
+                'agama'           => $this->m_agama->getAll(),
+                'data'            => $this->m_kuisioner->getAllKuisionerDetail($id_kuisioner),
+                'siswa'           => $get_siswa,
+                'siswa_hasil'     => $this->m_kuisioner->getWhereHasilSiswa($get_siswa->id_siswa),
+                'content'         => 'home/kuisioner/view',
+                'css'             => '',
+                'js'              => 'home/kuisioner/js/view'
+            ];
+        }
         // untuk load view
         $this->load->view('home/base', $data);
+    }
+
+    public function kuisioner_chart()
+    {
+        $id_kuisioner = $this->uri->segment('2');
+
+        $get = $this->m_kuisioner->getWhereSoal($id_kuisioner);
+
+        $result = [];
+        foreach ($get->result() as $key => $value) {
+            $result[] = [
+                'id_kuisioner_soal' => $value->id_kuisioner_soal,
+                'soal'              => $value->soal,
+                'data'              =>  [
+                    [
+                        'name' => $value->pil_a,
+                        'y'    => $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '1')->num_rows()
+                    ],
+                    [
+                        'name' => $value->pil_b,
+                        'y'    => $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '2')->num_rows()
+                    ],
+                    [
+                        'name' => $value->pil_c,
+                        'y'    => $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '3')->num_rows()
+                    ],
+                    [
+                        'name' => $value->pil_d,
+                        'y'    => $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '4')->num_rows()
+                    ],
+                    [
+                        'name' => $value->pil_e,
+                        'y'    => $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '5')->num_rows()
+                    ],
+                ]
+            ];
+        }
+
+        // debug($result);
+        $this->_response($result);
     }
 
     // untuk simpan kuisioner
@@ -225,7 +276,6 @@ class Home extends MY_Controller
                 'id_users'  => $id_users,
                 'id_agama'  => $post['inpidagama'],
                 'nis'       => $post['inpnis'],
-                'nama'      => $post['inpnama'],
                 'kelamin'   => $post['inpkelamin'],
                 'tmp_lahir' => $post['inptmplahir'],
                 'tgl_lahir' => $post['inptgllahir'],
@@ -235,7 +285,7 @@ class Home extends MY_Controller
                 'thn_lulus' => $post['inptahunlulus'],
             ];
             $this->crud->u('tb_siswa', $siswa, ['id_siswa' => $get_siswa->id_siswa, 'id_users' => $id_users]);
-            
+
             // untuk tabel users
             $siswa = [
                 'nama' => $post['inpnama'],
@@ -243,14 +293,27 @@ class Home extends MY_Controller
             $this->crud->u('tb_users', $siswa, ['id_users' => $id_users]);
         }
         // untuk tabel kuisioner
-        for ($i = 0; $i < count($post['inpidkusionersoal']); $i++) {
-            $kusioner_hasil = [
-                'id_kuisioner_hasil' => acak_id('tb_kuisioner_hasil', 'id_kuisioner_hasil'),
-                'id_kuisioner_soal'  => $post['inpidkusionersoal'][$i],
-                'id_siswa'           => $get_siswa->id_siswa,
-                'jawaban'            => $post[$i . '_inpjawaban'],
-            ];
-            $this->crud->i('tb_kuisioner_hasil', $kusioner_hasil);
+        for ($i = 0; $i < count($post['inpidkuisionersoal']); $i++) {
+
+            if (empty($post['inpidkuisionerhasil'][$i])) {
+                $kusioner_hasil = [
+                    'id_kuisioner_hasil' => acak_id('tb_kuisioner_hasil', 'id_kuisioner_hasil'),
+                    'id_kuisioner_soal'  => $post['inpidkuisionersoal'][$i],
+                    'id_siswa'           => $get_siswa->id_siswa,
+                    'jawaban'            => $post[$i . '_inpjawaban'],
+                ];
+
+                $this->crud->i('tb_kuisioner_hasil', $kusioner_hasil);
+            } else {
+                $kusioner_hasil = [
+                    'id_kuisioner_hasil' => $post['inpidkuisionerhasil'][$i],
+                    'id_kuisioner_soal'  => $post['inpidkuisionersoal'][$i],
+                    'id_siswa'           => $get_siswa->id_siswa,
+                    'jawaban'            => $post[$i . '_inpjawaban'],
+                ];
+
+                $this->crud->u('tb_kuisioner_hasil', $kusioner_hasil, ['id_kuisioner_hasil' => $post['inpidkuisionerhasil'][$i]]);
+            } 
         }
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
@@ -346,5 +409,157 @@ class Home extends MY_Controller
         ];
         // untuk load view
         $this->load->view('home/base', $data);
+    }
+
+    // untuk halaman laporan keuangan
+    public function laporan()
+    {
+        $data = [
+            'halaman'   => 'Laporan',
+            'kuisioner' => $this->m_kuisioner->getAll(),
+            'profil'    => $this->m_profil->getAll(),
+            'content'   => 'home/laporan/view',
+            'css'       => '',
+            'js'        => 'home/laporan/js/view'
+        ];
+        // untuk load view
+        $this->load->view('home/base', $data);
+    }
+
+    // untuk lihat laporan keuangan
+    public function laporan_lihat()
+    {
+        $post = $this->input->post(NULL, TRUE);
+
+        $start    = new DateTime($post['tgl_awal']);
+        $end      = new DateTime($post['tgl_akhir']);
+        $interval = new DateInterval('P1M');
+        $period   = new DatePeriod($start, $interval, $end);
+
+        $get = $this->m_keuangan->getReportKeuangan($post['tgl_awal'], $post['tgl_akhir']);
+        $num = $get->num_rows();
+        $no  = 1;
+
+        if ($num > 0) {
+            foreach ($get->result() as $row) {
+                foreach ($period as $dt) {
+                    $bulan  = $dt->format('m') . PHP_EOL;
+                    $kredit[(int) $bulan] = $this->m_keuangan->getReportOutByMonth($row->id_keuangan, $bulan);
+                }
+
+                $sisa = ($row->debit - array_sum($kredit));
+
+                $result[] = [
+                    'no'            => $no++,
+                    'nama_keuangan' => $row->nama_keuangan,
+                    'keterangan'    => '-',
+                    'debit'         => create_separator($row->debit),
+                    'bulan'         => $kredit,
+                    'kredit'        => create_separator(array_sum($kredit)),
+                    'sisa'          => create_separator($sisa)
+                ];
+            }
+        } else {
+            foreach ($period as $dt) {
+                $bulan  = $dt->format('m') . PHP_EOL;
+                $kredit[(int) $bulan] = 0;
+            }
+
+            $result[] = [
+                'no'            => 'Data Kosong!',
+                'nama_keuangan' => 'Data Kosong!',
+                'keterangan'    => 'Data Kosong!',
+                'debit'         => 0,
+                'bulan'         => $kredit,
+                'kredit'        => 0,
+                'sisa'          => 0,
+            ];
+        }
+
+        $data = [
+            'bulan'       => ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+            'jarak_bulan' => $kredit,
+            'halaman'     => "Daftar Keuangan",
+            'keuangan'    => $result,
+        ];
+
+        // untuk load view
+        $this->load->view('home/laporan/table', $data);
+    }
+
+    // untuk akun users
+    public function akun()
+    {
+        $data = [
+            'halaman'   => 'Akun',
+            'kuisioner' => $this->m_kuisioner->getAll(),
+            'profil'    => $this->m_profil->getAll(),
+            'data'      => $this->m_users->getRoleUsers('users', $this->id_users),
+            'content'   => 'home/akun/view',
+            'css'       => '',
+            'js'        => 'home/akun/js/view'
+        ];
+        // untuk load view
+        $this->load->view('home/base', $data);
+    }
+
+    // untuk ubah akun
+    public function simpan_akun()
+    {
+        $post = $this->input->post(NULL, TRUE);
+
+        $data = [
+            'nama'     => $post['inpnama'],
+            'email'    => $post['inpemail'],
+            'username' => $post['inpusername'],
+            'roles'    => 'users'
+        ];
+        $this->db->trans_start();
+        $this->crud->u('tb_users', $data, ['id_users' => $this->id_users]);
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
+        } else {
+            $response = ['title' => 'Berhasil!', 'text' => 'Berhasil Simpan!', 'type' => 'success', 'button' => 'Ok!'];
+        }
+        // untuk response json
+        $this->_response($response);
+    }
+
+    // untuk ubah keamanan
+    public function simpan_keamanan()
+    {
+        $post = $this->input->post(NULL, TRUE);
+
+        $pwd_lama = $post['inppasswordlama'];
+        $pwd_baru = $post['inppasswordbaru'];
+        $konfirmasi_pwd_baru = $post['inpkonfirmasipassword'];
+
+        $users = $this->crud->gda('tb_users', ['id_users' => $this->id_users]);
+        $check_pwd = password_verify($pwd_lama, $users['password']);
+
+        if ($check_pwd === true) {
+            if ($pwd_baru === $konfirmasi_pwd_baru) {
+
+                $data = [
+                    'password' => password_hash($pwd_baru, PASSWORD_DEFAULT),
+                    'roles'    => 'users'
+                ];
+                $this->db->trans_start();
+                $this->crud->u('tb_users', $data, ['id_users' => $this->id_users]);
+                $this->db->trans_complete();
+                if ($this->db->trans_status() === FALSE) {
+                    $response = ['title' => 'Gagal!', 'text' => 'Terdapat kesalahan pada sistem!', 'type' => 'error', 'button' => 'Ok!'];
+                } else {
+                    $response = ['title' => 'Berhasil!', 'text' => 'Berhasil!', 'type' => 'success', 'button' => 'Ok!'];
+                }
+            } else {
+                $response = ['title' => 'Gagal!', 'text' => 'Password baru dan konfirmasi password baru tidak sama!', 'type' => 'error', 'button' => 'Ok!'];
+            }
+        } else {
+            $response = ['title' => 'Gagal!', 'text' => 'Password lama yang Anda masukkan tidak sama!', 'type' => 'error', 'button' => 'Ok!'];
+        }
+        // untuk respon json
+        $this->_response($response);
     }
 }

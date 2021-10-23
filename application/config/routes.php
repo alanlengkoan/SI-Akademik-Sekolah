@@ -8,21 +8,6 @@ $route['translate_uri_dashes'] = FALSE;
 // route admin
 $route['admin'] = 'admin/dashboard';
 
-// route fotografer
-$route['fotografer'] = 'fotografer/dashboard';
-
-// route users
-$route['rumah']               = 'users/rumah';
-$route['rumah/detail/(:any)'] = 'users/rumah/detail';
-$route['sewa']                = 'users/sewa';
-$route['sewa/add']            = 'users/sewa/add';
-$route['sewa/del']            = 'users/sewa/del';
-$route['sewa/finish']         = 'users/sewa/finish';
-$route['nota/(:any)']         = 'users/sewa/nota';
-$route['transfer/(:any)']     = 'users/sewa/transfer';
-$route['pembayaran/(:any)']   = 'users/sewa/pembayaran';
-$route['riwayat']             = 'users/riwayat';
-
 // route home
 $route['galeri']  = 'home/galeri';
 $route['tentang'] = 'home/tentang';
@@ -38,8 +23,9 @@ $route['siswa/aktif']  = 'home/s_aktif';
 $route['siswa/alumni'] = 'home/s_alumni';
 
 // route kuisioner
-$route['kuisioner/(:any)'] = 'home/kuisioner';
-$route['kuisioner_simpan'] = 'home/kuisioner_simpan';
+$route['kuisioner/(:any)']       = 'home/kuisioner';
+$route['kuisioner_chart/(:any)'] = 'home/kuisioner_chart';
+$route['kuisioner_simpan']       = 'home/kuisioner_simpan';
 
 // route profil
 $route['profil/(:any)']            = 'home/profil';
@@ -47,3 +33,12 @@ $route['guru']                     = 'home/guru';
 $route['fasilitas']                = 'home/fasilitas';
 $route['organisasi']               = 'home/organisasi';
 $route['organisasi/detail/(:any)'] = 'home/organisasi_detail';
+
+// route users
+$route['akun']            = 'home/akun';
+$route['simpan_akun']     = 'home/simpan_akun';
+$route['simpan_keamanan'] = 'home/simpan_keamanan';
+
+// route laporan
+$route['laporan']       = 'home/laporan';
+$route['laporan_lihat'] = 'home/laporan_lihat';

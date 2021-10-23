@@ -78,6 +78,7 @@
             <form id="form-add-upd" action="<?= admin_url() ?>siswa/process_save" method="POST">
                 <!-- begin:: id -->
                 <input type="hidden" name="inpidsiswa" id="inpidsiswa" />
+                <input type="hidden" name="inpidusers" id="inpidusers" />
                 <!-- end:: id -->
 
                 <div class="modal-body">

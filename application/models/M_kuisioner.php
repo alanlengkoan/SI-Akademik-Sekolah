@@ -23,15 +23,29 @@ class M_kuisioner extends CI_Model
         return $result;
     }
 
-    public function getHasil($id_kuisioner)
+    public function getWhereHasil($id_kuisioner_soal, $jawaban)
     {
-        $result = $this->db->query("SELECT tks.id_kuisioner, tkh.id_siswa, ts.nama FROM tb_kuisioner_soal AS tks LEFT JOIN tb_kuisioner_hasil AS tkh ON tks.id_kuisioner_soal = tkh.id_kuisioner_soal LEFT JOIN tb_siswa AS ts ON tkh.id_siswa = ts.id_siswa WHERE tks.id_kuisioner = '$id_kuisioner' AND tkh.id_siswa IS NOT NULL GROUP BY tks.id_kuisioner, tkh.id_siswa");
+        $result = $this->db->query("SELECT tkh.id_kuisioner_soal, tkh.jawaban FROM tb_kuisioner_hasil AS tkh WHERE tkh.id_kuisioner_soal = '$id_kuisioner_soal' AND tkh.jawaban = '$jawaban'");
         return $result;
     }
 
-    public function getCheckHasil($id_kuisioner, $id_siswa)
+    public function getWhereHasilSiswa($id_siswa)
     {
-        $result = $this->db->query("SELECT tks.id_kuisioner, tks.id_kuisioner_soal, tks.soal, tkh.id_siswa, tkh.jawaban FROM tb_kuisioner_soal AS tks LEFT JOIN tb_kuisioner_hasil AS tkh ON tks.id_kuisioner_soal = tkh.id_kuisioner_soal WHERE tks.id_kuisioner = '$id_kuisioner' AND tkh.id_siswa = '$id_siswa'");
+        $get = $this->db->query("SELECT tkh.id_kuisioner_hasil, tkh.id_kuisioner_soal, tkh.jawaban FROM tb_kuisioner_hasil AS tkh WHERE id_siswa = '$id_siswa'");
+
+        $result = [];
+        foreach ($get->result() as $row) {
+            $result[$row->id_kuisioner_soal] = [
+                'id_kuisioner_hasil' => $row->id_kuisioner_hasil,
+                'jawaban'            => $row->jawaban,
+            ];
+        }
+        return $result;
+    }
+
+    public function getHasil($id_kuisioner)
+    {
+        $result = $this->db->query("SELECT tks.id_kuisioner, tkh.id_siswa, ts.nama FROM tb_kuisioner_soal AS tks LEFT JOIN tb_kuisioner_hasil AS tkh ON tks.id_kuisioner_soal = tkh.id_kuisioner_soal LEFT JOIN tb_siswa AS ts ON tkh.id_siswa = ts.id_siswa WHERE tks.id_kuisioner = '$id_kuisioner' AND tkh.id_siswa IS NOT NULL GROUP BY tks.id_kuisioner, tkh.id_siswa");
         return $result;
     }
 

@@ -42,13 +42,13 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Dari Tanggal *</label>
                                 <div class="col-sm-10">
-                                    <input type="date" class="form-control" name="tgl_awal" id="tgl_awal" placeholder="Masukkan nama" />
+                                    <input type="date" class="form-control" name="tgl_awal" id="tgl_awal" />
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Sampai Tanggal *</label>
                                 <div class="col-sm-10">
-                                    <input type="date" class="form-control" name="tgl_akhir" id="tgl_akhir" placeholder="Masukkan rekening" />
+                                    <input type="date" class="form-control" name="tgl_akhir" id="tgl_akhir" />
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="proses"><i class="fa fa-eye"></i>&nbsp;Proses</button>

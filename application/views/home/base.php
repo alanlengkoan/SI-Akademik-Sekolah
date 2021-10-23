@@ -80,6 +80,9 @@
 						<li>
 							<a href="<?= base_url() ?>kontak">Kontak</a>
 						</li>
+						<li>
+							<a href="<?= base_url() ?>laporan">Laporan</a>
+						</li>
 						<li class="menu-has-children"><a href="">Profil</a>
 							<ul>
 								<li><a href="<?= base_url() ?>guru">Guru</a></li>
@@ -108,6 +111,9 @@
 							</li>
 						<?php } ?>
 						<?php if ($this->session->userdata('id_users')) { ?>
+							<li>
+								<a href="<?= base_url() ?>akun">Profil</a>
+							</li>
 							<li>
 								<a href="<?= logout_url() ?>">Keluar</a>
 							</li>

@@ -51,7 +51,7 @@
                             <i class="feather icon-toggle-right"></i>
                         </a>
                         <a href="<?= admin_url() ?>">
-                            <img class="img-fluid" src="<?= assets_url() ?>admin/images/logo.png" alt="Theme-Logo" />
+                            ADMIN
                         </a>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="feather icon-more-horizontal"></i>

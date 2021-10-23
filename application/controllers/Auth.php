@@ -75,51 +75,6 @@ class Auth extends MY_Controller
         }
     }
 
-    // untuk halaman register
-    public function register()
-    {
-        checking_role_session($this->session->userdata('role'));
-
-        if (empty($this->session->userdata('username'))) {
-            $this->load->view('home/register/view');
-        } else {
-            $this->auth($this->session->userdata('username'), $this->session->userdata('password'));
-        }
-    }
-
-    // untuk simpan data
-    public function process_save()
-    {
-        $post = $this->input->post(NULL, TRUE);
-
-        // data users
-        $users = [
-            'id_users' => acak_id('tb_users', 'id_users'),
-            'nama'     => $post['nama'],
-            'email'    => $post['email'],
-            'username' => $post['username'],
-            'password' => password_hash($post['password'], PASSWORD_DEFAULT),
-            'roles'    => 'users',
-        ];
-        // data pelanggan
-        $pelanggan = [
-            'id_siswa' => acak_id('tb_siswa', 'id_siswa'),
-            'id_users' => $users['id_users'],
-        ];
-
-        $this->db->trans_start();
-        $this->crud->i('tb_users', $users);
-        $this->crud->i('tb_siswa', $pelanggan);
-        $this->db->trans_complete();
-        if ($this->db->trans_status() === FALSE) {
-            $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
-        } else {
-            $response = ['title' => 'Berhasil!', 'text' => 'Berhasil Simpan!', 'type' => 'success', 'button' => 'Ok!'];
-        }
-        // untuk response json
-        $this->_response($response);
-    }
-
     // untuk logout
     public function logout()
     {

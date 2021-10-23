@@ -81,8 +81,8 @@
                     render: function(data, type, full, meta) {
                         return `
                             <div class="button-icon-btn button-icon-btn-cl">
-                                <button type="button" id="btn-upd" data-id="` + full.id_siswa + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
-                                <button type="button" id="btn-del" data-id="` + full.id_siswa + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
+                                <button type="button" id="btn-upd" data-id="` + full.id_users + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
+                                <button type="button" id="btn-del" data-id="` + full.id_users + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
                                 <button type="button" id="btn-status" data-id="` + full.id_siswa + `" class="btn btn-success btn-sm waves-effect"><i class="fa fa-user"></i>&nbsp;Alumni</button>
                             </div>
                         `;
@@ -156,8 +156,8 @@
                     render: function(data, type, full, meta) {
                         return `
                             <div class="button-icon-btn button-icon-btn-cl">
-                                <button type="button" id="btn-upd" data-id="` + full.id_siswa + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
-                                <button type="button" id="btn-del" data-id="` + full.id_siswa + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
+                                <button type="button" id="btn-upd" data-id="` + full.id_users + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
+                                <button type="button" id="btn-del" data-id="` + full.id_users + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
                             </div>
                         `;
                     },
@@ -171,6 +171,7 @@
         $(document).on('click', '#btn-add', function() {
             $('#judul-add-upd').html('Tambah');
             $('#inpidsiswa').val('');
+            $('#inpidusers').val('');
             $('#inpnis').val('');
             $('#inpnama').val('');
             $('#inpidagama').val('');
@@ -247,6 +248,7 @@
                 },
                 success: function(response) {
                     $('#inpidsiswa').val(response.id_siswa);
+                    $('#inpidusers').val(response.id_users);
                     $('#inpnis').val(response.nis);
                     $('#inpnama').val(response.nama);
                     $('#inpidagama').val(response.id_agama);
@@ -268,42 +270,42 @@
         $(document).on('click', '#btn-status', function() {
             var ini = $(this);
             swal({
-                title: "Apakah Anda yakin ingin siswa tersebut telah lulus?",
-                text: "Data yang telah diubah tidak dapat dikembalikan!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((del) => {
-                if (del) {
-                    $.ajax({
-                        type: "post",
-                        url: "<?= admin_url() ?>siswa/upd_status",
-                        dataType: 'json',
-                        data: {
-                            id: ini.data('id')
-                        },
-                        beforeSend: function() {
-                            ini.attr('disabled', 'disabled');
-                            ini.html('<i class="fa fa-spinner"></i>&nbsp;Menunggu...');
-                        },
-                        success: function(data) {
-                            swal({
-                                title: data.title,
-                                text: data.text,
-                                icon: data.type,
-                                button: data.button,
-                            })
-                            .then((value) => {
-                                tabelSiswaAktifDt.ajax.reload();
-                                tabelSiswaAlumniDt.ajax.reload();
-                            });
-                        }
-                    });
-                } else {
-                    return false;
-                }
-            });
+                    title: "Apakah Anda yakin ingin siswa tersebut telah lulus?",
+                    text: "Data yang telah diubah tidak dapat dikembalikan!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((del) => {
+                    if (del) {
+                        $.ajax({
+                            type: "post",
+                            url: "<?= admin_url() ?>siswa/upd_status",
+                            dataType: 'json',
+                            data: {
+                                id: ini.data('id')
+                            },
+                            beforeSend: function() {
+                                ini.attr('disabled', 'disabled');
+                                ini.html('<i class="fa fa-spinner"></i>&nbsp;Menunggu...');
+                            },
+                            success: function(data) {
+                                swal({
+                                        title: data.title,
+                                        text: data.text,
+                                        icon: data.type,
+                                        button: data.button,
+                                    })
+                                    .then((value) => {
+                                        tabelSiswaAktifDt.ajax.reload();
+                                        tabelSiswaAlumniDt.ajax.reload();
+                                    });
+                            }
+                        });
+                    } else {
+                        return false;
+                    }
+                });
         });
     }();
 
@@ -312,42 +314,42 @@
         $(document).on('click', '#btn-del', function() {
             var ini = $(this);
             swal({
-                title: "Apakah Anda yakin ingin menghapusnya?",
-                text: "Data yang telah dihapus tidak dapat dikembalikan!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((del) => {
-                if (del) {
-                    $.ajax({
-                        type: "post",
-                        url: "<?= admin_url() ?>siswa/process_del",
-                        dataType: 'json',
-                        data: {
-                            id: ini.data('id')
-                        },
-                        beforeSend: function() {
-                            ini.attr('disabled', 'disabled');
-                            ini.html('<i class="fa fa-spinner"></i>&nbsp;Menunggu...');
-                        },
-                        success: function(data) {
-                            swal({
-                                title: data.title,
-                                text: data.text,
-                                icon: data.type,
-                                button: data.button,
-                            })
-                            .then((value) => {
-                                tabelSiswaAktifDt.ajax.reload();
-                                tabelSiswaAlumniDt.ajax.reload();
-                            });
-                        }
-                    });
-                } else {
-                    return false;
-                }
-            });
+                    title: "Apakah Anda yakin ingin menghapusnya?",
+                    text: "Data yang telah dihapus tidak dapat dikembalikan!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((del) => {
+                    if (del) {
+                        $.ajax({
+                            type: "post",
+                            url: "<?= admin_url() ?>siswa/process_del",
+                            dataType: 'json',
+                            data: {
+                                id: ini.data('id')
+                            },
+                            beforeSend: function() {
+                                ini.attr('disabled', 'disabled');
+                                ini.html('<i class="fa fa-spinner"></i>&nbsp;Menunggu...');
+                            },
+                            success: function(data) {
+                                swal({
+                                        title: data.title,
+                                        text: data.text,
+                                        icon: data.type,
+                                        button: data.button,
+                                    })
+                                    .then((value) => {
+                                        tabelSiswaAktifDt.ajax.reload();
+                                        tabelSiswaAlumniDt.ajax.reload();
+                                    });
+                            }
+                        });
+                    } else {
+                        return false;
+                    }
+                });
         });
     }();
 </script>

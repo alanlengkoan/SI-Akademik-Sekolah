@@ -48,7 +48,8 @@ class Siswa extends MY_Controller
         $post = $this->input->post(NULL, TRUE);
 
         $data = [
-            'status' => '1',
+            'thn_lulus' => date('Y'),
+            'status'    => '1',
         ];
 
         $this->db->trans_start();
@@ -68,17 +69,19 @@ class Siswa extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
 
-        $result = $this->crud->gda('tb_siswa', ['id_siswa' => $post['id']]);
+        $result = $this->m_siswa->getSiswa($post['id']);
+
         $response = [
-            'id_siswa'  => $result['id_siswa'],
-            'id_agama'  => $result['id_agama'],
-            'nis'       => $result['nis'],
-            'nama'      => $result['nama'],
-            'kelamin'   => $result['kelamin'],
-            'tmp_lahir' => $result['tmp_lahir'],
-            'tgl_lahir' => $result['tgl_lahir'],
-            'alamat'    => $result['alamat'],
-            'ortu_wali' => $result['ortu_wali'],
+            'id_users'  => $result->id_users,
+            'id_siswa'  => $result->id_siswa,
+            'id_agama'  => $result->id_agama,
+            'nis'       => $result->nis,
+            'nama'      => $result->nama,
+            'kelamin'   => $result->kelamin,
+            'tmp_lahir' => $result->tmp_lahir,
+            'tgl_lahir' => $result->tgl_lahir,
+            'alamat'    => $result->alamat,
+            'ortu_wali' => $result->ortu_wali,
         ];
         // untuk response json
         $this->_response($response);
@@ -91,11 +94,20 @@ class Siswa extends MY_Controller
 
         $this->db->trans_start();
         if (empty($post['inpidsiswa'])) {
-            $data = [
+            $users = [
+                'id_users' => acak_id('tb_users', 'id_users'),
+                'nama'     => $post['inpnama'],
+                'username' => $post['inpnis'],
+                'password' => password_hash($post['inpnis'], PASSWORD_DEFAULT),
+                'roles'    => 'users',
+            ];
+            $this->crud->i('tb_users', $users);
+
+            $siswa = [
                 'id_siswa'  => acak_id('tb_siswa', 'id_siswa'),
+                'id_users'  => $users['id_users'],
                 'id_agama'  => $post['inpidagama'],
                 'nis'       => $post['inpnis'],
-                'nama'      => $post['inpnama'],
                 'kelamin'   => $post['inpkelamin'],
                 'tmp_lahir' => $post['inptmplahir'],
                 'tgl_lahir' => $post['inptgllahir'],
@@ -104,13 +116,21 @@ class Siswa extends MY_Controller
                 'status'    => '0',
             ];
 
-            $this->crud->i('tb_siswa', $data);
+            $this->crud->i('tb_siswa', $siswa);
         } else {
-            $data = [
+            $users = [
+                'id_users' => $post['inpidusers'],
+                'nama'     => $post['inpnama'],
+                'username' => $post['inpnis'],
+                'password' => password_hash($post['inpnis'], PASSWORD_DEFAULT),
+                'roles'    => 'users',
+            ];
+            $this->crud->u('tb_users', $users, ['id_users' => $post['inpidusers']]);
+
+            $siswa = [
                 'id_siswa'  => $post['inpidsiswa'],
                 'id_agama'  => $post['inpidagama'],
                 'nis'       => $post['inpnis'],
-                'nama'      => $post['inpnama'],
                 'kelamin'   => $post['inpkelamin'],
                 'tmp_lahir' => $post['inptmplahir'],
                 'tgl_lahir' => $post['inptgllahir'],
@@ -118,7 +138,7 @@ class Siswa extends MY_Controller
                 'ortu_wali' => $post['inportuwali'],
             ];
 
-            $this->crud->u('tb_siswa', $data, ['id_siswa' => $post['inpidsiswa']]);
+            $this->crud->u('tb_siswa', $siswa, ['id_siswa' => $post['inpidsiswa']]);
         }
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
