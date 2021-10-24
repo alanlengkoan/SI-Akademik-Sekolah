@@ -11,8 +11,9 @@ class Home extends MY_Controller
     {
         parent::__construct();
         // untuk cek session
-        checking_session($this->session->userdata('username'), $this->session->userdata('role'), ['users']);
-
+        if (!empty($this->session->userdata('username'))) {
+            checking_session($this->session->userdata('username'), $this->session->userdata('role'), ['users']);
+        }
 
         // untuk load model
         $this->load->model('crud');
