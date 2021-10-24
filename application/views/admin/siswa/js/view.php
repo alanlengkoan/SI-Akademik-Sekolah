@@ -49,7 +49,7 @@
                 },
                 {
                     title: 'Tanggal Lahir',
-                    data: 'tmp_lahir',
+                    data: 'tgl_lahir',
                     className: 'text-center',
                 },
                 {
