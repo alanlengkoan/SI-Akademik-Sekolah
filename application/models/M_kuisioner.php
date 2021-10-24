@@ -45,7 +45,13 @@ class M_kuisioner extends CI_Model
 
     public function getHasil($id_kuisioner)
     {
-        $result = $this->db->query("SELECT tks.id_kuisioner, tkh.id_siswa, ts.nama FROM tb_kuisioner_soal AS tks LEFT JOIN tb_kuisioner_hasil AS tkh ON tks.id_kuisioner_soal = tkh.id_kuisioner_soal LEFT JOIN tb_siswa AS ts ON tkh.id_siswa = ts.id_siswa WHERE tks.id_kuisioner = '$id_kuisioner' AND tkh.id_siswa IS NOT NULL GROUP BY tks.id_kuisioner, tkh.id_siswa");
+        $result = $this->db->query("SELECT tks.id_kuisioner, tkh.id_siswa, tu.nama FROM tb_kuisioner_soal AS tks LEFT JOIN tb_kuisioner_hasil AS tkh ON tks.id_kuisioner_soal = tkh.id_kuisioner_soal LEFT JOIN tb_siswa AS ts ON tkh.id_siswa = ts.id_siswa LEFT JOIN tb_users AS tu ON ts.id_users = tu.id_users WHERE tks.id_kuisioner = '$id_kuisioner' AND tkh.id_siswa IS NOT NULL GROUP BY tks.id_kuisioner, tkh.id_siswa");
+        return $result;
+    }
+
+    public function getCheckHasil($id_kuisioner, $id_siswa)
+    {
+        $result = $this->db->query("SELECT tks.id_kuisioner, tks.id_kuisioner_soal, tks.soal, tkh.id_siswa, tkh.jawaban FROM tb_kuisioner_soal AS tks LEFT JOIN tb_kuisioner_hasil AS tkh ON tks.id_kuisioner_soal = tkh.id_kuisioner_soal WHERE tks.id_kuisioner = '$id_kuisioner' AND tkh.id_siswa = '$id_siswa'");
         return $result;
     }
 
