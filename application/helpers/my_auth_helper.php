@@ -6,7 +6,7 @@ if (!function_exists('checking_session')) {
     function checking_session($user_data, $user_level, array $level)
     {
         $search = in_array($user_level, $level);
-        if (empty($user_data) || $search == 0) {
+        if (empty($user_data) || $search === false) {
             redirect('auth/login');
         }
     }

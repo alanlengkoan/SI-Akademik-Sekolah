@@ -10,6 +10,9 @@ class Home extends MY_Controller
     public function __construct()
     {
         parent::__construct();
+        // untuk cek session
+        checking_session($this->session->userdata('username'), $this->session->userdata('role'), ['users']);
+
 
         // untuk load model
         $this->load->model('crud');

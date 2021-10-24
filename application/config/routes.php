@@ -7,6 +7,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 // route admin
 $route['admin'] = 'admin/dashboard';
+$route['users'] = 'home';
 
 // route home
 $route['galeri']  = 'home/galeri';
