@@ -1,4 +1,4 @@
-<!-- start banner Area -->
+<!-- begin:: banner -->
 <section class="banner-area relative" id="home">
     <div class="overlay"></div>
     <div class="container">
@@ -11,7 +11,7 @@
         </div>
     </div>
 </section>
-<!-- End banner Area -->
+<!-- end:: banner -->
 
 <!-- begin:: berita -->
 <?php if ($berita->num_rows() > 0) { ?>
@@ -125,10 +125,8 @@
                         <span class="lnr lnr-home"></span>
                     </div>
                     <div class="contact-details">
-                        <h5>Kondodewata, Kec. Mappak, Kab. Tana Toraja</h5>
-                        <p>
-                            Sulawesi Selatan, Indonesia.
-                        </p>
+                        <h5><?= (empty(get_sistem_detail()->alamat) ? '-' : get_sistem_detail()->alamat) ?></h5>
+                        <p>Alamat</p>
                     </div>
                 </div>
                 <div class="single-contact-address d-flex flex-row">
@@ -136,7 +134,7 @@
                         <span class="lnr lnr-phone-handset"></span>
                     </div>
                     <div class="contact-details">
-                        <h5>+62 852 9986 6426</h5>
+                        <h5><?= (empty(get_sistem_detail()->telepon) ? '-' : get_sistem_detail()->telepon) ?></h5>
                         <p>Telepon</p>
                     </div>
                 </div>
@@ -145,7 +143,7 @@
                         <span class="lnr lnr-envelope"></span>
                     </div>
                     <div class="contact-details">
-                        <h5>smansatumappak@yahoo.com</h5>
+                        <h5><?= (empty(get_sistem_detail()->email) ? '-' : get_sistem_detail()->email) ?></h5>
                         <p>Email</p>
                     </div>
                 </div>

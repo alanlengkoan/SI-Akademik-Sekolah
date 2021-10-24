@@ -1,5 +1,5 @@
-<!-- start banner Area -->
-<section class="banner-area relative about-banner" id="home">
+<!-- begin:: banner -->
+<section class="about-banner relative" id="home">
     <div class="overlay"></div>
     <div class="container">
         <div class="row d-flex align-items-center justify-content-center">
@@ -12,8 +12,9 @@
         </div>
     </div>
 </section>
-<!-- End banner Area -->
+<!-- end:: banner -->
 
+<!-- begin:: content -->
 <section class="section-gap">
     <div class="container">
         <div class="row">
@@ -50,3 +51,4 @@
         </div>
     </div>
 </section>
+<!-- end:: content -->

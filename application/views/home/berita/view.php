@@ -1,5 +1,5 @@
-<!-- start banner Area -->
-<section class="banner-area relative about-banner" id="home">
+<!-- begin:: banner -->
+<section class="about-banner relative" id="home">
     <div class="overlay"></div>
     <div class="container">
         <div class="row d-flex align-items-center justify-content-center">
@@ -12,9 +12,9 @@
         </div>
     </div>
 </section>
-<!-- End banner Area -->
+<!-- end:: banner -->
 
-<!-- Start top-category-widget Area -->
+<!-- begin:: category -->
 <?php if ($berita->num_rows() > 0) { ?>
     <section class="top-category-widget-area pt-90 pb-90 ">
         <div class="container">
@@ -41,9 +41,9 @@
         </div>
     </section>
 <?php } ?>
-<!-- End top-category-widget Area -->
+<!-- end:: category -->
 
-<!-- Start post-content Area -->
+<!-- begin:: content -->
 <section class="post-content-area">
     <div class="container">
         <?php if ($berita->num_rows() > 0) { ?>
@@ -130,4 +130,4 @@
         <?php } ?>
     </div>
 </section>
-<!-- End post-content Area -->
+<!-- end:: content -->

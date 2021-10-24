@@ -45,15 +45,15 @@
 				<div class="row">
 					<div class="col-lg-6 col-sm-6 col-8 header-top-left no-padding">
 						<ul>
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-							<li><a href="#"><i class="fa fa-behance"></i></a></li>
+							<li><?= (empty(get_sistem_detail()->facebook) ? '-' : '<a href="' . get_sistem_detail()->facebook . '"><i class="fa fa-facebook"></i></a>') ?></li>
+							<li><?= (empty(get_sistem_detail()->instagram) ? '-' : '<a href="' . get_sistem_detail()->instagram . '"><i class="fa fa-instagram"></i></a>') ?></li>
+							<li><?= (empty(get_sistem_detail()->twitter) ? '-' : '<a href="' . get_sistem_detail()->twitter . '"><i class="fa fa-twitter"></i></a>') ?></li>
+							<li><?= (empty(get_sistem_detail()->youtube) ? '-' : '<a href="' . get_sistem_detail()->youtube . '"><i class="fa fa-youtube"></i></a>') ?></li>
 						</ul>
 					</div>
 					<div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
-						<a href="tel:+953 012 3654 896"><span class="lnr lnr-phone-handset"></span> <span class="text">+62 852 9986 6426</span></a>
-						<a href="mailto:smansatumappak@yahoo.com"><span class="lnr lnr-envelope"></span> <span class="text">smansatumappak@yahoo.com</span></a>
+						<a href="tel:+953 012 3654 896"><span class="lnr lnr-phone-handset"></span> <span class="text"><?= (empty(get_sistem_detail()->telepon) ? '-' : get_sistem_detail()->telepon) ?></span></a>
+						<a href="mailto:smansatumappak@yahoo.com"><span class="lnr lnr-envelope"></span> <span class="text"><?= (empty(get_sistem_detail()->email) ? '-' : get_sistem_detail()->email) ?></span></a>
 					</div>
 				</div>
 			</div>
@@ -210,10 +210,10 @@
 					<a href="https://alanlengkoan.netlify.app/" target="_blank">AL</a> - Sistem Informasi Akademik Sekolah.
 				</p>
 				<div class="col-lg-6 col-sm-12 footer-social">
-					<a href="#"><i class="fa fa-facebook"></i></a>
-					<a href="#"><i class="fa fa-twitter"></i></a>
-					<a href="#"><i class="fa fa-dribbble"></i></a>
-					<a href="#"><i class="fa fa-behance"></i></a>
+					<?= (empty(get_sistem_detail()->facebook) ? '-' : '<a href="' . get_sistem_detail()->facebook . '"><i class="fa fa-facebook"></i></a>') ?>
+					<?= (empty(get_sistem_detail()->instagram) ? '-' : '<a href="' . get_sistem_detail()->instagram . '"><i class="fa fa-instagram"></i></a>') ?>
+					<?= (empty(get_sistem_detail()->twitter) ? '-' : '<a href="' . get_sistem_detail()->twitter . '"><i class="fa fa-twitter"></i></a>') ?>
+					<?= (empty(get_sistem_detail()->youtube) ? '-' : '<a href="' . get_sistem_detail()->youtube . '"><i class="fa fa-youtube"></i></a>') ?>
 				</div>
 			</div>
 		</div>
@@ -234,37 +234,6 @@
 	<script type="text/javascript" src="<?= assets_url() ?>page/js/main.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-
-	<script type="text/javascript">
-		// untuk angka
-		function justAngka(e) {
-			if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190, 77]) !== -1 ||
-				(e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
-				(e.keyCode >= 35 && e.keyCode <= 40)) {
-				return;
-			}
-			if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-				e.preventDefault();
-			}
-		};
-		// untuk format harga
-		function autoSeparator(Num) {
-			Num += '';
-			Num = Num.replace('.', '');
-			Num = Num.replace('.', '');
-			Num = Num.replace('.', '');
-			Num = Num.replace('.', '');
-			Num = Num.replace('.', '');
-			Num = Num.replace('.', '');
-			x = Num.split('.');
-			x1 = x[0];
-			x2 = x.length > 1 ? '.' + x[1] : '';
-			var rgx = /(\d+)(\d{3})/;
-			while (rgx.test(x1))
-				x1 = x1.replace(rgx, '$1' + '.' + '$2');
-			return x1 + x2;
-		};
-	</script>
 
 	<!-- begin:: js local -->
 	<?php empty($js) ? '' : $this->load->view($js); ?>

@@ -1,5 +1,5 @@
-<!-- start banner Area -->
-<section class="banner-area relative about-banner" id="home">
+<!-- begin:: banner -->
+<section class="about-banner relative" id="home">
     <div class="overlay"></div>
     <div class="container">
         <div class="row d-flex align-items-center justify-content-center">
@@ -12,23 +12,21 @@
         </div>
     </div>
 </section>
-<!-- End banner Area -->
+<!-- end:: banner -->
 
-<!-- begin:: body -->
+<!-- begin:: content -->
 <section class="section-gap">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-
                 <?php foreach ($kuisional_soal->result() as $value) { ?>
                     <figure class="highcharts-figure">
                         <div id="<?= $value->id_kuisioner_soal ?>"></div>
                     </figure>
                     <br>
                 <?php } ?>
-
             </div>
         </div>
     </div>
 </section>
-<!-- end:: body -->
+<!-- end:: content -->
