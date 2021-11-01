@@ -12,6 +12,7 @@
  */
 
 use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class Pdf extends Dompdf
 {
@@ -24,9 +25,14 @@ class Pdf extends Dompdf
     public function cetakPdf($file_name, $view, $data = [])
     {
         $CI = get_instance();
+        $options = new Options();
+        $options->setChroot(FCPATH);
+
+        $this->setOptions($options);
+
         $html = $CI->load->view($view, $data, TRUE);
         $this->loadHtml($html);
         $this->render();
-        $this->stream($file_name . '.pdf', ['Attachment' => false]);    
+        $this->stream($file_name . '.pdf', ['Attachment' => false]);
     }
 }

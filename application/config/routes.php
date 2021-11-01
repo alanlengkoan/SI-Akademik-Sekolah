@@ -41,5 +41,4 @@ $route['simpan_akun']     = 'home/simpan_akun';
 $route['simpan_keamanan'] = 'home/simpan_keamanan';
 
 // route laporan
-$route['laporan']       = 'home/laporan';
-$route['laporan_lihat'] = 'home/laporan_lihat';
+$route['laporan'] = 'home/laporan';

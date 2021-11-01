@@ -418,29 +418,14 @@ class Home extends MY_Controller
     // untuk halaman laporan keuangan
     public function laporan()
     {
-        $data = [
-            'halaman'   => 'Laporan',
-            'kuisioner' => $this->m_kuisioner->getAll(),
-            'profil'    => $this->m_profil->getAll(),
-            'content'   => 'home/laporan/view',
-            'css'       => '',
-            'js'        => 'home/laporan/js/view'
-        ];
-        // untuk load view
-        $this->load->view('home/base', $data);
-    }
-
-    // untuk lihat laporan keuangan
-    public function laporan_lihat()
-    {
-        $post = $this->input->post(NULL, TRUE);
-
-        $start    = new DateTime($post['tgl_awal']);
-        $end      = new DateTime($post['tgl_akhir']);
+        $tiga_bulan = date('Y-m-d', strtotime("-3 months", strtotime(date('Y-m-d'))));
+        
+        $start    = new DateTime($tiga_bulan);
+        $end      = new DateTime(date('Y-m-d'));
         $interval = new DateInterval('P1M');
         $period   = new DatePeriod($start, $interval, $end);
 
-        $get = $this->m_keuangan->getReportKeuangan($post['tgl_awal'], $post['tgl_akhir']);
+        $get = $this->m_keuangan->getReportKeuangan($tiga_bulan, date('Y-m-d'));
         $num = $get->num_rows();
         $no  = 1;
 
@@ -481,14 +466,18 @@ class Home extends MY_Controller
         }
 
         $data = [
+            'halaman'     => 'Laporan',
+            'kuisioner'   => $this->m_kuisioner->getAll(),
+            'profil'      => $this->m_profil->getAll(),
             'bulan'       => ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
             'jarak_bulan' => $kredit,
-            'halaman'     => "Daftar Keuangan",
             'keuangan'    => $result,
+            'content'     => 'home/laporan/view',
+            'css'         => '',
+            'js'          => 'home/laporan/js/view'
         ];
-
         // untuk load view
-        $this->load->view('home/laporan/table', $data);
+        $this->load->view('home/base', $data);
     }
 
     // untuk akun users

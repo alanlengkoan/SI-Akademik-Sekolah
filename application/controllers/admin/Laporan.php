@@ -155,7 +155,7 @@ class Laporan extends MY_Controller
 
         // untuk load view
         $this->pdf->setPaper('A4', 'potrait');
-        $this->pdf->cetakPdf('laporan_pembelian', 'admin/l_keuangan/print', $data);
+        $this->pdf->cetakPdf('laporan_keuangan', 'admin/l_keuangan/print', $data);
     }
 
     // untuk halaman laporan siswa

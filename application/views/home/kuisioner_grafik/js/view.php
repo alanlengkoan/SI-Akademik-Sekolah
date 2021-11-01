@@ -1,9 +1,44 @@
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/modules/exporting.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/modules/export-data.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
+    var untukSubmit = function() {
+        $('#form-login').parsley();
+        $('#form-login').submit(function(e) {
+            e.preventDefault();
+            $('#username').attr('required', 'required');
+            $('#password').attr('required', 'required');
+            if ($('#form-login').parsley().isValid() == true) {
+                $.ajax({
+                    method: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                    beforeSend: function() {
+                        $('#login').val('Wait');
+                    },
+                    success: function(response) {
+                        if (response.status == true) {
+                            window.location = response.link;
+                        } else {
+                            $('#login').val('Login');
+
+                            swal({
+                                title: response.title,
+                                text: response.text,
+                                icon: response.type,
+                                button: response.button,
+                            });
+                        }
+                    }
+                })
+            }
+        });
+    }();
+
     // Radialize the colors
     Highcharts.setOptions({
         colors: Highcharts.map(Highcharts.getOptions().colors, function(color) {

@@ -23,6 +23,18 @@ class Auth extends MY_Controller
         }
     }
 
+    // untuk halama login admin
+    public function admin()
+    {
+        checking_role_session($this->session->userdata('role'));
+
+        if (empty($this->session->userdata('username'))) {
+            $this->load->view('home/login/view');
+        } else {
+            $this->auth($this->session->userdata('username'), $this->session->userdata('password'));
+        }
+    }
+
     // untuk mengecek data login
     public function check_validation()
     {

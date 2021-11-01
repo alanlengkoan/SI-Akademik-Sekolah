@@ -5,7 +5,7 @@
         <div class="row fullscreen d-flex align-items-center justify-content-between">
             <div class="banner-content col-lg-9 col-md-12">
                 <h1 class="text-uppercase">
-                    SELAMAT DATANG DI WEBSITE SMA 12 TANA TORAJA
+                    SELAMAT DATANG DI WEBSITE SMA NEGERI 12 TANA TORAJA
                 </h1>
             </div>
         </div>

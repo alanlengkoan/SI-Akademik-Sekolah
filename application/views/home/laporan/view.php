@@ -19,22 +19,80 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form id="form-report" action="<?= base_url() ?>laporan_lihat" method="POST">
-                    <div class="form-group">
-                        <label>Dari Tanggal&nbsp;*</label>
-                        <input type="date" class="form-control form-control-sm" name="tgl_awal" id="tgl_awal" />
-                    </div>
-                    <div class="form-group">
-                        <label>Sampai Tanggal&nbsp;*</label>
-                        <input type="date" class="form-control form-control-sm" name="tgl_akhir" id="tgl_akhir" />
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="proses"><i class="fa fa-eye"></i>&nbsp;Proses</button>
-                </form>
-                <br>
-                <!-- begin:: untuk tabel -->
-                <div id="lihat-tabel"></div>
-                <!-- end:: untuk tabel -->
-                <br>
+                <table align="center">
+                    <td>
+                        <img src="./public/assets/admin/images/sulsel.png" alt="logo" title="logo" width="70px" />
+                    </td>
+                    <td align="center">
+                        <h3>PEMERINTAH SULAWESI SELATAN</h3>
+                        <h4>DINAS PENDIDIKAN</h4>
+                        <h5>CABANG DINAS PENDIDIKAN WILAYAH X</h5>
+                        <h3>UPT SMA NEGERI 12 TANA TORAJA</h3>
+                        <p><i>Kondodewata, Kec. Mappak, Kab. Tana Toraja, Sulawesi Selatan, Indonesia.</i></p>
+                    </td>
+                    <td>
+                        <img src="./public/assets/admin/images/logo.png" alt="logo" title="logo" width="70px" />
+                    </td>
+                </table>
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered display no-wrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">No.</th>
+                                <th rowspan="2">Keuangan</th>
+                                <th rowspan="2">Masuk (Debit)</th>
+                                <th colspan="<?= count($jarak_bulan) ?>">Bulan</th>
+                                <th rowspan="2">Keluar (Kredit)</th>
+                                <th rowspan="2">Sisa</th>
+                                <th rowspan="2">Keterangan</th>
+                            </tr>
+                            <tr>
+                                <?php foreach ($jarak_bulan as $key => $value) { ?>
+                                    <th><?= $bulan[$key] ?></th>
+                                <?php } ?>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $saldo_m = 0;
+                            $saldo_k = 0;
+                            $debit   = 0;
+                            $kredit  = 0;
+                            foreach ($keuangan as $row) {
+                            ?>
+                                <tr>
+                                    <td><?= $row['no'] ?></td>
+                                    <td><?= $row['nama_keuangan'] ?></td>
+                                    <td><?= $row['debit'] ?></td>
+                                    <?php foreach ($row['bulan'] as $key => $value) { ?>
+                                        <td><?= ($value === null ? 0 : create_separator($value)) ?></td>
+                                    <?php } ?>
+                                    <td><?= $row['kredit'] ?></td>
+                                    <td><?= $row['sisa'] ?></td>
+                                    <td><?= $row['keterangan'] ?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+
+                <br /><br />
+                <br /><br />
+                <table>
+                    <tr>
+                        <td align="center">
+                            <p>TANA TORAJA, <?= tgl_indo(date('Y-m-d')) ?></p>
+                            <p>Kepala Sekolah</p>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <p class="nama">Drs. Sinai</p>
+                            <p>NIP : 196401081989031019</p>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

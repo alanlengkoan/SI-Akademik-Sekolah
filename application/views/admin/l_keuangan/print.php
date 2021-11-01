@@ -32,16 +32,25 @@
 
 <div class="judul">
     <table align="center">
-        <tr>
-            <td align="center">
-                <h3>LAPORAN KEUANGAN</h3>
-                <h3>SMA NEGERI 12 TANA TORAJA</h3>
-            </td>
-        </tr>
+        <td>
+            <img src="./public/assets/admin/images/sulsel.png" alt="logo" title="logo" width="70px" />
+        </td>
+        <td align="center">
+            <h3>PEMERINTAH SULAWESI SELATAN</h3>
+            <h4>DINAS PENDIDIKAN</h4>
+            <h5>CABANG DINAS PENDIDIKAN WILAYAH X</h5>
+            <h3>UPT SMA NEGERI 12 TANA TORAJA</h3>
+            <p><i>Kondodewata, Kec. Mappak, Kab. Tana Toraja, Sulawesi Selatan, Indonesia.</i></p>
+        </td>
+        <td>
+            <img src="./public/assets/admin/images/logo.png" alt="logo" title="logo" width="70px" />
+        </td>
     </table>
     <hr>
-
-    <table align="center" border="1">
+    <br>
+    <h2>Laporan Keuangan</h2>
+    <br>
+    <table align="center" border="1" cellpadding="4" cellspacing="0">
         <thead>
             <tr>
                 <th rowspan="2">No.</th>
@@ -79,5 +88,23 @@
                 </tr>
             <?php } ?>
         </tbody>
+    </table>
+
+
+    <br /><br />
+    <br /><br />
+    <table>
+        <tr>
+            <td align="center">
+                <p>TANA TORAJA, <?= tgl_indo(date('Y-m-d')) ?></p>
+                <p>Kepala Sekolah</p>
+                <br />
+                <br />
+                <br />
+                <br />
+                <p class="nama">Drs. Sinai</p>
+                <p>NIP : 196401081989031019</p>
+            </td>
+        </tr>
     </table>
 </div>
