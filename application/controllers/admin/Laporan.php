@@ -154,7 +154,7 @@ class Laporan extends MY_Controller
         ];
 
         // untuk load view
-        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->setPaper('A4', 'landscape');
         $this->pdf->cetakPdf('laporan_keuangan', 'admin/l_keuangan/print', $data);
     }
 

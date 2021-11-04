@@ -209,14 +209,6 @@
                                         <span class="pcoded-mtext">Keuangan</span>
                                     </a>
                                 </li>
-                                <li class="<?= ($this->uri->segment(2) === 'jadwal' ? 'active' : '') ?>">
-                                    <a href="<?= admin_url() ?>jadwal">
-                                        <span class="pcoded-micon">
-                                            <i class="fa fa-circle"></i>
-                                        </span>
-                                        <span class="pcoded-mtext">Jadwal</span>
-                                    </a>
-                                </li>
                                 <li class="<?= ($this->uri->segment(2) === 'kuisioner' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>kuisioner">
                                         <span class="pcoded-micon">
