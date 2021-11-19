@@ -63,7 +63,18 @@
 
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Keuangan&nbsp;*</label>
+                        <label class="col-sm-3 col-form-label">Jenis Dana&nbsp;*</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="inpiddana" name="inpiddana">
+                                <option value="">- Pilih -</option>
+                                <?php foreach ($dana->result() as $key => $value) { ?>
+                                    <option value="<?= $value->id_dana ?>"><?= $value->nama ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Uraian&nbsp;*</label>
                         <div class="col-sm-9">
                             <select class="form-control" id="inpidkeuangan" name="inpidkeuangan">
                                 <option value="">- Pilih -</option>

@@ -19,7 +19,7 @@ class M_kuisioner extends CI_Model
 
     public function getWhereSoal($id_kuisioner)
     {
-        $result = $this->db->query("SELECT tks.id_kuisioner_soal, tks.id_kuisioner, tks.soal, tks.pil_a, tks.pil_b, tks.pil_c, tks.pil_d, tks.pil_e FROM tb_kuisioner_soal AS tks WHERE tks.id_kuisioner = '$id_kuisioner'");
+        $result = $this->db->query("SELECT tks.id_kuisioner_soal, tks.id_kuisioner, tks.soal, tks.pil_a, tks.pil_b, tks.pil_c, tks.pil_d, tks.pil_e FROM tb_kuisioner_soal AS tks WHERE tks.id_kuisioner = '$id_kuisioner' ORDER BY tks.ins DESC");
         return $result;
     }
 

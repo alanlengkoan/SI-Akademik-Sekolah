@@ -18,6 +18,7 @@ class Home extends MY_Controller
         // untuk load model
         $this->load->model('crud');
         $this->load->model('m_guru');
+        $this->load->model('m_dana');
         $this->load->model('m_users');
         $this->load->model('m_siswa');
         $this->load->model('m_agama');
@@ -41,6 +42,7 @@ class Home extends MY_Controller
             'halaman'   => 'Home',
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
             'galeri'    => $this->m_informasi->getWhereGaleri(),
             'berita'    => $this->m_informasi->getWhereStatus('1'),
             'content'   => 'home/home/view',
@@ -57,6 +59,7 @@ class Home extends MY_Controller
             'halaman'   => 'Tentang',
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
             'content'   => 'home/tentang/view',
             'css'       => '',
             'js'        => ''
@@ -71,6 +74,7 @@ class Home extends MY_Controller
             'halaman'   => 'Kontak',
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
             'content'   => 'home/kontak/view',
             'css'       => '',
             'js'        => ''
@@ -86,6 +90,7 @@ class Home extends MY_Controller
             'halaman'   => 'Galeri',
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
             'galeri'    => $this->m_informasi->getWhereGaleri(),
             'content'   => 'home/galeri/view',
             'css'       => '',
@@ -102,6 +107,7 @@ class Home extends MY_Controller
             'halaman'   => 'Berita',
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
             'kategori'  => $this->m_kategori->getAll(),
             'berita'    => $this->m_informasi->getWhereStatus('1'),
             'populer'   => $this->m_informasi->getWhereStatusPopuler(),
@@ -122,6 +128,7 @@ class Home extends MY_Controller
             'halaman'   => 'Rincian',
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
             'kategori'  => $this->m_kategori->getAll(),
             'berita'    => $this->m_informasi->getWhereStatusAndKategori('1', $id_kategori),
             'kategori'  => $this->m_kategori->getAll(),
@@ -143,6 +150,7 @@ class Home extends MY_Controller
             'halaman'   => 'Rincian',
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
             'berita'    => $this->m_informasi->getWhereDetail($id_informasi),
             'kategori'  => $this->m_kategori->getAll(),
             'populer'   => $this->m_informasi->getWhereStatusPopuler(),
@@ -161,6 +169,7 @@ class Home extends MY_Controller
             'halaman'   => 'Siswa Aktif',
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
             'data'      => $this->m_siswa->getAllSiswaStatus('0'),
             'content'   => 'home/s_aktif/view',
             'css'       => 'home/s_aktif/css/view',
@@ -177,6 +186,7 @@ class Home extends MY_Controller
             'halaman'   => 'Siswa Alumni',
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
             'data'      => $this->m_siswa->getAllSiswaStatus('1'),
             'content'   => 'home/s_alumni/view',
             'css'       => 'home/s_alumni/css/view',
@@ -338,6 +348,7 @@ class Home extends MY_Controller
             'halaman'   => 'Profil',
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
             'row'       => $this->m_profil->getAllDetail($id_profil),
             'content'   => 'home/profil/view',
             'css'       => '',
@@ -354,6 +365,7 @@ class Home extends MY_Controller
             'halaman'   => 'Guru',
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
             'data'      => $this->m_guru->getAll(),
             'content'   => 'home/guru/view',
             'css'       => 'home/guru/css/view',
@@ -372,6 +384,7 @@ class Home extends MY_Controller
             'halaman'   => 'Fasilitas',
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
             'data'      => $this->m_fasilitas->getAll(),
             'content'   => 'home/fasilitas/view',
             'css'       => '',
@@ -388,6 +401,7 @@ class Home extends MY_Controller
             'halaman'   => 'Organisasi',
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
             'data'      => $this->m_organisasi->getAll(),
             'content'   => 'home/organisasi/view',
             'css'       => '',
@@ -406,6 +420,7 @@ class Home extends MY_Controller
             'halaman'   => 'Detail Organisasi',
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
             'row'       => $this->m_organisasi->getAllDetail($id_organisasi),
             'content'   => 'home/organisasi/detail',
             'css'       => '',
@@ -419,13 +434,17 @@ class Home extends MY_Controller
     public function laporan()
     {
         $tiga_bulan = date('Y-m-d', strtotime("-3 months", strtotime(date('Y-m-d'))));
-        
+        $id_dana    = base64url_decode($this->uri->segment('2'));
+
         $start    = new DateTime($tiga_bulan);
         $end      = new DateTime(date('Y-m-d'));
         $interval = new DateInterval('P1M');
         $period   = new DatePeriod($start, $interval, $end);
 
-        $get = $this->m_keuangan->getReportKeuangan($tiga_bulan, date('Y-m-d'));
+        // untuk dana
+        $dana = $this->crud->gda('tb_dana', ['id_dana' => $id_dana]);
+
+        $get = $this->m_keuangan->getReportKeuangan($id_dana, $tiga_bulan, date('Y-m-d'));
         $num = $get->num_rows();
         $no  = 1;
 
@@ -439,13 +458,13 @@ class Home extends MY_Controller
                 $sisa = ($row->debit - array_sum($kredit));
 
                 $result[] = [
-                    'no'            => $no++,
-                    'nama_keuangan' => $row->nama_keuangan,
-                    'keterangan'    => '-',
-                    'debit'         => create_separator($row->debit),
-                    'bulan'         => $kredit,
-                    'kredit'        => create_separator(array_sum($kredit)),
-                    'sisa'          => create_separator($sisa)
+                    'no'         => $no++,
+                    'uraian'     => $row->uraian,
+                    'keterangan' => '-',
+                    'debit'      => create_separator($row->debit),
+                    'bulan'      => $kredit,
+                    'kredit'     => create_separator(array_sum($kredit)),
+                    'sisa'       => create_separator($sisa)
                 ];
             }
         } else {
@@ -455,13 +474,13 @@ class Home extends MY_Controller
             }
 
             $result[] = [
-                'no'            => 'Data Kosong!',
-                'nama_keuangan' => 'Data Kosong!',
-                'keterangan'    => 'Data Kosong!',
-                'debit'         => 0,
-                'bulan'         => $kredit,
-                'kredit'        => 0,
-                'sisa'          => 0,
+                'no'         => 'Data Kosong!',
+                'uraian'     => 'Data Kosong!',
+                'keterangan' => 'Data Kosong!',
+                'debit'      => 0,
+                'bulan'      => $kredit,
+                'kredit'     => 0,
+                'sisa'       => 0,
             ];
         }
 
@@ -469,7 +488,9 @@ class Home extends MY_Controller
             'halaman'     => 'Laporan',
             'kuisioner'   => $this->m_kuisioner->getAll(),
             'profil'      => $this->m_profil->getAll(),
+            'dana'        => $this->m_dana->getAll(),
             'bulan'       => ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+            'jenis'       => $dana,
             'jarak_bulan' => $kredit,
             'keuangan'    => $result,
             'content'     => 'home/laporan/view',
@@ -487,6 +508,7 @@ class Home extends MY_Controller
             'halaman'   => 'Akun',
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
             'data'      => $this->m_users->getRoleUsers('users', $this->id_users),
             'content'   => 'home/akun/view',
             'css'       => '',

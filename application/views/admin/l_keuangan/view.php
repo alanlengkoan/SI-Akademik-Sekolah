@@ -40,6 +40,17 @@
                     <div class="card-block table-border-style">
                         <form id="form-report" action="<?= admin_url() ?>laporan/l_keuangan_show" method="POST">
                             <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Jenis Dana&nbsp;*</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="id_dana" name="id_dana">
+                                        <option value="">- Pilih -</option>
+                                        <?php foreach ($dana->result() as $key => $value) { ?>
+                                            <option value="<?= $value->id_dana ?>"><?= $value->nama ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Dari Tanggal *</label>
                                 <div class="col-sm-10">
                                     <input type="date" class="form-control" name="tgl_awal" id="tgl_awal" />

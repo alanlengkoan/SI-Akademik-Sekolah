@@ -32,8 +32,13 @@
                     }
                 },
                 {
-                    title: 'Keuangan',
-                    data: 'keuangan',
+                    title: 'Dana',
+                    data: 'dana',
+                    className: 'text-center',
+                },
+                {
+                    title: 'Uraian',
+                    data: 'uraian',
                     className: 'text-center',
                 },
                 {
@@ -77,6 +82,7 @@
         $(document).on('click', '#btn-add', function() {
             $('#judul-add-upd').html('Tambah');
             $('#idkeuanganrincian').val('');
+            $('#inpiddana').val('');
             $('#inpidkeuangan').val('');
             $('#inpdebit').val('');
             $('#inpketerangan').val('');
@@ -88,6 +94,7 @@
     var untukTambahDanUbahData = function() {
         $(document).on('submit', '#form-add-upd', function(e) {
             e.preventDefault();
+            $('#inpiddana').attr('required', 'required');
             $('#inpidkeuangan').attr('required', 'required');
             $('#inpdebit').attr('required', 'required');
             $('#inpketerangan').attr('required', 'required');
@@ -144,6 +151,7 @@
                 },
                 success: function(response) {
                     $('#idkeuanganrincian').val(response.id_keuangan_rincian);
+                    $('#inpiddana').val(response.id_dana);
                     $('#inpidkeuangan').val(response.id_keuangan);
                     $('#inpdebit').val(autoSeparator(response.debit));
                     $('#inpketerangan').val(response.keterangan);

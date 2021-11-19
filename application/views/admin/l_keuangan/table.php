@@ -14,7 +14,8 @@
                 <thead>
                     <tr>
                         <th rowspan="2">No.</th>
-                        <th rowspan="2">Keuangan</th>
+                        <th rowspan="2">Dana</th>
+                        <th rowspan="2">Uraian</th>
                         <th rowspan="2">Masuk (Debit)</th>
                         <th colspan="<?= count($jarak_bulan) ?>">Bulan</th>
                         <th rowspan="2">Keluar (Kredit)</th>
@@ -37,7 +38,8 @@
                     ?>
                         <tr>
                             <td><?= $row['no'] ?></td>
-                            <td><?= $row['nama_keuangan'] ?></td>
+                            <td><?= $row['dana'] ?></td>
+                            <td><?= $row['uraian'] ?></td>
                             <td><?= $row['debit'] ?></td>
                             <?php foreach ($row['bulan'] as $key => $value) { ?>
                                 <td><?= ($value === null ? 0 : create_separator($value)) ?></td>

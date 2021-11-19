@@ -5,6 +5,7 @@
     var untukLihatData = function() {
         $('#form-report').submit(function(e) {
             e.preventDefault();
+            $('#id_dana').attr('required', 'required');
             $('#tgl_awal').attr('required', 'required');
             $('#tgl_akhir').attr('required', 'required');
 
@@ -32,12 +33,13 @@
     // untuk export laporan
     var untukExport = function() {
         $(document).on('click', '#cetak', function() {
+            var id_dana = $('#id_dana').val();
             var tanggal_awal = $('#tgl_awal').val();
             var tanggal_akhir = $('#tgl_akhir').val();
             if (tanggal_awal == '' || tanggal_akhir == '') {
                 return false;
             } else {
-                location.replace('<?= admin_url() ?>laporan/l_keuangan_export?tgl_awal=' + btoa(tanggal_awal) + '&tgl_akhir=' + btoa(tanggal_akhir), '_blank');
+                location.replace('<?= admin_url() ?>laporan/l_keuangan_export?id_dana=' + btoa(id_dana) + '&tgl_awal=' + btoa(tanggal_awal) + '&tgl_akhir=' + btoa(tanggal_akhir), '_blank');
             }
         });
     }();

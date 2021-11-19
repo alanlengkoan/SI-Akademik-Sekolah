@@ -48,13 +48,13 @@
     </table>
     <hr>
     <br>
-    <h2>Laporan Keuangan</h2>
+    <h2>Laporan Pertanggung Jawaban Dana <?= $dana['nama'] ?> <br> Tahun Anggaran <?= date('Y') ?></h2>
     <br>
     <table align="center" border="1" cellpadding="4" cellspacing="0">
         <thead>
             <tr>
                 <th rowspan="2">No.</th>
-                <th rowspan="2">Keuangan</th>
+                <th rowspan="2">Uraian</th>
                 <th rowspan="2">Masuk (Debit)</th>
                 <th colspan="<?= count($jarak_bulan) ?>">Bulan</th>
                 <th rowspan="2">Keluar (Kredit)</th>
@@ -77,7 +77,7 @@
             ?>
                 <tr>
                     <td><?= $row['no'] ?></td>
-                    <td><?= $row['nama_keuangan'] ?></td>
+                    <td><?= $row['uraian'] ?></td>
                     <td><?= $row['debit'] ?></td>
                     <?php foreach ($row['bulan'] as $key => $value) { ?>
                         <td><?= ($value === null ? 0 : create_separator($value)) ?></td>

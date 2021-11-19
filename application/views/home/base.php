@@ -61,7 +61,7 @@
 		<div class="container main-menu">
 			<div class="row align-items-center justify-content-between d-flex">
 				<div id="logo">
-					<a href="<?= base_url() ?>"><img src="<?= assets_url() ?>admin/images/logo.png" alt="logo" title="logo" width="70px"/></a>
+					<a href="<?= base_url() ?>"><img src="<?= assets_url() ?>admin/images/logo.png" alt="logo" title="logo" width="70px" /></a>
 				</div>
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
@@ -80,9 +80,15 @@
 						<li>
 							<a href="<?= base_url() ?>kontak">Kontak</a>
 						</li>
-						<li>
-							<a href="<?= base_url() ?>laporan">Laporan</a>
-						</li>
+						<?php if ($dana->num_rows() !== 0) { ?>
+							<li class="menu-has-children"><a href="">Laporan</a>
+								<ul>
+									<?php foreach ($dana->result() as $row) { ?>
+										<li><a href="<?= base_url() ?>laporan/<?= base64url_encode($row->id_dana) ?>"><?= $row->nama ?></a></li>
+									<?php } ?>
+								</ul>
+							</li>
+						<?php } ?>
 						<li class="menu-has-children"><a href="">Profil</a>
 							<ul>
 								<li><a href="<?= base_url() ?>guru">Guru</a></li>

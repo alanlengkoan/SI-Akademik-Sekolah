@@ -21,7 +21,7 @@
             <div class="col-lg-12">
                 <table align="center">
                     <td>
-                        <img src="./public/assets/admin/images/sulsel.png" alt="logo" title="logo" width="70px" />
+                        <img src="<?= assets_url() ?>admin/images/sulsel.png" alt="logo" title="logo" width="70px" />
                     </td>
                     <td align="center">
                         <h3>PEMERINTAH SULAWESI SELATAN</h3>
@@ -31,16 +31,18 @@
                         <p><i>Kondodewata, Kec. Mappak, Kab. Tana Toraja, Sulawesi Selatan, Indonesia.</i></p>
                     </td>
                     <td>
-                        <img src="./public/assets/admin/images/logo.png" alt="logo" title="logo" width="70px" />
+                        <img src="<?= assets_url() ?>admin/images/logo.png" alt="logo" title="logo" width="70px" />
                     </td>
                 </table>
-
+                <br>
+                <h2 class="text-center">Laporan Pertanggung Jawaban Dana <?= $jenis['nama'] ?> <br> Triwulan Tahun Anggaran <?= date('Y') ?></h2>
+                <br>
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered display no-wrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th rowspan="2">No.</th>
-                                <th rowspan="2">Keuangan</th>
+                                <th rowspan="2">Uraian</th>
                                 <th rowspan="2">Masuk (Debit)</th>
                                 <th colspan="<?= count($jarak_bulan) ?>">Bulan</th>
                                 <th rowspan="2">Keluar (Kredit)</th>
@@ -63,7 +65,7 @@
                             ?>
                                 <tr>
                                     <td><?= $row['no'] ?></td>
-                                    <td><?= $row['nama_keuangan'] ?></td>
+                                    <td><?= $row['uraian'] ?></td>
                                     <td><?= $row['debit'] ?></td>
                                     <?php foreach ($row['bulan'] as $key => $value) { ?>
                                         <td><?= ($value === null ? 0 : create_separator($value)) ?></td>

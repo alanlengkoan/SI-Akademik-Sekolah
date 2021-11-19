@@ -13,9 +13,9 @@ class M_keuangan extends CI_Model
         return $result;
     }
 
-    public function getReportKeuangan($tgl_awal, $tgl_akhir)
+    public function getReportKeuangan($id_dana, $tgl_awal, $tgl_akhir)
     {
-        $result = $this->db->query("SELECT kr.id_keuangan, k.nama AS nama_keuangan, SUM( COALESCE( kr.debit, 0)) AS debit FROM tb_keuangan_rincian AS kr LEFT JOIN tb_keuangan AS k ON kr.id_keuangan = k.id_keuangan WHERE kr.status_u = 'd' AND kr.tanggal BETWEEN '$tgl_awal' AND '$tgl_akhir' GROUP BY kr.id_keuangan, k.nama");
+        $result = $this->db->query("SELECT kr.id_keuangan, d.nama AS dana, k.nama AS uraian, SUM( COALESCE( kr.debit, 0)) AS debit FROM tb_keuangan_rincian AS kr LEFT JOIN tb_keuangan AS k ON kr.id_keuangan = k.id_keuangan LEFT JOIN tb_dana AS d ON kr.id_dana = d.id_dana WHERE kr.status_u = 'd' AND kr.id_dana = '$id_dana' AND kr.tanggal BETWEEN '$tgl_awal' AND '$tgl_akhir' GROUP BY kr.id_keuangan, k.nama");
         return $result;
     }
 
@@ -35,8 +35,9 @@ class M_keuangan extends CI_Model
 
     public function getAllKeuanganDt($status)
     {
-        $this->datatables->select('kr.id_keuangan_rincian, kr.id_keuangan, kr.keterangan, kr.tanggal, kr.debit, kr.kredit, kr.status_u, k.nama AS keuangan ');
+        $this->datatables->select('kr.id_keuangan_rincian, kr.id_keuangan, kr.keterangan, kr.tanggal, kr.debit, kr.kredit, kr.status_u, k.nama AS uraian, d.nama AS dana');
         $this->datatables->join('tb_keuangan AS k', 'kr.id_keuangan = k.id_keuangan', 'left');
+        $this->datatables->join('tb_dana AS d', 'kr.id_dana = d.id_dana', 'left');
         $this->datatables->where('kr.status_u', $status);
         $this->datatables->from('tb_keuangan_rincian AS kr');
         return print_r($this->datatables->generate());

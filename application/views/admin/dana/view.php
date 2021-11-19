@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="card-block table-border-style">
-                        <table class="table table-striped table-bordered nowrap" id="tabel-pengeluaran">
+                        <table class="table table-striped table-bordered nowrap" id="tabel-dana">
                         </table>
                     </div>
                 </div>
@@ -56,50 +56,16 @@
             <div class="modal-header">
                 <h4 class="modal-title"><span id="judul-add-upd"></span> <?= $halaman ?></h4>
             </div>
-            <form id="form-add-upd" action="<?= admin_url() ?>pengeluaran/process_save" method="POST">
+            <form id="form-add-upd" action="<?= admin_url() ?>dana/process_save" method="POST">
                 <!-- begin:: id -->
-                <input type="hidden" name="idkeuanganrincian" id="idkeuanganrincian" />
+                <input type="hidden" name="inpiddana" id="inpiddana" />
                 <!-- end:: id -->
 
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Jenis Dana&nbsp;*</label>
-                        <div class="col-sm-9">
-                            <select class="form-control" id="inpiddana" name="inpiddana">
-                                <option value="">- Pilih -</option>
-                                <?php foreach ($dana->result() as $key => $value) { ?>
-                                    <option value="<?= $value->id_dana ?>"><?= $value->nama ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Uraian&nbsp;*</label>
-                        <div class="col-sm-9">
-                            <select class="form-control" id="inpidkeuangan" name="inpidkeuangan">
-                                <option value="">- Pilih -</option>
-                                <?php foreach ($keuangan as $key => $value) { ?>
-                                    <option value="<?= $value->id_keuangan ?>"><?= $value->nama ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Keluar (Kredit)&nbsp;*</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="inpkredit" id="inpkredit" onkeydown="return justAngka(event)" onkeyup="javascript:this.value=autoSeparator(this.value);" placeholder="Masukkan kredit" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Keterangan&nbsp;*</label>
-                        <div class="col-sm-9">
-                            <textarea name="inpketerangan" id="inpketerangan" class="form-control" placeholder="Masukkan keterangan"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Tanggal Keluar&nbsp;*</label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" name="inptgl" id="inptgl" />
+                        <label class="col-sm-2 col-form-label">Nama *</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="inpnama" id="inpnama" placeholder="Masukkan nama" />
                         </div>
                     </div>
                 </div>

@@ -12,6 +12,7 @@ class Pemasukan extends MY_Controller
 
         // untuk load model
         $this->load->model('crud');
+        $this->load->model('m_dana');
         $this->load->model('m_keuangan');
     }
 
@@ -19,11 +20,12 @@ class Pemasukan extends MY_Controller
     public function index()
     {
         $data = [
-            'halaman' => 'Pemasukan',
+            'halaman'  => 'Pemasukan',
+            'dana'     => $this->m_dana->getAll(),
             'keuangan' => $this->m_keuangan->getAll(),
-            'content' => 'admin/pemasukan/view',
-            'css'     => 'admin/pemasukan/css/view',
-            'js'      => 'admin/pemasukan/js/view'
+            'content'  => 'admin/pemasukan/view',
+            'css'      => 'admin/pemasukan/css/view',
+            'js'       => 'admin/pemasukan/js/view'
         ];
         // untuk load view
         $this->load->view('admin/base', $data);
@@ -44,6 +46,7 @@ class Pemasukan extends MY_Controller
         $response = [
             'id_keuangan_rincian' => $result['id_keuangan_rincian'],
             'id_keuangan'         => $result['id_keuangan'],
+            'id_dana'             => $result['id_dana'],
             'keterangan'          => $result['keterangan'],
             'tanggal'             => $result['tanggal'],
             'debit'               => $result['debit'],
@@ -62,6 +65,7 @@ class Pemasukan extends MY_Controller
             $data = [
                 'id_keuangan_rincian' => acak_id('tb_keuangan_rincian', 'id_keuangan_rincian'),
                 'id_keuangan'         => $post['inpidkeuangan'],
+                'id_dana'             => $post['inpiddana'],
                 'keterangan'          => $post['inpketerangan'],
                 'tanggal'             => $post['inptgl'],
                 'debit'               => remove_separator($post['inpdebit']),
@@ -73,6 +77,7 @@ class Pemasukan extends MY_Controller
             $data = [
                 'id_keuangan_rincian' => $post['idkeuanganrincian'],
                 'id_keuangan'         => $post['inpidkeuangan'],
+                'id_dana'             => $post['inpiddana'],
                 'keterangan'          => $post['inpketerangan'],
                 'tanggal'             => $post['inptgl'],
                 'debit'               => remove_separator($post['inpdebit']),

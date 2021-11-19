@@ -13,16 +13,16 @@
 <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
 <script>
-    let tabelPengeluaranDt = null;
+    let tabelDanaDt = null;
 
     // untuk datatable
-    var untukTabelPengeluaran = function() {
-        tabelPengeluaranDt = $('#tabel-pengeluaran').DataTable({
+    var untukTabelDana = function() {
+        tabelDanaDt = $('#tabel-dana').DataTable({
             responsive: true,
             processing: true,
             lengthMenu: [5, 10, 25, 50],
             pageLength: 10,
-            ajax: '<?= admin_url() ?>pengeluaran/get_data_pengeluaran_dt',
+            ajax: '<?= admin_url() ?>dana/get_data_dana_dt',
             columns: [{
                     title: 'No.',
                     data: null,
@@ -32,30 +32,8 @@
                     }
                 },
                 {
-                    title: 'Dana',
-                    data: 'dana',
-                    className: 'text-center',
-                },
-                {
-                    title: 'Uraian',
-                    data: 'uraian',
-                    className: 'text-center',
-                },
-                {
-                    title: 'Keluar (Kredit)',
-                    className: 'text-center',
-                    render: function(data, type, full, meta) {
-                        return autoSeparator(full.kredit)
-                    },
-                },
-                {
-                    title: 'Tanggal',
-                    data: 'tanggal',
-                    className: 'text-center',
-                },
-                {
-                    title: 'Keterangan',
-                    data: 'keterangan',
+                    title: 'Nama',
+                    data: 'nama',
                     className: 'text-center',
                 },
                 {
@@ -67,8 +45,8 @@
                     render: function(data, type, full, meta) {
                         return `
                         <div class="button-icon-btn button-icon-btn-cl">
-                            <button type="button" id="btn-upd" data-id="` + full.id_keuangan_rincian + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
-                            <button type="button" id="btn-del" data-id="` + full.id_keuangan_rincian + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
+                            <button type="button" id="btn-upd" data-id="` + full.id_dana + `" class="btn btn-info btn-sm waves-effect" data-toggle="modal" data-target="#modal-add-upd"><i class="fa fa-pencil"></i>&nbsp;Ubah</button>
+                            <button type="button" id="btn-del" data-id="` + full.id_dana + `" class="btn btn-warning btn-sm waves-effect"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
                         </div>
                     `;
                     },
@@ -81,12 +59,8 @@
     var untukResetForm = function() {
         $(document).on('click', '#btn-add', function() {
             $('#judul-add-upd').html('Tambah');
-            $('#idkeuanganrincian').val('');
             $('#inpiddana').val('');
-            $('#inpidkeuangan').val('');
-            $('#inpkredit').val('');
-            $('#inpketerangan').val('');
-            $('#inptgl').val('');
+            $('#inpnama').val('');
         });
     }();
 
@@ -94,11 +68,7 @@
     var untukTambahDanUbahData = function() {
         $(document).on('submit', '#form-add-upd', function(e) {
             e.preventDefault();
-            $('#inpidkeuangan').attr('required', 'required');
-            $('#inpiddana').attr('required', 'required');
-            $('#inpkredit').attr('required', 'required');
-            $('#inpketerangan').attr('required', 'required');
-            $('#inptgl').attr('required', 'required');
+            $('#inpnama').attr('required', 'required');
 
             if ($('#form-add-upd').parsley().isValid() == true) {
                 $.ajax({
@@ -122,7 +92,7 @@
                             })
                             .then((value) => {
                                 $('#modal-add-upd').modal('hide');
-                                tabelPengeluaranDt.ajax.reload();
+                                tabelDanaDt.ajax.reload();
                             });
                         $('#save').removeAttr('disabled');
                         $('#save').html('<i class="fa fa-save"></i>&nbsp;Simpan');
@@ -139,7 +109,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "<?= admin_url() ?>pengeluaran/get",
+                url: "<?= admin_url() ?>dana/get",
                 dataType: 'json',
                 data: {
                     id: ini.data('id')
@@ -150,12 +120,8 @@
                     ini.html('<i class="fa fa-spinner"></i>&nbsp;Menunggu...');
                 },
                 success: function(response) {
-                    $('#idkeuanganrincian').val(response.id_keuangan_rincian);
                     $('#inpiddana').val(response.id_dana);
-                    $('#inpidkeuangan').val(response.id_keuangan);
-                    $('#inpkredit').val(autoSeparator(response.kredit));
-                    $('#inpketerangan').val(response.keterangan);
-                    $('#inptgl').val(response.tanggal);
+                    $('#inpnama').val(response.nama);
 
                     ini.removeAttr('disabled');
                     ini.html('<i class="fa fa-pencil"></i>&nbsp;Ubah');
@@ -179,7 +145,7 @@
                     if (del) {
                         $.ajax({
                             type: "post",
-                            url: "<?= admin_url() ?>pengeluaran/process_del",
+                            url: "<?= admin_url() ?>dana/process_del",
                             dataType: 'json',
                             data: {
                                 id: ini.data('id')
@@ -196,7 +162,7 @@
                                         button: data.button,
                                     })
                                     .then((value) => {
-                                        tabelPengeluaranDt.ajax.reload();
+                                        tabelDanaDt.ajax.reload();
                                     });
                             }
                         });

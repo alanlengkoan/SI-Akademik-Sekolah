@@ -201,6 +201,14 @@
                                         <span class="pcoded-mtext">Kelas</span>
                                     </a>
                                 </li>
+                                <li class="<?= ($this->uri->segment(2) === 'dana' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>dana">
+                                        <span class="pcoded-micon">
+                                            <i class="fa fa-circle"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Dana</span>
+                                    </a>
+                                </li>
                                 <li class="<?= ($this->uri->segment(2) === 'keuangan' ? 'active' : '') ?>">
                                     <a href="<?= admin_url() ?>keuangan">
                                         <span class="pcoded-micon">

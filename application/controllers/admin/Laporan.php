@@ -13,6 +13,7 @@ class Laporan extends MY_Controller
         // untuk load model
         $this->load->model('crud');
         $this->load->model('m_guru');
+        $this->load->model('m_dana');
         $this->load->model('m_siswa');
         $this->load->model('m_keuangan');
     }
@@ -27,6 +28,7 @@ class Laporan extends MY_Controller
     {
         $data = [
             'halaman' => 'Laporan Keuangan',
+            'dana'    => $this->m_dana->getAll(),
             'content' => 'admin/l_keuangan/view',
             'css'     => '',
             'js'      => 'admin/l_keuangan/js/view'
@@ -45,7 +47,7 @@ class Laporan extends MY_Controller
         $interval = new DateInterval('P1M');
         $period   = new DatePeriod($start, $interval, $end);
 
-        $get = $this->m_keuangan->getReportKeuangan($post['tgl_awal'], $post['tgl_akhir']);
+        $get = $this->m_keuangan->getReportKeuangan($post['id_dana'], $post['tgl_awal'], $post['tgl_akhir']);
         $num = $get->num_rows();
         $no  = 1;
 
@@ -59,13 +61,14 @@ class Laporan extends MY_Controller
                 $sisa = ($row->debit - array_sum($kredit));
 
                 $result[] = [
-                    'no'            => $no++,
-                    'nama_keuangan' => $row->nama_keuangan,
-                    'keterangan'    => '-',
-                    'debit'         => create_separator($row->debit),
-                    'bulan'         => $kredit,
-                    'kredit'        => create_separator(array_sum($kredit)),
-                    'sisa'          => create_separator($sisa)
+                    'no'         => $no++,
+                    'dana'       => $row->dana,
+                    'uraian'     => $row->uraian,
+                    'keterangan' => '-',
+                    'debit'      => create_separator($row->debit),
+                    'bulan'      => $kredit,
+                    'kredit'     => create_separator(array_sum($kredit)),
+                    'sisa'       => create_separator($sisa)
                 ];
             }
         } else {
@@ -75,13 +78,14 @@ class Laporan extends MY_Controller
             }
 
             $result[] = [
-                'no'            => 'Data Kosong!',
-                'nama_keuangan' => 'Data Kosong!',
-                'keterangan'    => 'Data Kosong!',
-                'debit'         => 0,
-                'bulan'         => $kredit,
-                'kredit'        => 0,
-                'sisa'          => 0,
+                'no'         => 'Data Kosong!',
+                'dana'       => 'Data Kosong!',
+                'uraian'     => 'Data Kosong!',
+                'keterangan' => 'Data Kosong!',
+                'debit'      => 0,
+                'bulan'      => $kredit,
+                'kredit'     => 0,
+                'sisa'       => 0,
             ];
         }
 
@@ -106,7 +110,10 @@ class Laporan extends MY_Controller
         $interval = new DateInterval('P1M');
         $period   = new DatePeriod($start, $interval, $end);
 
-        $get = $this->m_keuangan->getReportKeuangan(base64url_decode($post['tgl_awal']), base64url_decode($post['tgl_akhir']));
+        // untuk dana
+        $dana = $this->crud->gda('tb_dana', ['id_dana' => base64url_decode($post['id_dana'])]);
+
+        $get = $this->m_keuangan->getReportKeuangan(base64url_decode($post['id_dana']), base64url_decode($post['tgl_awal']), base64url_decode($post['tgl_akhir']));
         $num = $get->num_rows();
         $no  = 1;
 
@@ -120,13 +127,14 @@ class Laporan extends MY_Controller
                 $sisa = ($row->debit - array_sum($kredit));
 
                 $result[] = [
-                    'no'            => $no++,
-                    'nama_keuangan' => $row->nama_keuangan,
-                    'keterangan'    => '-',
-                    'debit'         => create_separator($row->debit),
-                    'bulan'         => $kredit,
-                    'kredit'        => create_separator(array_sum($kredit)),
-                    'sisa'          => create_separator($sisa)
+                    'no'         => $no++,
+                    'dana'       => $row->dana,
+                    'uraian'     => $row->uraian,
+                    'keterangan' => '-',
+                    'debit'      => create_separator($row->debit),
+                    'bulan'      => $kredit,
+                    'kredit'     => create_separator(array_sum($kredit)),
+                    'sisa'       => create_separator($sisa)
                 ];
             }
         } else {
@@ -136,19 +144,21 @@ class Laporan extends MY_Controller
             }
 
             $result[] = [
-                'no'            => 'Data Kosong!',
-                'nama_keuangan' => 'Data Kosong!',
-                'keterangan'    => 'Data Kosong!',
-                'debit'         => 0,
-                'bulan'         => $kredit,
-                'kredit'        => 0,
-                'sisa'          => 0,
+                'no'         => 'Data Kosong!',
+                'dana'       => 'Data Kosong!',
+                'uraian'     => 'Data Kosong!',
+                'keterangan' => 'Data Kosong!',
+                'debit'      => 0,
+                'bulan'      => $kredit,
+                'kredit'     => 0,
+                'sisa'       => 0,
             ];
         }
 
         $data = [
             'bulan'       => ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
             'jarak_bulan' => $kredit,
+            'dana'        => $dana,
             'halaman'     => "Daftar Keuangan",
             'keuangan'    => $result,
         ];
