@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label>Password&nbsp;*</label>
-                        <input type="text" class="form-control form-control-sm" name="password" id="password" placeholder="Masukkan password Anda" />
+                        <input type="password" class="form-control form-control-sm" name="password" id="password" placeholder="Masukkan password Anda" />
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-10">
