@@ -19,7 +19,7 @@ class M_kuisioner extends CI_Model
 
     public function getWhereSoal($id_kuisioner)
     {
-        $result = $this->db->query("SELECT tks.id_kuisioner_soal, tks.id_kuisioner, tks.soal, tks.pil_a, tks.pil_b, tks.pil_c, tks.pil_d, tks.pil_e FROM tb_kuisioner_soal AS tks WHERE tks.id_kuisioner = '$id_kuisioner' ORDER BY tks.ins DESC");
+        $result = $this->db->query("SELECT tks.id_kuisioner_soal, tks.id_kuisioner, tks.soal, tks.pil_a, tks.pil_b, tks.pil_c, tks.pil_d, tks.pil_e FROM tb_kuisioner_soal AS tks WHERE tks.id_kuisioner = '$id_kuisioner' ORDER BY tks.ins ASC");
         return $result;
     }
 
@@ -63,7 +63,7 @@ class M_kuisioner extends CI_Model
 
     public function getAllKuisionerDetail($id_kuisioner)
     {
-        $result = $this->db->query("SELECT ks.id_kuisioner_soal, ks.id_kuisioner, ks.soal, ks.pil_a, ks.pil_b, ks.pil_c, ks.pil_d, ks.pil_e, k.nama FROM tb_kuisioner_soal AS ks LEFT JOIN tb_kuisioner AS k ON ks.id_kuisioner = k.id_kuisioner WHERE ks.id_kuisioner = '$id_kuisioner'");
+        $result = $this->db->query("SELECT ks.id_kuisioner_soal, ks.id_kuisioner, ks.soal, ks.pil_a, ks.pil_b, ks.pil_c, ks.pil_d, ks.pil_e, k.nama FROM tb_kuisioner_soal AS ks LEFT JOIN tb_kuisioner AS k ON ks.id_kuisioner = k.id_kuisioner WHERE ks.id_kuisioner = '$id_kuisioner' ORDER BY ks.ins ASC");
         return $result;
     }
 
@@ -71,6 +71,7 @@ class M_kuisioner extends CI_Model
     {
         $this->datatables->select('ks.id_kuisioner_soal, ks.id_kuisioner, ks.soal, ks.pil_a, ks.pil_b, ks.pil_c, ks.pil_d, ks.pil_e');
         $this->datatables->where('ks.id_kuisioner', $id_kuisioner);
+        $this->datatables->order_by('ks.ins', 'asc');
         $this->datatables->from('tb_kuisioner_soal AS ks');
         return print_r($this->datatables->generate());
     }
