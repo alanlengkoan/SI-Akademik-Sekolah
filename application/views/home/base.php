@@ -117,11 +117,13 @@
 							</li>
 						<?php } ?>
 						<?php if ($this->session->userdata('id_users')) { ?>
-							<li>
-								<a href="<?= base_url() ?>akun">Profil</a>
-							</li>
-							<li>
-								<a href="<?= logout_url() ?>">Keluar</a>
+							<li class="menu-has-children"><a href=""><?= get_users_detail($this->session->userdata('id'))->nama ?></a>
+								<ul>
+									<?php foreach ($kuisioner->result() as $row) { ?>
+										<li><a href="<?= base_url() ?>akun">Profil</a></li>
+										<li><a href="<?= logout_url() ?>">Keluar</a></li>
+									<?php } ?>
+								</ul>
 							</li>
 						<?php } ?>
 					</ul>

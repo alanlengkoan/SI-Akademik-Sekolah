@@ -4,7 +4,7 @@ class M_siswa extends CI_Model
 {
     public function getAll()
     {
-        $result = $this->db->query("")->result();
+        $result = $this->db->query("SELECT s.id_siswa, s.nis, u.nama, s.tmp_lahir, s.tgl_lahir, s.ortu_wali, s.kelamin, s.alamat, s.status, a.nama AS agama FROM tb_siswa AS s LEFT JOIN tb_agama AS a ON s.id_agama = a.id_agama LEFT JOIN tb_users AS u ON s.id_users = u.id_users ORDER BY s.ins");
         return $result;
     }
 

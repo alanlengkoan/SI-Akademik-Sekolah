@@ -75,7 +75,7 @@
                             text: value.soal
                         },
                         tooltip: {
-                            pointFormat: '{series.name}: <b>{point.y:1f}%</b>'
+                            pointFormat: '<b>{point.x:1f} Orang Memilih</b>'
                         },
                         accessibility: {
                             point: {
@@ -90,7 +90,8 @@
                                     enabled: true,
                                     format: '<b>{point.name}</b>: {point.y:1f} %',
                                     connectorColor: 'silver'
-                                }
+                                },
+                                showInLegend: true
                             }
                         },
                         series: [{

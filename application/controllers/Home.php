@@ -210,6 +210,7 @@ class Home extends MY_Controller
                 'kuisional_soal' => $this->m_kuisioner->getWhereSoal($id_kuisioner),
                 'profil'         => $this->m_profil->getAll(),
                 'agama'          => $this->m_agama->getAll(),
+                'dana'           => $this->m_dana->getAll(),
                 'content'        => 'home/kuisioner_grafik/view',
                 'css'            => 'home/kuisioner_grafik/css/view',
                 'js'             => 'home/kuisioner_grafik/js/view'
@@ -218,16 +219,17 @@ class Home extends MY_Controller
             $get_siswa = $this->m_siswa->getSiswa($id_users);
 
             $data = [
-                'halaman'         => 'Kuisoner',
-                'kuisioner'       => $this->m_kuisioner->getAll(),
-                'profil'          => $this->m_profil->getAll(),
-                'agama'           => $this->m_agama->getAll(),
-                'data'            => $this->m_kuisioner->getAllKuisionerDetail($id_kuisioner),
-                'siswa'           => $get_siswa,
-                'siswa_hasil'     => $this->m_kuisioner->getWhereHasilSiswa($get_siswa->id_siswa),
-                'content'         => 'home/kuisioner/view',
-                'css'             => '',
-                'js'              => 'home/kuisioner/js/view'
+                'halaman'     => 'Kuisoner',
+                'kuisioner'   => $this->m_kuisioner->getAll(),
+                'profil'      => $this->m_profil->getAll(),
+                'agama'       => $this->m_agama->getAll(),
+                'dana'        => $this->m_dana->getAll(),
+                'data'        => $this->m_kuisioner->getAllKuisionerDetail($id_kuisioner),
+                'siswa'       => $get_siswa,
+                'siswa_hasil' => $this->m_kuisioner->getWhereHasilSiswa($get_siswa->id_siswa),
+                'content'     => 'home/kuisioner/view',
+                'css'         => '',
+                'js'          => 'home/kuisioner/js/view'
             ];
         }
         // untuk load view
@@ -238,33 +240,49 @@ class Home extends MY_Controller
     {
         $id_kuisioner = $this->uri->segment('2');
 
-        $get = $this->m_kuisioner->getWhereSoal($id_kuisioner);
+        // untuk ambil kuisioner
+        $get_kuisioner = $this->m_kuisioner->getWhereSoal($id_kuisioner);
+
+        // untuk ambil total alumni
+        $get_alumni = $this->m_siswa->getAll();
+        $get_num = $get_alumni->num_rows();
 
         $result = [];
-        foreach ($get->result() as $key => $value) {
+        foreach ($get_kuisioner->result() as $key => $value) {
+            $a = (int) $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '1')->num_rows();
+            $b = (int) $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '2')->num_rows();
+            $c = (int) $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '3')->num_rows();
+            $d = (int) $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '4')->num_rows();
+            $e = (int) $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '5')->num_rows();
+
             $result[] = [
                 'id_kuisioner_soal' => $value->id_kuisioner_soal,
                 'soal'              => $value->soal,
                 'data'              =>  [
                     [
-                        'name' => $value->pil_a,
-                        'y'    => $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '1')->num_rows()
+                        'name'   => $value->pil_a,
+                        'y'      => ($a / $get_num) * 100,
+                        'x'      => $a,
                     ],
                     [
-                        'name' => $value->pil_b,
-                        'y'    => $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '2')->num_rows()
+                        'name'   => $value->pil_b,
+                        'y'      => ($b / $get_num) * 100,
+                        'x'      => $b,
                     ],
                     [
-                        'name' => $value->pil_c,
-                        'y'    => $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '3')->num_rows()
+                        'name'   => $value->pil_c,
+                        'y'      => ($c / $get_num) * 100,
+                        'x'      => $c,
                     ],
                     [
-                        'name' => $value->pil_d,
-                        'y'    => $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '4')->num_rows()
+                        'name'   => $value->pil_d,
+                        'y'      => ($d / $get_num) * 100,
+                        'x'      => $d,
                     ],
                     [
-                        'name' => $value->pil_e,
-                        'y'    => $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '5')->num_rows()
+                        'name'   => $value->pil_e,
+                        'y'      => ($e / $get_num) * 100,
+                        'x'      => $e,
                     ],
                 ]
             ];
@@ -327,7 +345,7 @@ class Home extends MY_Controller
                 ];
 
                 $this->crud->u('tb_kuisioner_hasil', $kusioner_hasil, ['id_kuisioner_hasil' => $post['inpidkuisionerhasil'][$i]]);
-            } 
+            }
         }
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
