@@ -476,18 +476,41 @@ class Home extends MY_Controller
         $get      = $this->input->get(NULL, TRUE);
         $id_dana  = $get['id_dana'];
         $triwulan = $get['triwulan'];
+
         // untuk dana
         $dana = $this->crud->gda('tb_dana', ['id_dana' => $id_dana]);
+        
         // ambil triwulan
-        $jumlah_bulan = date('Y-m-d', strtotime("-{$triwulan} months", strtotime(date('Y-m-d'))));
-        $start        = new DateTime($jumlah_bulan);
-        $end          = new DateTime(date('Y-m-d'));
-        $interval     = new DateInterval('P1M');
-        $period       = new DatePeriod($start, $interval, $end);
+        switch ($triwulan) {
+            case '1':
+                $start = date('Y-01-01');
+                $end   = date('Y-m-d', strtotime("+3 months", strtotime($start)));
+                break;
+            
+            case '2':
+                $start = date('Y-04-04');
+                $end   = date('Y-m-d', strtotime("+3 months", strtotime($start)));
+                break;
+            
+            case '3':
+                $start = date('Y-07-07');
+                $end   = date('Y-m-d', strtotime("+3 months", strtotime($start)));
+                break;
+            
+            case '4':
+                $start = date('Y-10-10');
+                $end   = date('Y-m-d', strtotime("+3 months", strtotime($start)));
+                break;
+        }
 
-        $get = $this->m_keuangan->getReportKeuangan($id_dana, $jumlah_bulan, date('Y-m-d'));
+        $get = $this->m_keuangan->getReportKeuangan($id_dana, $start, $end);
         $num = $get->num_rows();
         $no  = 1;
+
+        $_start   = new DateTime($start);
+        $_end     = new DateTime($end);
+        $interval = new DateInterval('P1M');
+        $period   = new DatePeriod($_start, $interval, $_end);
 
         if ($num > 0) {
             foreach ($get->result() as $row) {
