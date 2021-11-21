@@ -451,18 +451,41 @@ class Home extends MY_Controller
     // untuk halaman laporan keuangan
     public function laporan()
     {
-        $tiga_bulan = date('Y-m-d', strtotime("-3 months", strtotime(date('Y-m-d'))));
-        $id_dana    = base64url_decode($this->uri->segment('2'));
-
-        $start    = new DateTime($tiga_bulan);
-        $end      = new DateTime(date('Y-m-d'));
-        $interval = new DateInterval('P1M');
-        $period   = new DatePeriod($start, $interval, $end);
+        $id_dana = base64url_decode($this->uri->segment('2'));
 
         // untuk dana
         $dana = $this->crud->gda('tb_dana', ['id_dana' => $id_dana]);
 
-        $get = $this->m_keuangan->getReportKeuangan($id_dana, $tiga_bulan, date('Y-m-d'));
+        $data = [
+            'halaman'     => 'Laporan',
+            'kuisioner'   => $this->m_kuisioner->getAll(),
+            'profil'      => $this->m_profil->getAll(),
+            'dana'        => $this->m_dana->getAll(),
+            'jenis'       => $dana,
+            'content'     => 'home/laporan/view',
+            'css'         => '',
+            'js'          => ''
+        ];
+        // untuk load view
+        $this->load->view('home/base', $data);
+    }
+
+    // untuk cetak laporan
+    public function laporan_cetak()
+    {
+        $get      = $this->input->get(NULL, TRUE);
+        $id_dana  = $get['id_dana'];
+        $triwulan = $get['triwulan'];
+        // untuk dana
+        $dana = $this->crud->gda('tb_dana', ['id_dana' => $id_dana]);
+        // ambil triwulan
+        $jumlah_bulan = date('Y-m-d', strtotime("-{$triwulan} months", strtotime(date('Y-m-d'))));
+        $start        = new DateTime($jumlah_bulan);
+        $end          = new DateTime(date('Y-m-d'));
+        $interval     = new DateInterval('P1M');
+        $period       = new DatePeriod($start, $interval, $end);
+
+        $get = $this->m_keuangan->getReportKeuangan($id_dana, $jumlah_bulan, date('Y-m-d'));
         $num = $get->num_rows();
         $no  = 1;
 
@@ -503,20 +526,16 @@ class Home extends MY_Controller
         }
 
         $data = [
-            'halaman'     => 'Laporan',
-            'kuisioner'   => $this->m_kuisioner->getAll(),
-            'profil'      => $this->m_profil->getAll(),
-            'dana'        => $this->m_dana->getAll(),
-            'bulan'       => ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+            'halaman'     => "Laporan Pertanggung Jawaban Dana {$dana['nama']} <br> Triwulan {number_to_roman($triwulan)} Tahun Anggaran {date('Y')}",
+            'triwulan'    => $triwulan,
             'jenis'       => $dana,
             'jarak_bulan' => $kredit,
             'keuangan'    => $result,
-            'content'     => 'home/laporan/view',
-            'css'         => '',
-            'js'          => 'home/laporan/js/view'
+            'bulan'       => ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
         ];
         // untuk load view
-        $this->load->view('home/base', $data);
+        $this->pdf->setPaper('A4', 'landscape');
+        $this->pdf->cetakPdf('laporan_keuangan', 'home/laporan/cetak', $data);
     }
 
     // untuk akun users

@@ -42,3 +42,4 @@ $route['simpan_keamanan'] = 'home/simpan_keamanan';
 
 // route laporan
 $route['laporan/(:any)'] = 'home/laporan';
+$route['laporan_cetak']  = 'home/laporan_cetak';

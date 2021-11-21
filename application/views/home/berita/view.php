@@ -64,7 +64,7 @@
                                 <div class="feature-img">
                                     <img class="img-fluid" src="<?= upload_url() ?>gambar/<?= $row->gambar ?>" alt="<?= $row->judul ?>">
                                 </div>
-                                <a class="posts-title" href="blog-single.html">
+                                <a class="posts-title" href="<?= base_url() ?>berita/detail/<?= $row->id_informasi ?>">
                                     <h3><?= $row->judul ?></h3>
                                 </a>
                                 <p class="excert">
