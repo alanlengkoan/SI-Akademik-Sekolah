@@ -261,27 +261,27 @@ class Home extends MY_Controller
                 'data'              =>  [
                     [
                         'name'   => $value->pil_a,
-                        'y'      => ($a / $get_num) * 100,
+                        'y'      => round(($a / $get_num) * 100, 2),
                         'x'      => $a,
                     ],
                     [
                         'name'   => $value->pil_b,
-                        'y'      => ($b / $get_num) * 100,
+                        'y'      => round(($b / $get_num) * 100, 2),
                         'x'      => $b,
                     ],
                     [
                         'name'   => $value->pil_c,
-                        'y'      => ($c / $get_num) * 100,
+                        'y'      => round(($c / $get_num) * 100, 2),
                         'x'      => $c,
                     ],
                     [
                         'name'   => $value->pil_d,
-                        'y'      => ($d / $get_num) * 100,
+                        'y'      => round(($d / $get_num) * 100, 2),
                         'x'      => $d,
                     ],
                     [
                         'name'   => $value->pil_e,
-                        'y'      => ($e / $get_num) * 100,
+                        'y'      => round(($e / $get_num) * 100, 2),
                         'x'      => $e,
                     ],
                 ]
