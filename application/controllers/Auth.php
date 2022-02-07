@@ -67,7 +67,7 @@ class Auth extends MY_Controller
                         'role'     => $row['roles'],
                     ];
                     $this->session->set_userdata($data);
-                    exit(json_encode(array('status' => true, 'link' => admin_url())));
+                    exit($this->_response(array('status' => true, 'link' => admin_url())));
                 } else if ($row['roles'] == 'users') {
                     $data = [
                         'id'       => $row['id'],
@@ -77,14 +77,48 @@ class Auth extends MY_Controller
                         'role'     => $row['roles'],
                     ];
                     $this->session->set_userdata($data);
-                    exit(json_encode(array('status' => true, 'link' => base_url())));
+                    exit($this->_response(array('status' => true, 'link' => base_url())));
                 }
             } else {
-                exit(json_encode(['title' => 'Gagal!', 'text' => 'Username atau Password Anda salah!', 'type' => 'error', 'button' => 'Ok!']));
+                exit($this->_response(['title' => 'Gagal!', 'text' => 'Username atau Password Anda salah!', 'type' => 'error', 'button' => 'Ok!']));
             }
         } else {
-            exit(json_encode(['title' => 'Gagal!', 'text' => 'Username atau Password Anda salah!', 'type' => 'error', 'button' => 'Ok!']));
+            exit($this->_response(['title' => 'Gagal!', 'text' => 'Username atau Password Anda salah!', 'type' => 'error', 'button' => 'Ok!']));
         }
+    }
+
+    public function access_session()
+    {
+        $ip  = $this->input->ip_address();
+        $get = $this->db->query("SELECT * FROM tb_buku_tamu AS bt WHERE bt.ip_address = '$ip'");
+        $num = $get->num_rows();
+        $res = ['check' => $num];
+        // untuk response json
+        $this->_response($res);
+    }
+
+    public function access_session_save()
+    {
+        $post = $this->input->post(NULL, TRUE);
+        $data = [
+            'ip_address' => $this->input->ip_address(),
+            'nama'       => $post['nama'],
+            'kelamin'    => $post['kelamin'],
+            'telepon'    => $post['telepon'],
+            'email'      => $post['email'],
+            'alamat'     => $post['alamat'],
+            'keperluan'  => $post['keperluan'],
+        ];
+        $this->db->trans_start();
+        $this->crud->i('tb_buku_tamu', $data);
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
+        } else {
+            $response = ['title' => 'Berhasil!', 'text' => 'Berhasil Simpan!', 'type' => 'success', 'button' => 'Ok!'];
+        }
+        // untuk response json
+        $this->_response($response);
     }
 
     // untuk logout

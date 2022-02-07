@@ -159,6 +159,65 @@
 	</footer>
 	<!-- end:: footer -->
 
+	<!-- begin:: modal buku tamu -->
+	<div class="modal fade" id="modal-buku-tamu" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Silahkan Isi Buku Tamu kami.</h4>
+				</div>
+				<form id="form-buku-tamu" action="<?= base_url() ?>access_session/save" method="POST">
+					<div class="modal-body">
+						<div class="form-group row">
+							<label class="col-sm-12 col-form-label">Nama *</label>
+							<div class="col-sm-12">
+								<input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan nama" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-form-label">Jenis kelamin *</label>
+							<div class="col-sm-12">
+								<select class="form-control" name="kelamin" id="kelamin">
+									<option value="">- Pilih -</option>
+									<option value="L">Laki - laki</option>
+									<option value="P">Perempuan</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-form-label">Telepon *</label>
+							<div class="col-sm-12">
+								<input type="text" class="form-control" name="telepon" id="telepon" placeholder="Masukkan telepon" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-form-label">Email *</label>
+							<div class="col-sm-12">
+								<input type="email" class="form-control" name="email" id="email" placeholder="Masukkan email" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-form-label">Alamat *</label>
+							<div class="col-sm-12">
+								<textarea class="form-control" name="alamat" id="alamat" placeholder="Masukkan alamat" rows="5" cols="5"></textarea>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-form-label">Keperluan *</label>
+							<div class="col-sm-12">
+								<textarea class="form-control" name="keperluan" id="keperluan" placeholder="Masukkan keperluan" rows="5" cols="5"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary btn-sm" id="save"><i class="fa fa-save"></i>&nbsp;Simpan</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- end:: modal buku tamu -->
+
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script type="text/javascript" src="<?= assets_url() ?>page/js/vendor/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?= assets_url() ?>page/js/easing.min.js"></script>
@@ -173,6 +232,73 @@
 	<script type="text/javascript" src="<?= assets_url() ?>page/js/main.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+	<script>
+		loadBukuTamu()
+
+		function loadBukuTamu() {
+			$.ajax({
+				type: 'GET',
+				url: '<?= base_url() ?>access_session',
+				dataType: 'json',
+				success: function(response) {
+					if (response.check === 0) {
+						$('#modal-buku-tamu').modal({
+							backdrop: 'static',
+							keyboard: false
+						});
+					}
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					var errorMsg = 'Request Ajax Gagal : ' + xhr.responseText;
+					console.log(errorMsg);
+				}
+			});
+		}
+
+		setInterval(function() {
+			loadBukuTamu()
+		}, 5000);
+
+		// untuk submit
+		var untukSubmit = function() {
+			$('#form-buku-tamu').submit(function(e) {
+				e.preventDefault();
+
+				$('#nama').attr('required', 'required');
+				$('#kelamin').attr('required', 'required');
+				$('#telepon').attr('required', 'required');
+				$('#email').attr('required', 'required');
+				$('#alamat').attr('required', 'required');
+				$('#keperluan').attr('required', 'required');
+
+				if ($('#form-buku-tamu').parsley().isValid() == true) {
+					$.ajax({
+						method: $(this).attr('method'),
+						url: $(this).attr('action'),
+						data: new FormData(this),
+						contentType: false,
+						processData: false,
+						dataType: 'json',
+						beforeSend: function() {
+							$('#save').attr('disabled', 'disabled');
+							$('#save').html('<i class="fa fa-spinner"></i>&nbsp;Menunggu...');
+						},
+						success: function(data) {
+							swal({
+								title: data.title,
+								text: data.text,
+								icon: data.type,
+								button: data.button,
+							}).then((value) => {
+								location.reload();
+							});
+						}
+					})
+				}
+			});
+		}();
+	</script>
 
 	<!-- begin:: js local -->
 	<?php empty($js) ? '' : $this->load->view($js); ?>
