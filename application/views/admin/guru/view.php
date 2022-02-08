@@ -65,7 +65,7 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Nip&nbsp;*</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="inpnip" id="inpnip" placeholder="Masukkan nip" />
+                            <input type="text" class="form-control inputNumber" pattern="\d*" maxlength="18" minlength="18" name="inpnip" id="inpnip" placeholder="Masukkan nip" />
                         </div>
                     </div>
                     <div class="form-group row">

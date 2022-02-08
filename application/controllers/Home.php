@@ -376,6 +376,19 @@ class Home extends MY_Controller
         $this->load->view('home/base', $data);
     }
 
+    // untuk cetak profil
+    public function profil_cetak()
+    {
+        $id_profil = base64url_decode($this->uri->segment('3'));
+
+        $data = [
+            'row' => $this->m_profil->getAllDetail($id_profil),
+        ];
+        // untuk load view
+        $this->pdf->setPaper('A4', 'landscape');
+        $this->pdf->cetakPdf('kurikulum', 'home/profil/print', $data);
+    }
+
     // untuk halaman guru
     public function guru()
     {
@@ -525,10 +538,10 @@ class Home extends MY_Controller
                     'no'         => $no++,
                     'uraian'     => $row->uraian,
                     'keterangan' => '-',
-                    'debit'      => create_separator($row->debit),
+                    'debit'      => $row->debit,
                     'bulan'      => $kredit,
-                    'kredit'     => create_separator(array_sum($kredit)),
-                    'sisa'       => create_separator($sisa)
+                    'kredit'     => array_sum($kredit),
+                    'sisa'       => $sisa,
                 ];
             }
         } else {

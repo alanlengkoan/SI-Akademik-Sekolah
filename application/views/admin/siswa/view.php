@@ -85,7 +85,7 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Nis&nbsp;*</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="inpnis" id="inpnis" placeholder="Masukkan nis" />
+                            <input type="text" class="form-control inputNumber" pattern="\d*" maxlength="10" minlength="10" name="inpnis" id="inpnis" placeholder="Masukkan nis" />
                         </div>
                     </div>
                     <div class="form-group row">
@@ -101,6 +101,17 @@
                                 <option value="">- Pilih -</option>
                                 <?php foreach ($agama as $key => $value) { ?>
                                     <option value="<?= $value->id_agama ?>"><?= $value->nama ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Kelas&nbsp;*</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="inpidkelas" name="inpidkelas">
+                                <option value="">- Pilih -</option>
+                                <?php foreach ($kelas as $key => $value) { ?>
+                                    <option value="<?= $value->id_kelas ?>"><?= $value->nama ?></option>
                                 <?php } ?>
                             </select>
                         </div>

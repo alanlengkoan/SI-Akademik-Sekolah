@@ -28,6 +28,9 @@
                     <div class="col-lg-9 col-md-9">
                         <h3 class="mt-20 mb-20"><?= $row->profil ?></h3>
                         <?= $row->isi ?>
+                        <?php if (strtolower($row->profil) === 'kurikulum') { ?>
+                            <a href="<?= base_url() ?>profil/cetak/<?= base64_encode($row->id_profil) ?>" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Cetak</a>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

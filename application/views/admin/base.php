@@ -214,7 +214,7 @@
                                         <span class="pcoded-micon">
                                             <i class="fa fa-circle"></i>
                                         </span>
-                                        <span class="pcoded-mtext">Keuangan</span>
+                                        <span class="pcoded-mtext">Anggaran</span>
                                     </a>
                                 </li>
                                 <li class="<?= ($this->uri->segment(2) === 'kuisioner' ? 'active' : '') ?>">
@@ -368,6 +368,28 @@
                 x1 = x1.replace(rgx, '$1' + '.' + '$2');
             return x1 + x2;
         };
+
+        // untuk input nomor type text
+        (function($) {
+            $.fn.inputFilter = function(inputFilter) {
+                return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+                    if (inputFilter(this.value)) {
+                        this.oldValue = this.value;
+                        this.oldSelectionStart = this.selectionStart;
+                        this.oldSelectionEnd = this.selectionEnd;
+                    } else if (this.hasOwnProperty("oldValue")) {
+                        this.value = this.oldValue;
+                        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                    } else {
+                        this.value = "";
+                    }
+                });
+            };
+        }(jQuery));
+
+        $(".inputNumber").inputFilter(function(value) {
+            return /^-?\d*$/.test(value);
+        });
     </script>
 
     <!-- begin:: js local -->

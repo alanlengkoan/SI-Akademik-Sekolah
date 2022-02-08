@@ -65,10 +65,10 @@ class Laporan extends MY_Controller
                     'dana'       => $row->dana,
                     'uraian'     => $row->uraian,
                     'keterangan' => '-',
-                    'debit'      => create_separator($row->debit),
+                    'debit'      => $row->debit,
                     'bulan'      => $kredit,
-                    'kredit'     => create_separator(array_sum($kredit)),
-                    'sisa'       => create_separator($sisa)
+                    'kredit'     => array_sum($kredit),
+                    'sisa'       => $sisa,
                 ];
             }
         } else {
@@ -131,10 +131,10 @@ class Laporan extends MY_Controller
                     'dana'       => $row->dana,
                     'uraian'     => $row->uraian,
                     'keterangan' => '-',
-                    'debit'      => create_separator($row->debit),
+                    'debit'      => $row->debit,
                     'bulan'      => $kredit,
-                    'kredit'     => create_separator(array_sum($kredit)),
-                    'sisa'       => create_separator($sisa)
+                    'kredit'     => array_sum($kredit),
+                    'sisa'       => $sisa,
                 ];
             }
         } else {

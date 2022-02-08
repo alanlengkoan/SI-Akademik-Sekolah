@@ -76,21 +76,35 @@
             $saldo_k = 0;
             $debit   = 0;
             $kredit  = 0;
+            $sisa    = 0;
             foreach ($keuangan as $row) {
+                $debit  = $debit + $row['debit'];
+                $kredit = $kredit + $row['kredit'];
+                $sisa   = $sisa + $row['sisa'];
             ?>
                 <tr>
                     <td><?= $row['no'] ?></td>
                     <td><?= $row['uraian'] ?></td>
-                    <td><?= $row['debit'] ?></td>
+                    <td><?= create_separator($row['debit']) ?></td>
                     <?php foreach ($row['bulan'] as $key => $value) { ?>
                         <td><?= ($value === null ? 0 : create_separator($value)) ?></td>
                     <?php } ?>
-                    <td><?= $row['kredit'] ?></td>
-                    <td><?= $row['sisa'] ?></td>
+                    <td><?= create_separator($row['kredit']) ?></td>
+                    <td><?= create_separator($row['sisa']) ?></td>
                     <td><?= $row['keterangan'] ?></td>
                 </tr>
             <?php } ?>
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2" align="center">Total</td>
+                <td><?= create_separator($debit) ?></td>
+                <td colspan="<?= count($jarak_bulan) ?>" align="center">-</td>
+                <td><?= create_separator($kredit) ?></td>
+                <td><?= create_separator($sisa) ?></td>
+                <td></td>
+            </tr>
+        </tfoot>
     </table>
 
     <br /><br />

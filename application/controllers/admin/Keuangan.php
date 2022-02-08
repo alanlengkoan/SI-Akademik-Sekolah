@@ -19,7 +19,7 @@ class Keuangan extends MY_Controller
     public function index()
     {
         $data = [
-            'halaman' => 'Keuangan',
+            'halaman' => 'Anggaran',
             'content' => 'admin/keuangan/view',
             'css'     => 'admin/keuangan/css/view',
             'js'      => 'admin/keuangan/js/view'
@@ -57,14 +57,14 @@ class Keuangan extends MY_Controller
         if (empty($post['inpidkeuangan'])) {
             $data = [
                 'id_keuangan' => acak_id('tb_keuangan', 'id_keuangan'),
-                'nama'      => $post['inpnama'],
+                'nama'        => $post['inpnama'],
             ];
 
             $this->crud->i('tb_keuangan', $data);
         } else {
             $data = [
                 'id_keuangan' => $post['inpidkeuangan'],
-                'nama'      => $post['inpnama'],
+                'nama'        => $post['inpnama'],
             ];
 
             $this->crud->u('tb_keuangan', $data, ['id_keuangan' => $post['inpidkeuangan']]);

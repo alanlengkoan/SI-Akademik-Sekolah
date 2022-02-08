@@ -26,6 +26,7 @@
                                 <th>No.</th>
                                 <th>NIS</th>
                                 <th>Nama</th>
+                                <th>Kelas</th>
                                 <th>Tempat Lahir</th>
                                 <th>Tanggal Lahir</th>
                                 <th>Agama</th>
@@ -41,6 +42,7 @@
                                     <td><?= $no++ ?></td>
                                     <td><?= $row->nis ?></td>
                                     <td><?= $row->nama ?></td>
+                                    <td><?= $row->kelas ?></td>
                                     <td><?= $row->tmp_lahir ?></td>
                                     <td><?= $row->tgl_lahir ?></td>
                                     <td><?= $row->agama ?></td>

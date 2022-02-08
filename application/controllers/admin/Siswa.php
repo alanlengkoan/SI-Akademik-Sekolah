@@ -14,6 +14,7 @@ class Siswa extends MY_Controller
         $this->load->model('crud');
         $this->load->model('m_agama');
         $this->load->model('m_siswa');
+        $this->load->model('m_kelas');
     }
 
     // untuk default
@@ -22,6 +23,7 @@ class Siswa extends MY_Controller
         $data = [
             'halaman' => 'Siswa',
             'agama'   => $this->m_agama->getAll(),
+            'kelas'   => $this->m_kelas->getAll(),
             'content' => 'admin/siswa/view',
             'css'     => 'admin/siswa/css/view',
             'js'      => 'admin/siswa/js/view'
@@ -69,20 +71,8 @@ class Siswa extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
 
-        $result = $this->m_siswa->getSiswa($post['id']);
-
-        $response = [
-            'id_users'  => $result->id_users,
-            'id_siswa'  => $result->id_siswa,
-            'id_agama'  => $result->id_agama,
-            'nis'       => $result->nis,
-            'nama'      => $result->nama,
-            'kelamin'   => $result->kelamin,
-            'tmp_lahir' => $result->tmp_lahir,
-            'tgl_lahir' => $result->tgl_lahir,
-            'alamat'    => $result->alamat,
-            'ortu_wali' => $result->ortu_wali,
-        ];
+        $response = $this->m_siswa->getSiswa($post['id']);
+        
         // untuk response json
         $this->_response($response);
     }
@@ -107,6 +97,7 @@ class Siswa extends MY_Controller
                 'id_siswa'  => acak_id('tb_siswa', 'id_siswa'),
                 'id_users'  => $users['id_users'],
                 'id_agama'  => $post['inpidagama'],
+                'id_kelas'  => $post['inpidkelas'],
                 'nis'       => $post['inpnis'],
                 'kelamin'   => $post['inpkelamin'],
                 'tmp_lahir' => $post['inptmplahir'],
@@ -130,6 +121,7 @@ class Siswa extends MY_Controller
             $siswa = [
                 'id_siswa'  => $post['inpidsiswa'],
                 'id_agama'  => $post['inpidagama'],
+                'id_kelas'  => $post['inpidkelas'],
                 'nis'       => $post['inpnis'],
                 'kelamin'   => $post['inpkelamin'],
                 'tmp_lahir' => $post['inptmplahir'],
