@@ -16,4 +16,10 @@ class M_kelas extends CI_Model
         $this->datatables->from('tb_kelas AS k');
         return print_r($this->datatables->generate());
     }
+
+    public function getKelasJumlahSiswa($status)
+    {
+        $result = $this->db->query("SELECT tb_kelas.id_kelas, tb_kelas.nama,( SELECT COUNT(*) FROM tb_siswa WHERE tb_siswa.id_kelas = tb_kelas.id_kelas AND tb_siswa.status = '$status') AS jumlah_siswa FROM tb_kelas ORDER BY tb_kelas.nama");
+        return $result;
+    }
 }

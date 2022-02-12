@@ -11,5 +11,5 @@
 <script src="<?= assets_url() ?>admin/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 
 <script>
-    $('#tabel-siswa-aktif').DataTable()
+    $('#tabel-siswa-alumni').DataTable()
 </script>

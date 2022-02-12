@@ -14,6 +14,12 @@ class M_siswa extends CI_Model
         return $result;
     }
 
+    public function getAllSiswaStatusKelas($status, $id_kelas)
+    {
+        $result = $this->db->query("SELECT s.id_siswa, s.nis, u.nama, s.tmp_lahir, s.tgl_lahir, s.ortu_wali, s.kelamin, s.alamat, s.status, a.nama AS agama, k.nama AS kelas FROM tb_siswa AS s LEFT JOIN tb_agama AS a ON s.id_agama = a.id_agama LEFT JOIN tb_users AS u ON s.id_users = u.id_users LEFT JOIN tb_kelas AS k ON s.id_kelas = k.id_kelas WHERE s.status = '$status' AND s.id_kelas = '$id_kelas' ORDER BY s.ins")->result();
+        return $result;
+    }
+
     public function getSiswa($id_users)
     {
         $result = $this->db->query("SELECT tu.id_users, tu.nama, tu.email, ts.id_siswa, ts.nis, ts.tmp_lahir, ts.tgl_lahir, ts.ortu_wali, ts.kelamin, ts.alamat, ts.thn_lulus, ts.`status`, ts.id_agama, ts.id_kelas FROM tb_users AS tu LEFT JOIN tb_siswa AS ts ON tu.id_users = ts.id_users WHERE tu.id_users = '$id_users'")->row();

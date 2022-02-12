@@ -20,8 +20,10 @@ $route['berita/(:any)']        = 'home/berita_kategori';
 $route['berita/detail/(:any)'] = 'home/berita_detail';
 
 // route siswa
-$route['siswa/aktif']  = 'home/s_aktif';
-$route['siswa/alumni'] = 'home/s_alumni';
+$route['siswa/aktif']                = 'home/s_aktif';
+$route['siswa/aktif/detail/(:any)']  = 'home/s_aktif_detail';
+$route['siswa/alumni']               = 'home/s_alumni';
+$route['siswa/alumni/detail/(:any)'] = 'home/s_alumni_detail';
 
 // route kuisioner
 $route['kuisioner/(:any)']       = 'home/kuisioner';

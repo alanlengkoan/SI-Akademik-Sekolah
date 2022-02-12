@@ -21,33 +21,25 @@
             <div class="col-lg-12">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered nowrap" id="tabel-siswa-alumni" width="100%">
-                        <thead>
+                        <thead align="center">
                             <tr>
                                 <th>No.</th>
-                                <th>NIS</th>
-                                <th>Nama</th>
                                 <th>Kelas</th>
-                                <th>Tempat Lahir</th>
-                                <th>Tanggal Lahir</th>
-                                <th>Agama</th>
-                                <th>Jenis Kelamin</th>
-                                <th>Status Siswa</th>
+                                <th>Jumlah Siswa</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody align="center">
                             <?php
                             $no = 1;
-                            foreach ($data as $row) { ?>
+                            foreach ($data->result() as $row) { ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
-                                    <td><?= $row->nis ?></td>
                                     <td><?= $row->nama ?></td>
-                                    <td><?= $row->kelas ?></td>
-                                    <td><?= $row->tmp_lahir ?></td>
-                                    <td><?= $row->tgl_lahir ?></td>
-                                    <td><?= $row->agama ?></td>
-                                    <td><?= ($row->kelamin === 'L' ? "Laki - laki" : "Perempuan") ?></td>
-                                    <td><?= ($row->status === '0' ? "Aktif" : "Perempuan") ?></td>
+                                    <td><?= $row->jumlah_siswa ?></td>
+                                    <td>
+                                        <a href="<?= base_url() ?>siswa/alumni/detail/<?= $row->id_kelas ?>" class="btn btn-info info-icon-notika"><i class="fa fa-info-circle"></i></a>
+                                    </td>
                                 </tr>
                             <?php } ?>
                         </tbody>

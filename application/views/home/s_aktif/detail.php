@@ -21,25 +21,33 @@
             <div class="col-lg-12">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered nowrap" id="tabel-siswa-aktif" width="100%">
-                        <thead align="center">
+                        <thead>
                             <tr>
                                 <th>No.</th>
+                                <th>NIS</th>
+                                <th>Nama</th>
                                 <th>Kelas</th>
-                                <th>Jumlah Siswa</th>
-                                <th>Aksi</th>
+                                <th>Tempat Lahir</th>
+                                <th>Tanggal Lahir</th>
+                                <th>Agama</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Status Siswa</th>
                             </tr>
                         </thead>
-                        <tbody align="center">
+                        <tbody>
                             <?php
                             $no = 1;
-                            foreach ($data->result() as $row) { ?>
+                            foreach ($data as $row) { ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
+                                    <td><?= $row->nis ?></td>
                                     <td><?= $row->nama ?></td>
-                                    <td><?= $row->jumlah_siswa ?></td>
-                                    <td>
-                                        <a href="<?= base_url() ?>siswa/aktif/detail/<?= $row->id_kelas ?>" class="btn btn-info info-icon-notika"><i class="fa fa-info-circle"></i></a>
-                                    </td>
+                                    <td><?= $row->kelas ?></td>
+                                    <td><?= $row->tmp_lahir ?></td>
+                                    <td><?= $row->tgl_lahir ?></td>
+                                    <td><?= $row->agama ?></td>
+                                    <td><?= ($row->kelamin === 'L' ? "Laki - laki" : "Perempuan") ?></td>
+                                    <td><?= ($row->status === '0' ? "Aktif" : "Perempuan") ?></td>
                                 </tr>
                             <?php } ?>
                         </tbody>

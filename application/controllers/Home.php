@@ -22,6 +22,7 @@ class Home extends MY_Controller
         $this->load->model('m_users');
         $this->load->model('m_siswa');
         $this->load->model('m_agama');
+        $this->load->model('m_kelas');
         $this->load->model('m_profil');
         $this->load->model('m_kategori');
         $this->load->model('m_keuangan');
@@ -170,10 +171,29 @@ class Home extends MY_Controller
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
             'dana'      => $this->m_dana->getAll(),
-            'data'      => $this->m_siswa->getAllSiswaStatus('0'),
+            'data'      => $this->m_kelas->getKelasJumlahSiswa('0'),
             'content'   => 'home/s_aktif/view',
             'css'       => 'home/s_aktif/css/view',
             'js'        => 'home/s_aktif/js/view'
+        ];
+        // untuk load view
+        $this->load->view('home/base', $data);
+    }
+
+    // untuk halaman siswa aktif detail
+    public function s_aktif_detail()
+    {
+        $id_kelas = $this->uri->segment('4');
+
+        $data = [
+            'halaman'   => 'Detail Siswa Aktif',
+            'kuisioner' => $this->m_kuisioner->getAll(),
+            'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
+            'data'      => $this->m_siswa->getAllSiswaStatusKelas('0', $id_kelas),
+            'content'   => 'home/s_aktif/detail',
+            'css'       => 'home/s_aktif/css/detail',
+            'js'        => 'home/s_aktif/js/detail'
         ];
         // untuk load view
         $this->load->view('home/base', $data);
@@ -187,10 +207,29 @@ class Home extends MY_Controller
             'kuisioner' => $this->m_kuisioner->getAll(),
             'profil'    => $this->m_profil->getAll(),
             'dana'      => $this->m_dana->getAll(),
-            'data'      => $this->m_siswa->getAllSiswaStatus('1'),
+            'data'      => $this->m_kelas->getKelasJumlahSiswa('1'),
             'content'   => 'home/s_alumni/view',
             'css'       => 'home/s_alumni/css/view',
             'js'        => 'home/s_alumni/js/view'
+        ];
+        // untuk load view
+        $this->load->view('home/base', $data);
+    }
+
+    // untuk halaman siswa alumni detail
+    public function s_alumni_detail()
+    {
+        $id_kelas = $this->uri->segment('4');
+
+        $data = [
+            'halaman'   => 'Detail Siswa Alumni',
+            'kuisioner' => $this->m_kuisioner->getAll(),
+            'profil'    => $this->m_profil->getAll(),
+            'dana'      => $this->m_dana->getAll(),
+            'data'      => $this->m_siswa->getAllSiswaStatusKelas('1', $id_kelas),
+            'content'   => 'home/s_alumni/detail',
+            'css'       => 'home/s_alumni/css/detail',
+            'js'        => 'home/s_alumni/js/detail'
         ];
         // untuk load view
         $this->load->view('home/base', $data);
