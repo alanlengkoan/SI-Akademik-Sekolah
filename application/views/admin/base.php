@@ -307,6 +307,14 @@
                                         <span class="pcoded-mtext">Laporan Siswa</span>
                                     </a>
                                 </li>
+                                <li class="<?= ($this->uri->segment(2) === 'l_buku_tamu' ? 'active' : '') ?>">
+                                    <a href="<?= admin_url() ?>laporan/l_buku_tamu">
+                                        <span class="pcoded-micon">
+                                            <i class="fa fa-circle"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Laporan Buku Tamu</span>
+                                    </a>
+                                </li>
                             </ul>
                             <!-- end:: menu sidebar -->
                         </div>

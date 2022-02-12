@@ -16,6 +16,7 @@ class Laporan extends MY_Controller
         $this->load->model('m_dana');
         $this->load->model('m_siswa');
         $this->load->model('m_keuangan');
+        $this->load->model('m_buku_tamu');
     }
 
     // untuk default
@@ -192,6 +193,19 @@ class Laporan extends MY_Controller
             'content' => 'admin/l_guru/view',
             'css'     => 'admin/l_guru/css/view',
             'js'      => 'admin/l_guru/js/view'
+        ];
+        // untuk load view
+        $this->load->view('admin/base', $data);
+    }
+
+    public function l_buku_tamu()
+    {
+        $data = [
+            'halaman' => 'Laporan Buku Tamu',
+            'data'    => $this->m_buku_tamu->getAll(),
+            'content' => 'admin/l_buku_tamu/view',
+            'css'     => 'admin/l_buku_tamu/css/view',
+            'js'      => 'admin/l_buku_tamu/js/view'
         ];
         // untuk load view
         $this->load->view('admin/base', $data);
