@@ -187,7 +187,7 @@
 						<div class="form-group row">
 							<label class="col-sm-12 col-form-label">Telepon *</label>
 							<div class="col-sm-12">
-								<input type="text" class="form-control" name="telepon" id="telepon" placeholder="Masukkan telepon" />
+								<input type="text" class="form-control" pattern="\d*" maxlength="12" minlength="12" name="telepon" id="telepon" placeholder="Masukkan telepon" />
 							</div>
 						</div>
 						<div class="form-group row">

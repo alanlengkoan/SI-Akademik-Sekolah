@@ -29,6 +29,12 @@ class M_kuisioner extends CI_Model
         return $result;
     }
 
+    public function getWhereHasilDetailSiswa($id_kuisioner_soal, $id_siswa, $jawaban)
+    {
+        $result = $this->db->query("SELECT tkh.id_kuisioner_soal, tkh.id_siswa, tkh.jawaban FROM tb_kuisioner_hasil AS tkh WHERE tkh.id_kuisioner_soal = '$id_kuisioner_soal' and tkh.id_siswa = '$id_siswa' AND tkh.jawaban = '$jawaban'");
+        return $result;
+    }
+
     public function getWhereHasilSiswa($id_siswa)
     {
         $get = $this->db->query("SELECT tkh.id_kuisioner_hasil, tkh.id_kuisioner_soal, tkh.jawaban FROM tb_kuisioner_hasil AS tkh WHERE id_siswa = '$id_siswa'");

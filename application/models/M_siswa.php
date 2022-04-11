@@ -37,4 +37,16 @@ class M_siswa extends CI_Model
         $this->datatables->from('tb_siswa AS s');
         return print_r($this->datatables->generate());
     }
+
+    public function getTahun()
+    {
+        $result = $this->db->query("SELECT DISTINCT thn_lulus AS tahun FROM tb_siswa WHERE thn_lulus IS NOT NULL");
+        return $result;
+    }
+
+    public function getSiswaTahun($tahun)
+    {
+        $result = $this->db->query("SELECT s.id_siswa, s.thn_lulus, u.nama FROM tb_siswa AS s LEFT JOIN tb_users AS u ON s.id_users = u.id_users WHERE s.thn_lulus = '$tahun'");
+        return $result;
+    }
 }

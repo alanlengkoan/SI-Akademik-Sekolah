@@ -36,12 +36,36 @@
                 </form>
             </div>
             <div class="col-lg-12">
+                <!-- begin:: filter -->
+                <form id="form-filter" action="<?= base_url() ?>kuisioner_chart/<?= $id_kuisioner ?>" method="post">
+                    <div class="form-group">
+                        <label>Tahun&nbsp;*</label>
+                        <select name="tahun" id="tahun" class="form-control">
+                            <option value="">- Pilih -</option>
+                            <?php foreach ($tahun->result() as $key => $row) { ?>
+                                <option value="<?= $row->tahun ?>"><?= $row->tahun ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Siswa&nbsp;*</label>
+                        <select name="siswa" id="siswa" class="form-control">
+                            <option value="">- Pilih -</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" id="lihat" value="Lihat" class="btn btn-success btn-sm">
+                    </div>
+                </form>
+                <!-- end:: filter -->
+                <!-- begin:: chart -->
                 <?php foreach ($kuisional_soal->result() as $value) { ?>
                     <figure class="highcharts-figure">
                         <div id="<?= $value->id_kuisioner_soal ?>"></div>
                     </figure>
                     <br>
                 <?php } ?>
+                <!-- end:: chart -->
             </div>
         </div>
     </div>

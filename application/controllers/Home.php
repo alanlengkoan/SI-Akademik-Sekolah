@@ -235,6 +235,16 @@ class Home extends MY_Controller
         $this->load->view('home/base', $data);
     }
 
+    // untuk ambil siswa
+    public function filter_siswa()
+    {
+        $post = $this->input->post(NULL, TRUE);
+
+        $response = $this->m_siswa->getSiswaTahun($post['tahun'])->result();
+
+        $this->_response($response);
+    }
+
     // untuk halaman kuisioner
     public function kuisioner()
     {
@@ -250,6 +260,7 @@ class Home extends MY_Controller
                 'profil'         => $this->m_profil->getAll(),
                 'agama'          => $this->m_agama->getAll(),
                 'dana'           => $this->m_dana->getAll(),
+                'tahun'          => $this->m_siswa->getTahun(),
                 'content'        => 'home/kuisioner_grafik/view',
                 'css'            => 'home/kuisioner_grafik/css/view',
                 'js'             => 'home/kuisioner_grafik/js/view'
@@ -277,6 +288,7 @@ class Home extends MY_Controller
 
     public function kuisioner_chart()
     {
+        $post = $this->input->post(NULL, TRUE);
         $id_kuisioner = $this->uri->segment('2');
 
         // untuk ambil kuisioner
@@ -287,47 +299,89 @@ class Home extends MY_Controller
         $get_num = $get_alumni->num_rows();
 
         $result = [];
-        foreach ($get_kuisioner->result() as $key => $value) {
-            $a = (int) $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '1')->num_rows();
-            $b = (int) $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '2')->num_rows();
-            $c = (int) $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '3')->num_rows();
-            $d = (int) $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '4')->num_rows();
-            $e = (int) $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '5')->num_rows();
 
-            $result[] = [
-                'id_kuisioner_soal' => $value->id_kuisioner_soal,
-                'soal'              => $value->soal,
-                'data'              =>  [
-                    [
-                        'name'   => $value->pil_a,
-                        'y'      => round(($a / $get_num) * 100, 2),
-                        'x'      => $a,
-                    ],
-                    [
-                        'name'   => $value->pil_b,
-                        'y'      => round(($b / $get_num) * 100, 2),
-                        'x'      => $b,
-                    ],
-                    [
-                        'name'   => $value->pil_c,
-                        'y'      => round(($c / $get_num) * 100, 2),
-                        'x'      => $c,
-                    ],
-                    [
-                        'name'   => $value->pil_d,
-                        'y'      => round(($d / $get_num) * 100, 2),
-                        'x'      => $d,
-                    ],
-                    [
-                        'name'   => $value->pil_e,
-                        'y'      => round(($e / $get_num) * 100, 2),
-                        'x'      => $e,
-                    ],
-                ]
-            ];
+        if (isset($post['tahun'])) {
+            foreach ($get_kuisioner->result() as $key => $value) {
+                $a = (int) $this->m_kuisioner->getWhereHasilDetailSiswa($value->id_kuisioner_soal, $post['siswa'], '1')->num_rows();
+                $b = (int) $this->m_kuisioner->getWhereHasilDetailSiswa($value->id_kuisioner_soal, $post['siswa'], '2')->num_rows();
+                $c = (int) $this->m_kuisioner->getWhereHasilDetailSiswa($value->id_kuisioner_soal, $post['siswa'], '3')->num_rows();
+                $d = (int) $this->m_kuisioner->getWhereHasilDetailSiswa($value->id_kuisioner_soal, $post['siswa'], '4')->num_rows();
+                $e = (int) $this->m_kuisioner->getWhereHasilDetailSiswa($value->id_kuisioner_soal, $post['siswa'], '5')->num_rows();
+
+                $result[] = [
+                    'id_kuisioner_soal' => $value->id_kuisioner_soal,
+                    'soal'              => $value->soal,
+                    'data'              =>  [
+                        [
+                            'name'   => $value->pil_a,
+                            'y'      => $a,
+                            'x'      => $a,
+                        ],
+                        [
+                            'name'   => $value->pil_b,
+                            'y'      => $b,
+                            'x'      => $b,
+                        ],
+                        [
+                            'name'   => $value->pil_c,
+                            'y'      => $c,
+                            'x'      => $c,
+                        ],
+                        [
+                            'name'   => $value->pil_d,
+                            'y'      => $d,
+                            'x'      => $d,
+                        ],
+                        [
+                            'name'   => $value->pil_e,
+                            'y'      => $e,
+                            'x'      => $e,
+                        ],
+                    ]
+                ];
+            }
+        } else {
+            foreach ($get_kuisioner->result() as $key => $value) {
+                $a = (int) $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '1')->num_rows();
+                $b = (int) $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '2')->num_rows();
+                $c = (int) $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '3')->num_rows();
+                $d = (int) $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '4')->num_rows();
+                $e = (int) $this->m_kuisioner->getWhereHasil($value->id_kuisioner_soal, '5')->num_rows();
+
+                $result[] = [
+                    'id_kuisioner_soal' => $value->id_kuisioner_soal,
+                    'soal'              => $value->soal,
+                    'data'              =>  [
+                        [
+                            'name'   => $value->pil_a,
+                            'y'      => round(($a / $get_num) * 100, 2),
+                            'x'      => $a,
+                        ],
+                        [
+                            'name'   => $value->pil_b,
+                            'y'      => round(($b / $get_num) * 100, 2),
+                            'x'      => $b,
+                        ],
+                        [
+                            'name'   => $value->pil_c,
+                            'y'      => round(($c / $get_num) * 100, 2),
+                            'x'      => $c,
+                        ],
+                        [
+                            'name'   => $value->pil_d,
+                            'y'      => round(($d / $get_num) * 100, 2),
+                            'x'      => $d,
+                        ],
+                        [
+                            'name'   => $value->pil_e,
+                            'y'      => round(($e / $get_num) * 100, 2),
+                            'x'      => $e,
+                        ],
+                    ]
+                ];
+            }
         }
-
-        // debug($result);
+        
         $this->_response($result);
     }
 

@@ -30,6 +30,8 @@ $route['kuisioner/(:any)']       = 'home/kuisioner';
 $route['kuisioner_chart/(:any)'] = 'home/kuisioner_chart';
 $route['kuisioner_simpan']       = 'home/kuisioner_simpan';
 
+$route['filter_siswa'] = 'home/filter_siswa';
+
 // route profil
 $route['profil/(:any)']            = 'home/profil';
 $route['profil/cetak/(:any)']      = 'home/profil_cetak';
